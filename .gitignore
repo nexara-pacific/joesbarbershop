@@ -1,0 +1,17 @@
+.DS_Store
+node_modules/
+.next/
+dist/
+build/
+.env
+.env.*
+!.env.example
+*.log
+.vscode/
+.idea/
+
+# Optional — uncomment if mockups/ binary previews bloat the repo
+# mockups/**/*.png
+# mockups/**/*.jpg
+# mockups/**/*.gif
+# mockups/**/*.mp4
