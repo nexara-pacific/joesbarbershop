@@ -124,17 +124,56 @@ Deferred — addressed after Joe approves and v1 ships.
 
 ## Traceability
 
-Filled in during roadmap creation.
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (populated by roadmap) | | Pending |
+| SCAF-01 | Phase 1 | Pending |
+| SCAF-02 | Phase 1 | Pending |
+| SCAF-03 | Phase 1 | Pending |
+| SCAF-04 | Phase 1 | Pending |
+| SCAF-05 | Phase 1 | Pending |
+| DATA-01 | Phase 2 | Pending |
+| DATA-02 | Phase 2 | Pending |
+| DATA-03 | Phase 2 | Pending |
+| DATA-04 | Phase 2 | Pending |
+| DESN-01 | Phase 2 | Pending |
+| DESN-02 | Phase 2 | Pending |
+| DESN-03 | Phase 2 | Pending |
+| DESN-04 | Phase 2 | Pending |
+| PAGE-01 | Phase 3 | Pending |
+| PAGE-02 | Phase 3 | Pending |
+| PAGE-03 | Phase 3 | Pending |
+| PAGE-04 | Phase 3 | Pending |
+| PAGE-05 | Phase 3 | Pending |
+| PAGE-06 | Phase 3 | Pending |
+| PAGE-07 | Phase 4 | Pending |
+| PAGE-08 | Phase 4 | Pending |
+| AEO-01 | Phase 5 | Pending |
+| AEO-02 | Phase 5 | Pending |
+| AEO-03 | Phase 5 | Pending |
+| AEO-04 | Phase 5 | Pending |
+| AEO-05 | Phase 5 | Pending |
+| AEO-06 | Phase 5 | Pending |
+| AEO-07 | Phase 5 | Pending |
+| AEO-08 | Phase 5 | Pending |
+| AEO-09 | Phase 5 | Pending |
+| PERF-01 | Phase 5 | Pending |
+| PERF-02 | Phase 5 | Pending |
+| PERF-03 | Phase 5 | Pending |
+| PERF-04 | Phase 5 | Pending |
+| META-01 | Phase 5 | Pending |
+| META-02 | Phase 5 | Pending |
+| META-03 | Phase 5 | Pending |
+| META-04 | Phase 5 | Pending |
+| DPLY-01 | Phase 6 | Pending |
+| DPLY-02 | Phase 6 | Pending |
+| DPLY-03 | Phase 6 | Pending |
+| SHOW-01 | Phase 6 | Pending |
 
 **Coverage:**
-- v1 requirements: 39 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 39 ⚠️
+- v1 requirements: 42 total
+- Mapped to phases: 42 ✓
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-05-06*
-*Last updated: 2026-05-06 after initial definition*
+*Last updated: 2026-04-29 after roadmap creation*
