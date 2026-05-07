@@ -51,8 +51,15 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. All 6 service content files and 5 neighborhood content files pass `getCollection()` without schema errors
   3. The OD-5 homepage rendered in a scratch Astro page is visually identical to `mockups/home-v5/index.html` (checkerboard, fonts, palette, spacing)
   4. The live-tweaks panel is absent from the production build output
-  5. All 6 photos are in `site/public/photos/` and render through `<Image />` without broken `<img>` tags
-**Plans**: TBD
+  5. All 6 photos are in `site/src/assets/photos/` and render through `<Image />` without broken `<img>` tags
+**Plans**: 7 plans
+- [ ] 02-01-PLAN.md — Design tokens + utilities CSS + Base.astro wiring (Wave 1)
+- [ ] 02-02-PLAN.md — business.json + business.ts data layer with GBP hours confirmation (Wave 1)
+- [ ] 02-03-PLAN.md — content.config.ts + 11 stub entries (6 services + 5 neighborhoods) (Wave 1)
+- [ ] 02-04-PLAN.md — Photos asset copy + UtilBar/Masthead/Footer port + CheckDivider/SectionMark (Wave 2)
+- [ ] 02-05-PLAN.md — Hero + FactStrip + PriceBoard component port (Wave 2)
+- [ ] 02-06-PLAN.md — Heritage + Visit + FAQ + ClosingCTA component port (Wave 2)
+- [ ] 02-07-PLAN.md — Parity scratch page + full verification suite + visual eye-test (Wave 3)
 **UI hint**: yes
 
 ### Phase 3: Unique Pages
@@ -106,8 +113,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Scaffold | 0/TBD | Not started | - |
-| 2. Data + Design System | 0/TBD | Not started | - |
+| 1. Scaffold | 4/4 | Complete | 2026-05-07 |
+| 2. Data + Design System | 0/7 | Ready to execute | - |
 | 3. Unique Pages | 0/TBD | Not started | - |
 | 4. Templated Pages | 0/TBD | Not started | - |
 | 5. AEO + Performance + Meta | 0/TBD | Not started | - |
