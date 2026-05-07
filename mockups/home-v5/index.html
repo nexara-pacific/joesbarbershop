@@ -1,0 +1,822 @@
+
+<!doctype html>
+<html lang="en">
+<head><script>(function(){
+  function makeStore(){
+    var data = {};
+    var api = {
+      getItem: function(k){ return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
+      setItem: function(k, v){ data[k] = String(v); },
+      removeItem: function(k){ delete data[k]; },
+      clear: function(){ data = {}; },
+      key: function(i){ return Object.keys(data)[i] || null; }
+    };
+    Object.defineProperty(api, 'length', { get: function(){ return Object.keys(data).length; } });
+    return api;
+  }
+  function tryShim(name){
+    var works = false;
+    try { works = !!window[name] && typeof window[name].getItem === 'function'; void window[name].length; }
+    catch (_) { works = false; }
+    if (works) return;
+    try { Object.defineProperty(window, name, { configurable: true, value: makeStore() }); }
+    catch (_) { try { window[name] = makeStore(); } catch (__) {} }
+  }
+  tryShim('localStorage');
+  tryShim('sessionStorage');
+})();</script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Joe's Barbershop — Bostonia, El Cajon · Traditional Cuts &amp; Shaves Since 2020</title>
+<meta name="description" content="Joe's Barbershop is a traditional men's barbershop in Bostonia, El Cajon CA. Haircuts, hot-towel shaves, beard line-ups. Book online or walk in. Open Tue–Sat. 4.9★ across 91 Google reviews." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Playfair+Display:wght@600;800;900&family=DM+Serif+Display:ital@0;1&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" />
+
+<style>
+  :root {
+    --bg:        oklch(95% 0.022 80);
+    --surface:   oklch(99% 0.008 80);
+    --fg:        oklch(15% 0.02 60);
+    --muted:     oklch(45% 0.025 50);
+    --border:    oklch(86% 0.025 80);
+    --hairline:  oklch(80% 0.030 75);
+    --accent:    oklch(56% 0.17 28);
+    --accent-2:  oklch(36% 0.10 260);
+    --gold:      oklch(68% 0.10 80);
+    --board-bg:  oklch(13% 0.005 60);
+    --board-fg:  oklch(96% 0.005 80);
+    --check-fg:  oklch(15% 0.005 60);
+    --check-bg:  oklch(96% 0.005 80);
+    --font-display-fell:     'IM Fell English', 'Iowan Old Style', Georgia, serif;
+    --font-display-playfair: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
+    --font-display-dm:       'DM Serif Display', 'Tiempos Headline', Georgia, serif;
+    --font-display:          var(--font-display-fell);
+    --font-body:  'Newsreader', 'Iowan Old Style', Georgia, serif;
+    --font-board: 'Oswald', 'Bebas Neue', 'Arial Narrow', sans-serif;
+    --font-mono:  'JetBrains Mono', ui-monospace, Menlo, monospace;
+    --maxw: 1240px;
+    --gutter: clamp(20px, 4vw, 56px);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 17px; line-height: 1.55; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  .display { font-family: var(--font-display); font-weight: 600; line-height: 1.02; letter-spacing: -0.005em; }
+  :root[data-font="playfair"] .display { font-weight: 800; letter-spacing: -0.01em; }
+  :root[data-font="dm"] .display { font-weight: 400; }
+  .eyebrow { font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.18em; font-size: 12px; font-weight: 600; color: var(--muted); }
+  .kicker-rule { display: inline-flex; align-items: center; gap: 12px; }
+  .kicker-rule::before { content: ""; width: 28px; height: 2px; background: var(--accent); }
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gutter); }
+  .check-divider { height: 22px; width: 100%; }
+  :root[data-checker="off"] .check-divider, :root[data-checker="subtle"] .check-divider { display: none; }
+  :root[data-checker="standard"] .check-divider { background-image: conic-gradient(from 90deg at 50% 50%, var(--check-fg) 25%, var(--check-bg) 0 50%, var(--check-fg) 0 75%, var(--check-bg) 0); background-size: 22px 22px; }
+  :root[data-checker="heavy"] .check-divider { height: 34px; background-image: conic-gradient(from 90deg at 50% 50%, var(--check-fg) 25%, var(--check-bg) 0 50%, var(--check-fg) 0 75%, var(--check-bg) 0); background-size: 34px 34px; }
+  .section-mark { width: 22px; height: 22px; border-radius: 999px; background: radial-gradient(circle at 50% 50%, var(--gold) 0 5px, transparent 6px), conic-gradient(from 0deg, var(--check-fg) 0 90deg, var(--check-bg) 0 180deg, var(--check-fg) 0 270deg, var(--check-bg) 0); border: 2px solid var(--check-fg); flex: 0 0 auto; }
+  :root[data-checker="off"] .section-mark, :root[data-checker="subtle"] .section-mark { display: none; }
+  .hero-checker-ribbon { position: absolute; inset: auto 0 0 auto; width: 220px; height: 28px; background-image: conic-gradient(from 90deg at 50% 50%, var(--check-fg) 25%, var(--check-bg) 0 50%, var(--check-fg) 0 75%, var(--check-bg) 0); background-size: 28px 28px; pointer-events: none; display: none; }
+  :root[data-checker="subtle"] .hero-checker-ribbon { display: block; width: 160px; opacity: 0.95; }
+  :root[data-checker="standard"] .hero-checker-ribbon { display: block; }
+  :root[data-checker="heavy"] .hero-checker-ribbon { display: block; width: 100%; height: 36px; }
+  :root[data-checker="heavy"] .heritage-frame { padding: 18px; background-image: conic-gradient(from 90deg at 50% 50%, var(--check-fg) 25%, var(--check-bg) 0 50%, var(--check-fg) 0 75%, var(--check-bg) 0); background-size: 18px 18px; }
+  .footer-checker { height: 60px; width: 100%; background-image: conic-gradient(from 90deg at 50% 50%, var(--check-fg) 25%, var(--check-bg) 0 50%, var(--check-fg) 0 75%, var(--check-bg) 0); background-size: 30px 30px; display: none; }
+  :root[data-checker="standard"] .footer-checker { display: block; }
+  :root[data-checker="heavy"] .footer-checker { display: block; height: 92px; background-size: 46px 46px; }
+  .util-bar { background: var(--fg); color: var(--bg); font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.16em; font-size: 12px; font-weight: 500; }
+  .util-bar .wrap { display: flex; align-items: center; gap: 28px; padding-block: 9px; flex-wrap: wrap; }
+  .util-bar .util-dot { color: var(--accent); font-size: 14px; line-height: 1; }
+  .util-bar .util-phone { margin-left: auto; font-weight: 600; letter-spacing: 0.08em; }
+  .masthead { border-bottom: 1px solid var(--border); background: var(--bg); position: relative; z-index: 5; }
+  .masthead .wrap { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px; padding-block: 18px; }
+  .brand-lockup { display: flex; align-items: center; gap: 16px; text-decoration: none; color: inherit; }
+  .brand-lockup img { width: 76px; height: 76px; border-radius: 999px; object-fit: cover; }
+  .brand-text { line-height: 1.05; }
+  .brand-text .name { font-family: var(--font-display); font-size: 24px; font-weight: 700; }
+  :root[data-font="playfair"] .brand-text .name { font-weight: 800; }
+  :root[data-font="dm"] .brand-text .name { font-weight: 400; }
+  .brand-text .tag { font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.22em; font-size: 10.5px; color: var(--muted); margin-top: 4px; }
+  nav.primary { display: flex; justify-content: center; gap: 28px; font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.16em; font-size: 12.5px; font-weight: 500; }
+  nav.primary a { color: var(--fg); text-decoration: none; padding-block: 8px; border-bottom: 2px solid transparent; transition: border-color .15s ease; }
+  nav.primary a:hover { border-bottom-color: var(--accent); }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; background: var(--fg); color: var(--bg); font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.16em; font-size: 12.5px; font-weight: 600; text-decoration: none; border-radius: 0; border: 1px solid var(--fg); transition: background .15s, color .15s; }
+  .btn:hover { background: var(--accent); border-color: var(--accent); }
+  .btn.outline { background: transparent; color: var(--fg); }
+  .btn.outline:hover { background: var(--fg); color: var(--bg); }
+  .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 0; align-items: stretch; }
+  .hero-copy { padding: clamp(40px, 6vw, 88px) clamp(24px, 4vw, 64px); display: flex; flex-direction: column; justify-content: center; background: var(--bg); position: relative; }
+  .hero-copy .eyebrow { margin-bottom: 22px; }
+  .hero-copy h1 { font-family: var(--font-display); font-size: clamp(48px, 6.6vw, 96px); font-weight: 600; line-height: 0.96; letter-spacing: -0.012em; margin: 0 0 22px; color: var(--fg); }
+  :root[data-font="playfair"] .hero-copy h1 { font-weight: 800; letter-spacing: -0.022em; }
+  :root[data-font="dm"] .hero-copy h1 { font-weight: 400; letter-spacing: -0.005em; }
+  .hero-copy h1 .accent-word { color: var(--accent); }
+  .hero-bluf { font-size: 18px; line-height: 1.55; color: var(--fg); max-width: 56ch; margin: 0 0 28px; }
+  .hero-bluf strong { font-weight: 600; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 28px; }
+  .hero-meta { border-top: 1px solid var(--border); padding-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 28px; font-size: 14px; color: var(--muted); }
+  .hero-meta strong { display: block; font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.14em; font-size: 11px; color: var(--fg); font-weight: 600; margin-bottom: 4px; }
+  .hero-photo { position: relative; background: #0e0d0b; min-height: 520px; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; position: absolute; inset: 0; }
+  .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, transparent 60%, rgba(14,13,11,0.35) 100%); pointer-events: none; }
+  .hero-photo .photo-credit { position: absolute; left: 16px; bottom: 16px; font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.18em; font-size: 11px; color: var(--bg); opacity: 0.78; z-index: 2; font-weight: 500; }
+  .fact-strip { background: var(--surface); border-bottom: 1px solid var(--border); }
+  .fact-strip .wrap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; padding-block: 0; }
+  .fact { padding: 22px 18px; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+  .fact:last-child { border-right: 0; }
+  .fact .label { font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.16em; font-size: 10.5px; color: var(--muted); font-weight: 600; }
+  .fact .value { font-family: var(--font-display); font-size: 22px; font-weight: 600; line-height: 1.1; }
+  :root[data-font="playfair"] .fact .value { font-weight: 800; }
+  :root[data-font="dm"] .fact .value { font-weight: 400; }
+  .fact .value .star { color: var(--accent); }
+  .fact .sub { font-size: 13.5px; color: var(--muted); }
+  section { padding-block: clamp(56px, 7vw, 96px); position: relative; }
+  section.tight { padding-block: clamp(40px, 5vw, 64px); }
+  .section-head { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+  .section-head h2 { font-family: var(--font-display); font-size: clamp(34px, 4vw, 52px); font-weight: 600; line-height: 1.05; letter-spacing: -0.005em; margin: 0; }
+  :root[data-font="playfair"] .section-head h2 { font-weight: 800; letter-spacing: -0.018em; }
+  :root[data-font="dm"] .section-head h2 { font-weight: 400; }
+  .section-head .eyebrow { margin-bottom: 6px; }
+  .section-head-text { display: flex; flex-direction: column; }
+  .price-section { background: var(--bg); }
+  .price-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 4vw, 64px); align-items: start; }
+  .price-board { background: var(--board-bg); color: var(--board-fg); padding: 36px 32px 40px; border: 8px solid #2a2418; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.04), 0 24px 40px -24px rgba(0,0,0,0.35); background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 6px), repeating-linear-gradient(90deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 6px); font-family: var(--font-board); font-weight: 600; text-transform: uppercase; letter-spacing: 0.10em; }
+  .price-board .head { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.16); padding-bottom: 16px; margin-bottom: 16px; font-size: 22px; letter-spacing: 0.22em; }
+  .price-board ul { list-style: none; margin: 0; padding: 0; }
+  .price-board li { display: flex; align-items: baseline; justify-content: space-between; padding-block: 10px; font-size: 26px; letter-spacing: 0.14em; border-bottom: 1px dashed rgba(255,255,255,0.08); }
+  .price-board li:last-child { border-bottom: 0; }
+  .price-board li .dots { flex: 1; margin-inline: 14px; border-bottom: 2px dotted rgba(255,255,255,0.18); transform: translateY(-6px); }
+  .price-board li .num { font-family: var(--font-board); font-weight: 600; color: var(--board-fg); }
+  .price-board .foot { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.16); text-align: center; font-size: 16px; letter-spacing: 0.28em; color: oklch(80% 0.04 80); }
+  .price-board .foot .red { color: oklch(72% 0.18 28); font-weight: 700; }
+  .price-aside h3 { font-family: var(--font-display); font-size: 32px; font-weight: 600; line-height: 1.1; margin: 0 0 14px; letter-spacing: -0.005em; }
+  :root[data-font="playfair"] .price-aside h3 { font-weight: 800; letter-spacing: -0.02em; }
+  :root[data-font="dm"] .price-aside h3 { font-weight: 400; }
+  .price-aside p { margin: 0 0 14px; color: var(--fg); font-size: 17px; line-height: 1.6; }
+  .price-aside .quote { border-left: 3px solid var(--accent); padding: 4px 0 4px 18px; margin: 24px 0 0; font-style: italic; color: var(--muted); font-size: 15.5px; }
+  .heritage { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .heritage-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(28px, 4vw, 72px); align-items: center; }
+  .heritage-photo { position: relative; }
+  .heritage-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
+  .heritage-copy h2 { font-family: var(--font-display); font-size: clamp(38px, 4.4vw, 60px); font-weight: 600; line-height: 1.02; letter-spacing: -0.006em; margin: 14px 0 22px; }
+  :root[data-font="playfair"] .heritage-copy h2 { font-weight: 800; letter-spacing: -0.02em; }
+  :root[data-font="dm"] .heritage-copy h2 { font-weight: 400; }
+  .heritage-copy p { font-size: 17.5px; line-height: 1.65; margin: 0 0 14px; max-width: 60ch; }
+  .heritage-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; border-top: 1px solid var(--border); padding-top: 24px; }
+  .heritage-stats .stat .num { font-family: var(--font-display); font-size: 40px; font-weight: 600; line-height: 1; letter-spacing: -0.01em; color: var(--accent); }
+  :root[data-font="playfair"] .heritage-stats .stat .num { font-weight: 800; }
+  :root[data-font="dm"] .heritage-stats .stat .num { font-weight: 400; }
+  .heritage-stats .stat .label { font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; color: var(--muted); font-weight: 600; margin-top: 6px; }
+  .visit { background: var(--bg); }
+  .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 64px); align-items: stretch; }
+  .visit-photo { position: relative; overflow: hidden; }
+  .visit-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 50%; }
+  .visit-card { padding: 32px 36px; border: 1px solid var(--border); background: var(--surface); display: flex; flex-direction: column; gap: 22px; }
+  .visit-card h3 { font-family: var(--font-display); font-size: 38px; font-weight: 600; line-height: 1.05; letter-spacing: -0.005em; margin: 0; }
+  :root[data-font="playfair"] .visit-card h3 { font-weight: 800; letter-spacing: -0.02em; }
+  :root[data-font="dm"] .visit-card h3 { font-weight: 400; }
+  .nap dl { margin: 0; display: grid; grid-template-columns: 130px 1fr; gap: 14px 20px; }
+  .nap dt { font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; font-weight: 600; color: var(--muted); align-self: start; padding-top: 4px; }
+  .nap dd { margin: 0; font-size: 16px; line-height: 1.5; }
+  .nap dd strong { font-weight: 600; }
+  .nap dd .mono { font-family: var(--font-mono); font-size: 14px; color: var(--muted); display: block; margin-top: 2px; letter-spacing: 0.04em; }
+  .faq { background: var(--surface); border-top: 1px solid var(--border); }
+  .faq-list { display: grid; grid-template-columns: 1fr; gap: 32px; max-width: 980px; }
+  .faq-q { padding-top: 22px; border-top: 1px solid var(--border); display: grid; grid-template-columns: 60px 1fr; gap: 32px; }
+  .faq-q .num { font-family: var(--font-display); font-size: 28px; font-weight: 600; color: var(--accent); line-height: 1; }
+  :root[data-font="playfair"] .faq-q .num { font-weight: 800; }
+  :root[data-font="dm"] .faq-q .num { font-weight: 400; }
+  .faq-q h3 { font-family: var(--font-display); font-size: clamp(22px, 2.2vw, 28px); font-weight: 600; line-height: 1.2; letter-spacing: -0.005em; margin: 0 0 12px; }
+  :root[data-font="playfair"] .faq-q h3 { font-weight: 800; }
+  :root[data-font="dm"] .faq-q h3 { font-weight: 400; }
+  .faq-q p { margin: 0; font-size: 16.5px; line-height: 1.6; color: var(--fg); max-width: 70ch; }
+  .closing-cta { background: var(--bg); border-top: 1px solid var(--border); text-align: center; padding-block: clamp(64px, 8vw, 112px); }
+  .closing-cta .eyebrow.kicker-rule { margin-bottom: 22px; justify-content: center; }
+  .closing-cta .eyebrow.kicker-rule::before { display: none; }
+  .closing-cta .eyebrow.kicker-rule::after { content: ""; width: 28px; height: 2px; background: var(--accent); display: inline-block; margin-left: 4px; }
+  .closing-heading { font-family: var(--font-display); font-size: clamp(40px, 5vw, 68px); font-weight: 600; line-height: 1.02; letter-spacing: -0.008em; margin: 0 auto 22px; max-width: 18ch; }
+  :root[data-font="playfair"] .closing-heading { font-weight: 800; letter-spacing: -0.022em; }
+  :root[data-font="dm"] .closing-heading { font-weight: 400; }
+  .closing-sub { font-size: 18px; line-height: 1.6; color: var(--fg); max-width: 56ch; margin: 0 auto 32px; }
+  .closing-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 22px; }
+  .closing-trust { margin: 0; font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.18em; font-size: 11.5px; font-weight: 600; color: var(--muted); }
+  footer { background: var(--fg); color: var(--bg); padding-top: 0; }
+  footer .wrap.foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-block: 56px; }
+  footer h4 { font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.18em; font-size: 12px; font-weight: 600; color: oklch(72% 0.04 80); margin: 0 0 14px; }
+  footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 14.5px; }
+  footer a { color: var(--bg); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .15s; }
+  footer a:hover { border-bottom-color: var(--accent); }
+  footer .foot-brand { display: flex; flex-direction: column; gap: 16px; }
+  footer .foot-brand .lockup { display: flex; align-items: center; gap: 14px; }
+  footer .foot-brand .lockup img { width: 56px; height: 56px; border-radius: 999px; object-fit: cover; }
+  footer .foot-brand .lockup .name { font-family: var(--font-display); font-size: 20px; font-weight: 700; }
+  :root[data-font="playfair"] footer .foot-brand .lockup .name { font-weight: 800; }
+  :root[data-font="dm"] footer .foot-brand .lockup .name { font-weight: 400; }
+  footer .foot-brand p { margin: 0; color: oklch(78% 0.025 80); font-size: 14.5px; line-height: 1.6; max-width: 38ch; }
+  footer .legal { border-top: 1px solid oklch(28% 0.02 60); padding-block: 18px; font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; color: oklch(64% 0.025 80); }
+  footer .legal .wrap { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+  footer .legal .right { margin-left: auto; }
+  .tweaks { position: fixed; top: 16px; right: 16px; z-index: 50; background: oklch(99% 0.005 80 / 0.96); backdrop-filter: blur(8px); border: 1px solid var(--border); box-shadow: 0 12px 28px -12px rgba(0,0,0,0.18); width: 304px; font-family: var(--font-board); font-size: 12px; transform: translateY(0); transition: transform .25s ease; }
+  .tweaks.collapsed .tweaks-body { display: none; }
+  .tweaks header { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; }
+  .tweaks header .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 999px; flex: 0 0 auto; }
+  .tweaks header .title { text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600; }
+  .tweaks header .toggle { margin-left: auto; color: var(--muted); font-weight: 500; }
+  .tweaks-body { padding: 14px; display: flex; flex-direction: column; gap: 16px; }
+  .tweak-row .label { text-transform: uppercase; letter-spacing: 0.18em; font-size: 10.5px; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
+  .seg { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border: 1px solid var(--border); background: var(--surface); }
+  .seg.four { grid-template-columns: repeat(4, 1fr); }
+  .seg button { appearance: none; background: transparent; border: 0; border-right: 1px solid var(--border); padding: 10px 6px; font-family: inherit; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--fg); cursor: pointer; transition: background .15s, color .15s; font-weight: 600; }
+  .seg button:last-child { border-right: 0; }
+  .seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+  .tweak-note { font-family: var(--font-body); font-size: 12.5px; color: var(--muted); line-height: 1.5; text-transform: none; letter-spacing: 0; border-top: 1px dashed var(--border); padding-top: 12px; }
+  .tweak-note .now { display: block; margin-top: 6px; color: var(--fg); font-style: italic; }
+  @media (max-width: 980px) {
+    .masthead .wrap { grid-template-columns: 1fr auto; }
+    nav.primary { display: none; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-photo { min-height: 380px; }
+    .fact-strip .wrap { grid-template-columns: repeat(2, 1fr); }
+    .fact { border-right: 0; border-top: 1px solid var(--border); }
+    .fact:nth-child(odd) { border-right: 1px solid var(--border); }
+    .price-grid { grid-template-columns: 1fr; }
+    .heritage-grid, .visit-grid { grid-template-columns: 1fr; }
+    footer .wrap.foot-grid { grid-template-columns: 1fr 1fr; }
+    .tweaks { width: 264px; right: 12px; top: 12px; }
+  }
+  @media (max-width: 600px) {
+    .util-bar .wrap { gap: 14px; }
+    .util-bar .util-phone { margin-left: 0; }
+    .price-board li { font-size: 20px; }
+    .price-board .head { font-size: 18px; letter-spacing: 0.18em; }
+    .heritage-stats { grid-template-columns: 1fr 1fr; }
+    .heritage-stats .stat:last-child { grid-column: span 2; }
+    footer .wrap.foot-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="tweaks" id="tweaks" aria-label="Design tweaks">
+  <header onclick="toggleTweaks()">
+    <span class="dot"></span>
+    <span class="title">Compare modes</span>
+    <span class="toggle" id="tweakToggle">collapse</span>
+  </header>
+  <div class="tweaks-body">
+    <div class="tweak-row">
+      <div class="label">Display type</div>
+      <div class="seg" role="tablist" aria-label="Display font">
+        <button data-font="fell"     aria-pressed="true">IM Fell</button>
+        <button data-font="playfair" aria-pressed="false">Playfair</button>
+        <button data-font="dm"       aria-pressed="false">DM Serif</button>
+      </div>
+    </div>
+    <div class="tweak-row">
+      <div class="label">Checkerboard</div>
+      <div class="seg four" role="tablist" aria-label="Checker intensity">
+        <button data-checker="off"      aria-pressed="false">Off</button>
+        <button data-checker="subtle"   aria-pressed="false">Subtle</button>
+        <button data-checker="standard" aria-pressed="true">Standard</button>
+        <button data-checker="heavy"    aria-pressed="false">Heavy</button>
+      </div>
+    </div>
+    <div class="tweak-note">
+      Switch the heritage display face and the checkerboard motif live.
+      Standard = section dividers + section-marker dots + footer pattern (briefed default).
+      <span class="now" id="tweakNow">Now: IM Fell English (Victorian display) · Standard checker.</span>
+    </div>
+  </div>
+</aside>
+
+<div class="util-bar">
+  <div class="wrap">
+    <span>Walk-ins welcome</span>
+    <span class="util-dot">●</span>
+    <span>Family-friendly</span>
+    <span class="util-dot">●</span>
+    <span>ATM on site</span>
+    <span class="util-dot">●</span>
+    <span>Tue–Sat · open at 10am</span>
+    <span class="util-phone">(619) 891-2775</span>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand-lockup" href="/">
+      <img src="mouhg75n-01-logo.jpg" alt="Joe's Barbershop logo — round Western-Victorian wordmark with twin barber poles" />
+      <div class="brand-text">
+        <div class="name">Joe's Barbershop</div>
+        <div class="tag">Bostonia · El Cajon · Estd. 2020</div>
+      </div>
+    </a>
+    <nav class="primary" aria-label="Primary">
+      <a href="/about">About</a>
+      <a href="/services">Services</a>
+      <a href="/east-county-traditional-barbershop">East County</a>
+      <a href="/reviews">Reviews</a>
+      <a href="/faq">FAQ</a>
+    </nav>
+    <a href="https://joe-104613.square.site/" target="_blank" rel="noopener" class="btn">Book a chair</a>
+  </div>
+</header>
+
+<div class="check-divider" aria-hidden="true"></div>
+
+<section class="hero" aria-label="Joe's Barbershop in Bostonia">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow kicker-rule">Traditional barbering · since 2020</span>
+      <h1>
+        A real cut.<br />
+        A real <span class="accent-word">shave.</span><br />
+        Walk on in.
+      </h1>
+      <p class="hero-bluf">
+        <strong>Joe's Barbershop is a traditional men's barbershop in Bostonia, El Cajon, California
+        — the working shop in East County for men who want a real cut, not a chic salon.</strong>
+        Joe Denesowicz opened the doors in 2020 and still cuts hair himself, alongside barber Alex.
+        Three chairs, two cutters. Book a chair online or walk on in — same shop, same prices,
+        either way. We cut for kids, dads, and grandfathers, same Saturday, same chairs.
+        Family-friendly. Open Tuesday through Saturday at 723 E Bradley Ave, Suite C. Rated 4.9
+        stars across 91 Google reviews. East County regulars come in from El Cajon, Santee,
+        Lakeside, and La Mesa.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn" href="https://joe-104613.square.site/" target="_blank" rel="noopener">Book a chair</a>
+        <a class="btn outline" href="#visit">Get directions</a>
+        <a href="tel:+16198912775" style="align-self:center;font-family:var(--font-board);text-transform:uppercase;letter-spacing:0.16em;font-size:12.5px;font-weight:600;color:var(--fg);text-decoration:none;border-bottom:1px solid var(--accent);padding-block:4px;">Call (619) 891-2775</a>
+      </div>
+      <p style="margin:-8px 0 8px;font-family:var(--font-board);text-transform:uppercase;letter-spacing:0.18em;font-size:11.5px;color:var(--fg);font-weight:600;"><span style="color:var(--accent);">★ 4.9</span> across 91 Google reviews · <span style="color:var(--muted);font-weight:500;">Walk-ins always welcome — no appointment required</span></p>
+      <div class="hero-meta">
+        <div>
+          <strong>Hours</strong>
+          Tue, Wed, Sat · 10am–6:30pm<br />
+          Thu, Fri · 10am–7:30pm<br />
+          Closed Sun + Mon
+        </div>
+        <div>
+          <strong>Address</strong>
+          723 E Bradley Ave, Ste C<br />
+          El Cajon, CA 92021
+        </div>
+        <div>
+          <strong>Payment</strong>
+          Cash · ATM on site
+        </div>
+        <div>
+          <strong>Rating</strong>
+          4.9 ★ · 91 Google reviews
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="mouhg75m-03-interior-hero.jpg" alt="Inside Joe's Barbershop — black and white checkerboard tile floor stretching across the shop, three barber chairs along the right wall, mix of vintage black-leather barber chair and modern silver/black quilted chairs, mirrors and counters under bright lighting" />
+      <span class="photo-credit">Bostonia · interior of Joe's, three stations.</span>
+      <div class="hero-checker-ribbon" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<section class="fact-strip tight" aria-label="Quick facts">
+  <div class="wrap">
+    <div class="fact">
+      <span class="label">Established</span>
+      <span class="value">2020</span>
+      <span class="sub">Five years on Bradley Ave.</span>
+    </div>
+    <div class="fact">
+      <span class="label">Google rating</span>
+      <span class="value"><span class="star">★</span> 4.9</span>
+      <span class="sub">91 reviews · Yelp 4.9</span>
+    </div>
+    <div class="fact">
+      <span class="label">Neighborhood</span>
+      <span class="value">Bostonia</span>
+      <span class="sub">East County · El Cajon CA</span>
+    </div>
+    <div class="fact">
+      <span class="label">Walk-ins</span>
+      <span class="value">Always</span>
+      <span class="sub">No appointment required.</span>
+    </div>
+    <div class="fact">
+      <span class="label">Barbers</span>
+      <span class="value">Joe + Alex</span>
+      <span class="sub">Three chairs, two cutters.</span>
+    </div>
+  </div>
+</section>
+
+<div class="check-divider" aria-hidden="true"></div>
+
+<section class="price-section" id="prices" aria-label="Service prices">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-mark" aria-hidden="true"></span>
+      <div class="section-head-text">
+        <span class="eyebrow">The board · what it costs</span>
+        <h2>Posted prices.<br />Same as the wall.</h2>
+      </div>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-board" aria-label="Service prices — letter board">
+        <div class="head">Joe's Barbershop</div>
+        <ul>
+          <li><span>Haircut</span><span class="dots"></span><span class="num">30</span></li>
+          <li><span>Shave</span><span class="dots"></span><span class="num">30</span></li>
+          <li><span>Beard line-up</span><span class="dots"></span><span class="num">20</span></li>
+          <li><span>Clean up</span><span class="dots"></span><span class="num">15</span></li>
+          <li><span>Haircut + beard</span><span class="dots"></span><span class="num">50</span></li>
+        </ul>
+        <div class="foot"><span class="red">Cash only</span> · ATM on site</div>
+      </div>
+
+      <div class="price-aside">
+        <span class="eyebrow">No menu, no upsell</span>
+        <h3>Same prices on the wall, on Google, and on this page.</h3>
+        <p>
+          What's on the board is what you pay. Tax included. Tip in cash if you want to. We
+          don't run loyalty cards, surge pricing, "experience tiers," or membership clubs.
+          The posted price is the price.
+        </p>
+        <p class="quote">
+          "Best haircut in El Cajon. Joe took his time, no rush, and the place feels like
+          a real shop." — Google review, 5 stars
+        </p>
+        <p style="margin:24px 0 0;font-family:var(--font-board);text-transform:uppercase;letter-spacing:0.16em;font-size:12.5px;font-weight:600;">
+          <a href="https://joe-104613.square.site/" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:none;border-bottom:2px solid var(--accent);padding-block:4px;">Book any of these online →</a>
+          <span style="color:var(--muted);font-weight:500;margin-left:14px;">or walk in.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="heritage" aria-label="Heritage and the shop">
+  <div class="wrap">
+    <div class="heritage-grid">
+      <div class="heritage-photo">
+        <div class="heritage-frame">
+          <img src="mouhg75l-04-heritage-chair.jpg" alt="Heritage barber chair at Joe's — black leather and mahogany frame, classic shape, with the checkerboard floor visible underneath, the round Joe's logo decals on the mirror, and an ATM in the background" />
+        </div>
+      </div>
+      <div class="heritage-copy">
+        <span class="eyebrow kicker-rule">The shop · 723 E Bradley Ave, Ste C</span>
+        <h2>Three chairs. Two barbers. A real shave.</h2>
+        <p>
+          Joe Denesowicz opened Joe's Barbershop in 2020. Five years later, the same heritage chair
+          sits where it sat on opening day. The same checkerboard floor. The same Lotería poster on
+          the wall. The same ATM by the door.
+        </p>
+        <p>
+          We cut hair the way East County cut hair before the city was a city. Walk in, sit down,
+          stay a while if you want to. Joe knows his regulars by name, and the conversations are
+          the kind you have with a real barber — about the kids, about work, about church on
+          Sunday. Bring your dad. Bring your grandfather. We've cut all three on the same
+          Saturday.
+        </p>
+        <div class="heritage-stats">
+          <div class="stat">
+            <div class="num">5</div>
+            <div class="label">Years on Bradley Ave</div>
+          </div>
+          <div class="stat">
+            <div class="num">4.9★</div>
+            <div class="label">Google rating · 91 reviews</div>
+          </div>
+          <div class="stat">
+            <div class="num">3</div>
+            <div class="label">Chairs · 2 barbers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="check-divider" aria-hidden="true"></div>
+
+<section class="visit" id="visit" aria-label="Visit Joe's">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-mark" aria-hidden="true"></span>
+      <div class="section-head-text">
+        <span class="eyebrow">Visit · 723 E Bradley Ave, Ste C</span>
+        <h2>On Bradley Ave.<br />Bostonia, East County.</h2>
+      </div>
+    </div>
+
+    <div class="visit-grid">
+      <div class="visit-photo">
+        <img src="mouhg75m-02-storefront.jpg" alt="Joe's Barbershop storefront — glass front door with the round Joe's logo decal, plastic 723 C suite numbers above the door, hanging Come In We Are Open sign, tan stucco exterior" />
+      </div>
+      <div class="visit-card">
+        <span class="eyebrow kicker-rule">Find us</span>
+        <h3>The shop on Bradley.<br />Look for the round logo.</h3>
+        <div class="nap">
+          <dl>
+            <dt>Address</dt>
+            <dd>
+              <strong>723 E Bradley Ave, Suite C</strong><br />
+              El Cajon, CA 92021
+              <span class="mono">Bostonia neighborhood · East County</span>
+            </dd>
+            <dt>Book online</dt>
+            <dd>
+              <a href="https://joe-104613.square.site/" target="_blank" rel="noopener" style="border-bottom:2px solid var(--accent);text-decoration:none;font-weight:600;">Book a chair →</a><br />
+              <span style="color:var(--muted);font-size:14px;">Walk-ins always welcome too.</span>
+            </dd>
+            <dt>Hours</dt>
+            <dd>
+              <strong>Tue, Wed, Sat · 10am – 6:30pm</strong><br />
+              <strong>Thu, Fri · 10am – 7:30pm</strong><br />
+              Closed Sunday and Monday.
+            </dd>
+            <dt>Phone</dt>
+            <dd>
+              <a href="tel:+16198912775" style="border-bottom:1px solid var(--border);text-decoration:none;"><strong>(619) 891-2775</strong></a>
+            </dd>
+            <dt>Payment</dt>
+            <dd>
+              <strong>Cash.</strong> ATM on premises by the door if you forget.
+            </dd>
+            <dt>Family</dt>
+            <dd>
+              Family-friendly. We cut kids and adults at the same chairs.
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" aria-label="Frequently asked questions">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-mark" aria-hidden="true"></span>
+      <div class="section-head-text">
+        <span class="eyebrow">FAQ · plain answers, no clicks</span>
+        <h2>Questions, answered up front.</h2>
+      </div>
+    </div>
+
+    <div class="faq-list">
+      <article class="faq-q">
+        <div class="num">01</div>
+        <div>
+          <h3>What kind of barbershop is Joe's?</h3>
+          <p>
+            Joe's Barbershop is a traditional men's barbershop in Bostonia, in the city of El Cajon,
+            California. Joe Denesowicz opened the shop in 2020. Joe and barber Alex offer haircuts,
+            hot-towel shaves, beard line-ups, and clean-ups. Walk-ins are welcome. The shop is
+            family-friendly and cuts hair for kids and adults at the same chairs.
+          </p>
+        </div>
+      </article>
+
+      <article class="faq-q">
+        <div class="num">02</div>
+        <div>
+          <h3>Do you take walk-ins?</h3>
+          <p>
+            Yes. Walk in any time the shop is open — no appointment needed. Hours are Tuesday,
+            Wednesday and Saturday 10am–6:30pm; Thursday and Friday 10am–7:30pm. If you'd rather
+            lock in a time, <a href="https://joe-104613.square.site/" target="_blank" rel="noopener" style="border-bottom:1px solid var(--accent);text-decoration:none;font-weight:600;">book a chair online</a>
+            or call (619) 891-2775. Saturday afternoons typically run a 20–30 minute walk-in wait.
+          </p>
+        </div>
+      </article>
+
+      <article class="faq-q">
+        <div class="num">03</div>
+        <div>
+          <h3>Does Joe's take cards?</h3>
+          <p>
+            Joe's takes cash. An ATM is on premises by the front door if you need it. Most regulars
+            come in with a couple of bills; if you forget, the ATM is right by the chair. Tips go
+            straight to the barber.
+          </p>
+        </div>
+      </article>
+
+      <article class="faq-q">
+        <div class="num">04</div>
+        <div>
+          <h3>Do you cut kids' hair?</h3>
+          <p>
+            Yes. Joe's is family-friendly. Children and parents are both welcome at the same chairs.
+            Kids can be cut by either Joe or Alex. Same address, same hours, same prices on the
+            board. Parents can wait in the shop while a child is being cut.
+          </p>
+        </div>
+      </article>
+
+      <article class="faq-q">
+        <div class="num">05</div>
+        <div>
+          <h3>Where exactly is the shop?</h3>
+          <p>
+            Joe's Barbershop is at 723 E Bradley Ave, Suite C, El Cajon, CA 92021 — in the Bostonia
+            neighborhood of East County San Diego. Look for the round Joe's logo decal on the glass
+            front door and the suite-C placard above. Free parking out front.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="check-divider" aria-hidden="true"></div>
+
+<section class="closing-cta" aria-label="Visit Joe's">
+  <div class="wrap">
+    <span class="eyebrow kicker-rule">Ready when you are</span>
+    <h2 class="closing-heading">Pick a chair.<br />We'll handle the rest.</h2>
+    <p class="closing-sub">
+      Two ways in: <strong>book a chair online</strong> for a set time, or <strong>walk on in</strong>
+      Tuesday through Saturday. Same shop, same prices, same Joe in chair number one.
+    </p>
+    <div class="closing-ctas">
+      <a class="btn" href="https://joe-104613.square.site/" target="_blank" rel="noopener">Book a chair</a>
+      <a class="btn outline" href="tel:+16198912775">Call (619) 891-2775</a>
+    </div>
+    <p class="closing-trust">
+      <span style="color:var(--accent);">★ 4.9</span> across 91 Google reviews · 723 E Bradley Ave, Ste C, El Cajon
+    </p>
+  </div>
+</section>
+
+<div class="footer-checker" aria-hidden="true"></div>
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <div class="lockup">
+        <img src="mouhg75n-01-logo.jpg" alt="Joe's Barbershop logo" />
+        <div>
+          <div class="name">Joe's Barbershop</div>
+          <div style="font-family:var(--font-board);text-transform:uppercase;letter-spacing:0.18em;font-size:11px;color:oklch(72% 0.04 80);margin-top:6px;">Estd. 2020 · Bostonia</div>
+        </div>
+      </div>
+      <p>
+        A traditional men's barbershop in Bostonia, El Cajon. Open Tue–Sat. Book a chair online
+        or walk on in. ATM on site.
+      </p>
+    </div>
+
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="/classic-cut">Classic cut</a></li>
+        <li><a href="/fades">Fades</a></li>
+        <li><a href="/hot-towel-shave">Hot-towel shave</a></li>
+        <li><a href="/beard-trim">Beard line-up</a></li>
+        <li><a href="/line-up">Line-up</a></li>
+        <li><a href="/kids-cuts">Kids cuts</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>East County</h4>
+      <ul>
+        <li><a href="/bostonia-barber">Bostonia barber</a></li>
+        <li><a href="/el-cajon-barber">El Cajon barber</a></li>
+        <li><a href="/santee-barber">Santee barber</a></li>
+        <li><a href="/lakeside-barber">Lakeside barber</a></li>
+        <li><a href="/la-mesa-barber">La Mesa barber</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="https://joe-104613.square.site/" target="_blank" rel="noopener" style="border-bottom-color:var(--accent);">Book a chair</a></li>
+        <li><a href="tel:+16198912775">Call (619) 891-2775</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/reviews">Reviews</a></li>
+        <li><a href="/faq">FAQ</a></li>
+        <li><a href="/2026-east-county-barbershop-cost-guide">Cost guide</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="legal">
+    <div class="wrap">
+      <span>© 2026 Joe's Barbershop, LLC</span>
+      <span>723 E Bradley Ave, Ste C, El Cajon CA 92021</span>
+      <span class="right">(619) 891-2775 · Tue–Sat</span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "HairSalon",
+      "@id": "https://joesbarbershop.example/#shop",
+      "name": "Joe's Barbershop",
+      "description": "Traditional men's barbershop in Bostonia, El Cajon, CA. Haircuts, shaves, beard line-ups. Walk-ins welcome.",
+      "image": "mouhg75m-03-interior-hero.jpg",
+      "logo": "mouhg75n-01-logo.jpg",
+      "url": "https://joesbarbershop.example/",
+      "telephone": "+1-619-891-2775",
+      "priceRange": "$$",
+      "paymentAccepted": "Cash",
+      "currenciesAccepted": "USD",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "723 E Bradley Ave, Suite C",
+        "addressLocality": "El Cajon",
+        "addressRegion": "CA",
+        "postalCode": "92021",
+        "addressCountry": "US"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 32.81, "longitude": -116.95 },
+      "areaServed": ["El Cajon", "Bostonia", "Santee", "Lakeside", "La Mesa"],
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Saturday"], "opens": "10:00", "closes": "18:30" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Thursday","Friday"], "opens": "10:00", "closes": "19:30" }
+      ],
+      "potentialAction": { "@type": "ReserveAction", "target": "https://joe-104613.square.site/", "name": "Book online" },
+      "founder": { "@type": "Person", "name": "Joe Denesowicz" },
+      "foundingDate": "2020",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "91" },
+      "sameAs": [ "https://www.google.com/maps/place/Joes-Barbershop-El-Cajon", "https://www.yelp.com/biz/joes-barbershop-el-cajon" ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What kind of barbershop is Joe's?", "acceptedAnswer": { "@type": "Answer", "text": "Joe's Barbershop is a traditional men's barbershop in Bostonia, in the city of El Cajon, California. Joe Denesowicz opened the shop in 2020. Joe and barber Alex offer haircuts, hot-towel shaves, beard line-ups, and clean-ups. Walk-ins are welcome. The shop is family-friendly and cuts hair for kids and adults at the same chairs." } },
+        { "@type": "Question", "name": "Do you take walk-ins?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Walk in any time the shop is open — no appointment needed. Hours are Tuesday, Wednesday and Saturday 10am–6:30pm; Thursday and Friday 10am–7:30pm. To lock in a time, book online or call (619) 891-2775. Saturday afternoons typically run a 20–30 minute walk-in wait." } },
+        { "@type": "Question", "name": "Does Joe's take cards?", "acceptedAnswer": { "@type": "Answer", "text": "Joe's takes cash. An ATM is on premises by the front door if you need it. Most regulars come in with a couple of bills; if you forget, the ATM is right by the chair. Tips go straight to the barber." } },
+        { "@type": "Question", "name": "Do you cut kids' hair?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Joe's is family-friendly. Children and parents are both welcome at the same chairs. Kids can be cut by either Joe or Alex. Same address, same hours, same prices on the board." } },
+        { "@type": "Question", "name": "Where exactly is the shop?", "acceptedAnswer": { "@type": "Answer", "text": "Joe's Barbershop is at 723 E Bradley Ave, Suite C, El Cajon, CA 92021 — in the Bostonia neighborhood of East County San Diego." } }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+  const root = document.documentElement;
+  const FONT_KEY = 'joes_font';
+  const CHECK_KEY = 'joes_checker';
+  const fontLabels = {
+    fell:     'IM Fell English (Victorian display)',
+    playfair: 'Playfair Display (editorial heritage)',
+    dm:       'DM Serif Display (newspaper masthead)'
+  };
+  const checkLabels = { off: 'Off', subtle: 'Subtle', standard: 'Standard', heavy: 'Heavy' };
+  const safeGet = k => { try { return localStorage.getItem(k); } catch (_) { return null; } };
+  const safeSet = (k, v) => { try { localStorage.setItem(k, v); } catch (_) {} };
+  const initFont  = safeGet(FONT_KEY)  || 'fell';
+  const initCheck = safeGet(CHECK_KEY) || 'standard';
+  function applyFont(id) {
+    root.dataset.font = id;
+    root.style.setProperty('--font-display', `var(--font-display-${id})`);
+    document.querySelectorAll('[data-font]').forEach(b => {
+      b.setAttribute('aria-pressed', b.dataset.font === id ? 'true' : 'false');
+    });
+    safeSet(FONT_KEY, id);
+    updateNote();
+  }
+  function applyCheck(id) {
+    root.dataset.checker = id;
+    document.querySelectorAll('[data-checker]').forEach(b => {
+      b.setAttribute('aria-pressed', b.dataset.checker === id ? 'true' : 'false');
+    });
+    safeSet(CHECK_KEY, id);
+    updateNote();
+  }
+  function updateNote() {
+    const f = root.dataset.font || 'fell';
+    const c = root.dataset.checker || 'standard';
+    const el = document.getElementById('tweakNow');
+    if (el) el.textContent = `Now: ${fontLabels[f]} · ${checkLabels[c]} checker.`;
+  }
+  function toggleTweaks() {
+    const t = document.getElementById('tweaks');
+    const tog = document.getElementById('tweakToggle');
+    t.classList.toggle('collapsed');
+    tog.textContent = t.classList.contains('collapsed') ? 'open' : 'collapse';
+  }
+  document.querySelectorAll('[data-font]').forEach(b => {
+    b.addEventListener('click', () => applyFont(b.dataset.font));
+  });
+  document.querySelectorAll('[data-checker]').forEach(b => {
+    b.addEventListener('click', () => applyCheck(b.dataset.checker));
+  });
+  applyFont(initFont);
+  applyCheck(initCheck);
+</script>
+
+</body>
+</html>
