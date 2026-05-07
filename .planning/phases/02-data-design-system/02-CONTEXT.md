@@ -49,7 +49,7 @@ This phase deliberately defers all page-level copy authoring, all per-page schem
 ### Content Authoring Depth (DATA-03, DATA-04)
 
 - **D-15:** Phase 2 ships **schema-passing stubs only** for all 11 content entries. Each frontmatter has the load-bearing fields (price, duration for services; landmarks, distance for neighborhoods) populated with real data from `inputs/00-brief.md`, `inputs/01-page-list.md`, and `inputs/03-photo-notes.md` (the price board image gives the actual prices). BLUF, FAQ, and markdown body are placeholder text — long enough to satisfy any minimum-length schema constraint, short enough to make it obvious to a reader that this is a stub.
-- **D-16:** Real prose authoring is a **Phase 3 + Phase 4 responsibility**. Forward-looking guidance for those phase planners:
+- **D-16** [informational]: Real prose authoring is a **Phase 3 + Phase 4 responsibility**. Forward-looking guidance for those phase planners (not a Phase 2 plan-trackable decision — recorded here so future phase planners pick up the marketing-skills chain without rediscovering it):
   - **Setup (one-time, runs at start of Phase 3):** invoke `marketing-skills:product-marketing-context` to set up `.agents/product-marketing-context.md` with Joe's positioning, audience (East County working-class Latino + Anglo, family-friendly, walk-ins, cash-only), and ICP. Subsequent skills reference this file.
   - **AEO frame:** invoke `marketing-skills:ai-seo` once to set the entity-first / answer-capsule / BLUF / no-hidden-content frame for all subsequent copy generation. Output stored as guidance the copywriting skill consumes.
   - **Unique pages (Phase 3 — homepage, niche-query landing, cost guide, about, reviews, FAQ):** invoke `marketing-skills:copywriting` per page. Each page gets a hand-tuned BLUF + section bodies + FAQs.
@@ -72,7 +72,7 @@ This phase deliberately defers all page-level copy authoring, all per-page schem
 
 - **D-22:** `services` collection schema (Zod): `slug` (auto-derived from filename), `title`, `price` (number), `duration` (string, e.g., "30 min"), `bluf` (string, stub OK in Phase 2), `faqs` (array of `{ q: string; a: string }`, can be empty in Phase 2), `heroPhoto` (optional, references a path under `src/assets/photos/`).
 - **D-23:** `neighborhoods` collection schema (Zod): `slug` (auto-derived), `title`, `landmarks` (array of strings — e.g., "Parkway Plaza", "Sycuan Casino"), `distance` (string, e.g., "2.1 mi from shop"), `bluf` (string, stub OK), `faqs` (array, can be empty).
-- **D-24:** Schema lives at `site/src/content/config.ts` (Astro standard). Each entry is a `.md` file in `site/src/content/services/` or `site/src/content/neighborhoods/`. Frontmatter satisfies the schema; markdown body is the prose (stub in Phase 2).
+- **D-24:** Schema lives at `site/src/content.config.ts` (Astro 6 standard — flat path). Each entry is a `.md` file in `site/src/content/services/` or `site/src/content/neighborhoods/`. Frontmatter satisfies the schema; markdown body is the prose (stub in Phase 2). **SUPERSEDED-NOTE (2026-05-07):** earlier draft of this decision said `site/src/content/config.ts` (the legacy Astro 4 nested path); RESEARCH.md §Critical Finding documents that Astro 6.3.0 throws `LegacyContentConfigError` on the nested path and requires the flat path shown above. The flat path is canonical from this commit forward; any plan / executor that sees this decision should use `site/src/content.config.ts`.
 
 ### Phase 1 Carry-Forward
 
