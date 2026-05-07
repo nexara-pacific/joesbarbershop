@@ -35,7 +35,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Vercel CLI deploys `site/` to a preview URL that returns 200 on `/`
   3. The base layout renders a shared masthead, utility bar, and footer on every page (visible in browser)
   4. Astro Image integration and Sitemap integration are installed and configured (no missing-adapter errors at build)
-**Plans**: TBD
+**Plans**: 4 plans
+- [ ] 01-01-PLAN.md — Initialize Astro 6 project in site/ with TypeScript strict
+- [ ] 01-02-PLAN.md — Wire @astrojs/vercel + @astrojs/sitemap + Image config
+- [ ] 01-03-PLAN.md — Base.astro layout + stub components (UtilBar/Masthead/Footer) + 2 pages
+- [ ] 01-04-PLAN.md — Build + Vercel preview deploy + end-to-end SCAF verification
 **UI hint**: yes
 
 ### Phase 2: Data + Design System
