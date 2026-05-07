@@ -1,0 +1,55 @@
+{
+  "name": "Joe's Barbershop",
+  "address": {
+    "street": "723 E Bradley Ave",
+    "suite": "#C",
+    "city": "El Cajon",
+    "state": "CA",
+    "zip": "92021"
+  },
+  "phone": "(619) 891-2775",
+  "hours": {
+    "tuesday":   { "open": "10:00", "close": "19:30" },
+    "wednesday": { "open": "10:00", "close": "19:30" },
+    "thursday":  { "open": "10:00", "close": "19:30" },
+    "friday":    { "open": "10:00", "close": "19:30" },
+    "saturday":  { "open": "10:00", "close": "19:30" },
+    "sunday":    null,
+    "monday":    null
+  },
+  "prices": {
+    "haircut":      30,
+    "shave":        30,
+    "beardLineUp":  20,
+    "cleanUp":      15,
+    "haircutBeard": 50,
+    "kidsCut":      null
+  },
+  "ratings": {
+    "google": { "value": 4.9, "count": 91, "asOf": "2026-05-07" },
+    "yelp":   { "value": 4.9, "count": 33, "asOf": "2026-05-07" }
+  },
+  "sameAs": {
+    "gbp":       "https://maps.google.com/?cid=PLACEHOLDER-confirm-with-Joe",
+    "yelp":      "https://www.yelp.com/biz/joes-barbershop-el-cajon",
+    "instagram": "https://www.instagram.com/joes_barbershop_el_cajon",
+    "facebook":  ""
+  },
+  "photos": {
+    "logo":       "01-logo.jpg",
+    "storefront": "02-storefront.jpg",
+    "hero":       "03-interior-hero.jpg",
+    "heritage":   "04-heritage-chair.jpg",
+    "midCut":     "05-mid-cut.jpg",
+    "priceBoard": "06-price-board-cash-only.jpg"
+  },
+  "areaServed": ["El Cajon", "Bostonia", "Santee", "Lakeside", "La Mesa"],
+  "_showcase_review_pending": [
+    "hours.saturday.close — vault says 19:30, mockup shows 18:30; using vault baseline pending Joe's GBP confirmation",
+    "sameAs.gbp — placeholder URL pending GBP login + canonical maps.google.com URL",
+    "sameAs.yelp — best-effort canonical URL pending Joe's confirmation",
+    "sameAs.facebook — empty string; Joe to provide FB page URL if any",
+    "prices.kidsCut — null pending Joe's confirmation at showcase",
+    "prices.haircutBeard — 50 cited from inputs/00-brief.md L25 (Square Site listing); Joe to confirm or correct at showcase"
+  ]
+}
