@@ -1,0 +1,54 @@
+---
+import { business } from '../data/business';
+---
+<section class="price-section" id="prices" aria-label="Service prices">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-mark" aria-hidden="true"></span>
+      <div class="section-head-text">
+        <span class="eyebrow">The board · what it costs</span>
+        <h2>Posted prices.<br />Same as the wall.</h2>
+      </div>
+    </div>
+    <div class="price-grid">
+      <div class="price-board" aria-label="Service prices — letter board">
+        <div class="head">Joe's Barbershop</div>
+        <ul>
+          <li><span>Haircut</span><span class="dots"></span><span class="num">${business.prices.haircut}</span></li>
+          <li><span>Shave</span><span class="dots"></span><span class="num">${business.prices.shave}</span></li>
+          <li><span>Beard line-up</span><span class="dots"></span><span class="num">${business.prices.beardLineUp}</span></li>
+          <li><span>Clean up</span><span class="dots"></span><span class="num">${business.prices.cleanUp}</span></li>
+          <li><span>Haircut + beard</span><span class="dots"></span><span class="num">${business.prices.haircutBeard}</span></li>
+        </ul>
+        <div class="foot"><span class="red">Cash only</span> · ATM on site</div>
+      </div>
+      <div class="price-aside">
+        <h3>What to expect<br />when you sit down.</h3>
+        <p>Every service starts with a consultation. Joe or Alex will check in on what you're going for before picking up the clippers. Clean lines, honest work.</p>
+        <p>No tip jars. No upsells. The board price is what you pay.</p>
+        <blockquote class="quote">"Best $30 haircut in East County. Every time." — Google review</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .price-section { background: var(--bg); }
+  .price-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 4vw, 64px); align-items: start; }
+  .price-board { background: var(--board-bg); color: var(--board-fg); padding: 36px 32px 40px; border: 8px solid #2a2418; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.04), 0 24px 40px -24px rgba(0,0,0,0.35); background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 6px), repeating-linear-gradient(90deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 6px); font-family: var(--font-board); font-weight: 600; text-transform: uppercase; letter-spacing: 0.10em; }
+  .price-board .head { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.16); padding-bottom: 16px; margin-bottom: 16px; font-size: 22px; letter-spacing: 0.22em; }
+  .price-board ul { list-style: none; margin: 0; padding: 0; }
+  .price-board li { display: flex; align-items: baseline; justify-content: space-between; padding-block: 10px; font-size: 26px; letter-spacing: 0.14em; border-bottom: 1px dashed rgba(255,255,255,0.08); }
+  .price-board li:last-child { border-bottom: 0; }
+  .price-board li .dots { flex: 1; margin-inline: 14px; border-bottom: 2px dotted rgba(255,255,255,0.18); transform: translateY(-6px); }
+  .price-board li .num { font-family: var(--font-board); font-weight: 600; color: var(--board-fg); }
+  .price-board .foot { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.16); text-align: center; font-size: 16px; letter-spacing: 0.28em; color: oklch(80% 0.04 80); }
+  .price-board .foot .red { color: oklch(72% 0.18 28); font-weight: 700; }
+  .price-aside h3 { font-family: var(--font-display); font-size: 32px; font-weight: 600; line-height: 1.1; margin: 0 0 14px; letter-spacing: -0.005em; }
+  .price-aside p { margin: 0 0 14px; color: var(--fg); font-size: 17px; line-height: 1.6; }
+  .price-aside .quote { border-left: 3px solid var(--accent); padding: 4px 0 4px 18px; margin: 24px 0 0; font-style: italic; color: var(--muted); font-size: 15.5px; }
+  @media (max-width: 980px) { .price-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) {
+    .price-board li { font-size: 20px; }
+    .price-board .head { font-size: 18px; letter-spacing: 0.18em; }
+  }
+</style>
