@@ -1,0 +1,34 @@
+/* Design tokens: Joe's Barbershop OD-5 — ported from mockups/home-v5/index.html */
+:root {
+  --bg:        oklch(95% 0.022 80);
+  --surface:   oklch(99% 0.008 80);
+  --fg:        oklch(15% 0.02 60);
+  --muted:     oklch(45% 0.025 50);
+  --border:    oklch(86% 0.025 80);
+  --hairline:  oklch(80% 0.030 75);
+  --accent:    oklch(56% 0.17 28);
+  --accent-2:  oklch(36% 0.10 260);
+  --gold:      oklch(68% 0.10 80);
+  --board-bg:  oklch(13% 0.005 60);
+  --board-fg:  oklch(96% 0.005 80);
+  --check-fg:  oklch(15% 0.005 60);
+  --check-bg:  oklch(96% 0.005 80);
+  --font-display-fell:     'IM Fell English', 'Iowan Old Style', Georgia, serif;
+  --font-display-playfair: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
+  --font-display-dm:       'DM Serif Display', 'Tiempos Headline', Georgia, serif;
+  --font-display:          var(--font-display-fell);
+  --font-body:  'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --font-board: 'Oswald', 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --font-mono:  'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --maxw: 1240px;
+  --gutter: clamp(20px, 4vw, 56px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 17px; line-height: 1.55; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+
+section { padding-block: clamp(56px, 7vw, 96px); position: relative; }
+section.tight { padding-block: clamp(40px, 5vw, 64px); }
