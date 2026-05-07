@@ -14,13 +14,13 @@ Win AI-assistant citations and Google AI Mode visibility for "barbershop in East
 
 <!-- Shipped and confirmed valuable. -->
 
-(None yet — ship to validate)
+- [x] Astro project scaffolded with TypeScript strict mode (Phase 01) — `site/` directory, Astro 6.3, base layout + stub components + 2 pages, deployed to Vercel preview URL `https://site-psi-liard.vercel.app`. Content collections deferred to Phase 02.
 
 ### Active
 
 <!-- Current scope. Building toward these. -->
 
-- [ ] Astro project scaffolded with TypeScript + content collections
+- [ ] Single source of truth via Astro content collections (`src/content/`)
 - [ ] Single `src/data/business.ts` source of truth (NAP, hours, prices, ratings, sameAs links)
 - [ ] OD-5 homepage design preserved exactly (heritage typography, checker motif, letter-board pricing) — no Tailwind migration
 - [ ] Homepage rendered from Astro components, parity with `mockups/home-v5/index.html`
@@ -33,7 +33,7 @@ Win AI-assistant citations and Google AI Mode visibility for "barbershop in East
 - [ ] BLUF first 100 words on every page; no tabs/accordions hiding content; FAQ as flat text
 - [ ] Images optimized via Astro `<Image />` (AVIF/WebP, srcset, lazy-load below-fold)
 - [ ] Mobile responsive parity with the OD-5 mockup
-- [ ] Vercel preview URL deployed
+- [x] Vercel preview URL deployed (Phase 01 — `https://site-psi-liard.vercel.app`)
 - [ ] Joe approval secured on the showcased site
 
 ### Out of Scope
@@ -108,4 +108,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-05-06 after initialization*
+*Last updated: 2026-05-07 after Phase 01 (scaffold) completion*
