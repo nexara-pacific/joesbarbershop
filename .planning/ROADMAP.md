@@ -38,7 +38,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 4 plans
 - [x] 01-01-PLAN.md — Initialize Astro 6 project in site/ with TypeScript strict
 - [x] 01-02-PLAN.md — Wire @astrojs/vercel + @astrojs/sitemap + Image config
-- [ ] 01-03-PLAN.md — Base.astro layout + stub components (UtilBar/Masthead/Footer) + 2 pages
+- [x] 01-03-PLAN.md — Base.astro layout + stub components (UtilBar/Masthead/Footer) + 2 pages
 - [ ] 01-04-PLAN.md — Build + Vercel preview deploy + end-to-end SCAF verification
 **UI hint**: yes
 
