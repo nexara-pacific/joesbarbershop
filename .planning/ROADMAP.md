@@ -71,7 +71,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. `/east-county-traditional-barbershop` renders 6 FAQ Q&As as flat `<h3>`/`<p>` pairs with no JS accordions; the areaServed list is visible in the DOM
   3. `/2026-east-county-barbershop-cost-guide` links to all 6 service pages and all 5 neighborhood pages (no 404s from those links)
   4. `/about` names Joe Denesowicz and Alex in plain text; `/reviews` shows pulled quotes from Google and Yelp; `/faq` has 10+ visible Q&As
-**Plans**: 11 plans
+**Plans**: 17 plans
 - [x] 03-00-PLAN.md — Validation infra: audit.sh + canonical-slugs.txt + .gitignore (Wave 0)
 - [x] 03-01-PLAN.md — Marketing-skills setup: product-marketing-context + ai-seo (Wave 1)
 - [x] 03-02-PLAN.md — Firecrawl reviews data + Yelp slug fix → reviews.json (Wave 2)
@@ -83,6 +83,12 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] 03-08-PLAN.md — /reviews with 6–8 review cards (Wave 3)
 - [x] 03-09-PLAN.md — /faq master with 10+ topic-grouped Q&As (Wave 3)
 - [ ] 03-10-PLAN.md — Cleanup + full audit + visual checkpoint (Wave 4)
+- [ ] 03-11-PLAN.md — [GAP] Homepage copy refresh — conversion-angle differentiation (Wave 5)
+- [ ] 03-12-PLAN.md — [GAP] Niche-landing copy refresh — heritage/craft differentiation (Wave 5)
+- [ ] 03-13-PLAN.md — [GAP] Cost guide copy refresh — price-economics differentiation (Wave 5)
+- [ ] 03-14-PLAN.md — [GAP] About copy refresh — owner-identity differentiation (Wave 5)
+- [ ] 03-15-PLAN.md — [GAP] Reviews copy refresh — trust-signal differentiation (Wave 5)
+- [ ] 03-16-PLAN.md — [GAP] FAQ copy refresh — authoritative-source depth (Wave 5)
 **UI hint**: yes
 
 ### Phase 4: Templated Pages
@@ -126,7 +132,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 |-------|----------------|--------|-----------|
 | 1. Scaffold | 4/4 | Complete | 2026-05-07 |
 | 2. Data + Design System | 0/7 | Ready to execute | - |
-| 3. Unique Pages | 10/11 | In Progress|  |
+| 3. Unique Pages | 10/17 | In Progress (gap closure pending) |  |
 | 4. Templated Pages | 0/TBD | Not started | - |
 | 5. AEO + Performance + Meta | 0/TBD | Not started | - |
 | 6. Deploy + Showcase | 0/TBD | Not started | - |
