@@ -36,7 +36,7 @@ Requirements for the showcase build delivered to Joe for sign-off.
 - [x] **PAGE-03**: `/2026-east-county-barbershop-cost-guide` comparative listicle with Article schema; cross-links to all 6 service pages and 5 neighborhood pages
 - [x] **PAGE-04**: `/about` with Person schema for Joe Denesowicz and Alex
 - [x] **PAGE-05**: `/reviews` with AggregateRating schema and quote highlights from public Google + Yelp reviews
-- [ ] **PAGE-06**: `/faq` master FAQ with FAQPage schema (10+ Q&As)
+- [x] **PAGE-06**: `/faq` master FAQ with FAQPage schema (10+ Q&As)
 
 ### Pages — Templated (data-driven)
 
@@ -144,7 +144,7 @@ Deferred — addressed after Joe approves and v1 ships.
 | PAGE-03 | Phase 3 | Complete |
 | PAGE-04 | Phase 3 | Complete |
 | PAGE-05 | Phase 3 | Complete |
-| PAGE-06 | Phase 3 | Pending |
+| PAGE-06 | Phase 3 | Complete |
 | PAGE-07 | Phase 4 | Pending |
 | PAGE-08 | Phase 4 | Pending |
 | AEO-01 | Phase 5 | Pending |
