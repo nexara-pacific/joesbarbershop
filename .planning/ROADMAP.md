@@ -80,7 +80,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] 03-05-PLAN.md — Niche-query landing /east-county-traditional-barbershop (Wave 3)
 - [x] 03-06-PLAN.md — Cost guide /2026-east-county-barbershop-cost-guide (Wave 3)
 - [x] 03-07-PLAN.md — /about with Joe + Alex bios + portrait placeholders (Wave 3)
-- [ ] 03-08-PLAN.md — /reviews with 6–8 review cards (Wave 3)
+- [x] 03-08-PLAN.md — /reviews with 6–8 review cards (Wave 3)
 - [ ] 03-09-PLAN.md — /faq master with 10+ topic-grouped Q&As (Wave 3)
 - [ ] 03-10-PLAN.md — Cleanup + full audit + visual checkpoint (Wave 4)
 **UI hint**: yes
@@ -126,7 +126,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 |-------|----------------|--------|-----------|
 | 1. Scaffold | 4/4 | Complete | 2026-05-07 |
 | 2. Data + Design System | 0/7 | Ready to execute | - |
-| 3. Unique Pages | 8/11 | In Progress|  |
+| 3. Unique Pages | 9/11 | In Progress|  |
 | 4. Templated Pages | 0/TBD | Not started | - |
 | 5. AEO + Performance + Meta | 0/TBD | Not started | - |
 | 6. Deploy + Showcase | 0/TBD | Not started | - |
