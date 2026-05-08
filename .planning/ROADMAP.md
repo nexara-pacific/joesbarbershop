@@ -53,9 +53,9 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. The live-tweaks panel is absent from the production build output
   5. All 6 photos are in `site/src/assets/photos/` and render through `<Image />` without broken `<img>` tags
 **Plans**: 7 plans
-- [ ] 02-01-PLAN.md — Design tokens + utilities CSS + Base.astro wiring (Wave 1)
-- [ ] 02-02-PLAN.md — business.json + business.ts data layer with GBP hours confirmation (Wave 1)
-- [ ] 02-03-PLAN.md — content.config.ts + 11 stub entries (6 services + 5 neighborhoods) (Wave 1)
+- [x] 02-01-PLAN.md — Design tokens + utilities CSS + Base.astro wiring (Wave 1)
+- [x] 02-02-PLAN.md — business.json + business.ts data layer with GBP hours confirmation (Wave 1)
+- [x] 02-03-PLAN.md — content.config.ts + 11 stub entries (6 services + 5 neighborhoods) (Wave 1)
 - [ ] 02-04-PLAN.md — Photos asset copy + UtilBar/Masthead/Footer port + CheckDivider/SectionMark (Wave 2)
 - [ ] 02-05-PLAN.md — Hero + FactStrip + PriceBoard component port (Wave 2)
 - [ ] 02-06-PLAN.md — Heritage + Visit + FAQ + ClosingCTA component port (Wave 2)
