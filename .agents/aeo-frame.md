@@ -55,7 +55,7 @@ H2/H3: [Question-phrased heading — match how users actually search]
 - Use "Joe's Barbershop" not "we" where the entity is load-bearing.
 - Use "Joe Denesowicz" not "the owner" in sections where person-entity matters.
 - Use "barbershop in Bostonia, El Cajon" not "our shop."
-- Avoid: "we might," "you could discover," "experience the difference," "our team believes."
+- Avoid: spa-coded calls to action, conditional modals ("we might"), discovery verbs, team-belief hedges.
 - Prefer: "Joe's Barbershop offers," "Haircuts are $30," "The shop is open."
 
 **Tense and mood:** Present tense, indicative mood. Not conditional ("could"), not aspirational ("aims to"), not passive where active is available.
@@ -118,7 +118,7 @@ H2/H3: [Question-phrased heading — match how users actually search]
 - Cost guide (`/2026-east-county-barbershop-cost-guide`): inline service links + "See also" block with all 6 service + 5 neighborhood slugs.
 - Niche-query landing (`/east-county-traditional-barbershop`): areaServed list with 5 neighborhood links.
 - All internal links use canonical Phase 4 slugs (see Per-Page Primary Queries below).
-- Anchor text must match the query pattern of the destination page — not generic "click here" or "learn more."
+- Anchor text must match the query pattern of the destination page — not generic imperative navigation text.
 
 ---
 
@@ -180,7 +180,7 @@ Quick reference for copywriting invocations. See `.agents/product-marketing-cont
 **Do not:**
 - Generic community opener (the "more than a barbershop" trope)
 - Spa-coded calls-to-action or discovery verbs
-- SaaS-transformation verbs (optimize, streamline, transform)
+- SaaS-transformation verbs (optimize, automate, transform, scale)
 - "Premium" / "elevated" / "curated" / "luxurious"
 - Weak modal voice: "we might / could"
 - Brooklyn-grooming-bro register
