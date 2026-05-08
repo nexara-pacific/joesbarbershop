@@ -76,7 +76,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] 03-01-PLAN.md — Marketing-skills setup: product-marketing-context + ai-seo (Wave 1)
 - [x] 03-02-PLAN.md — Firecrawl reviews data + Yelp slug fix → reviews.json (Wave 2)
 - [x] 03-03-PLAN.md — Firecrawl competitor data + archetype fallback → competitors.json (Wave 2)
-- [ ] 03-04-PLAN.md — Homepage / pixel-parity port + visual checkpoint (Wave 3)
+- [x] 03-04-PLAN.md — Homepage / pixel-parity port + visual checkpoint (Wave 3)
 - [ ] 03-05-PLAN.md — Niche-query landing /east-county-traditional-barbershop (Wave 3)
 - [ ] 03-06-PLAN.md — Cost guide /2026-east-county-barbershop-cost-guide (Wave 3)
 - [ ] 03-07-PLAN.md — /about with Joe + Alex bios + portrait placeholders (Wave 3)
@@ -126,7 +126,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 |-------|----------------|--------|-----------|
 | 1. Scaffold | 4/4 | Complete | 2026-05-07 |
 | 2. Data + Design System | 0/7 | Ready to execute | - |
-| 3. Unique Pages | 4/11 | In Progress|  |
+| 3. Unique Pages | 5/11 | In Progress|  |
 | 4. Templated Pages | 0/TBD | Not started | - |
 | 5. AEO + Performance + Meta | 0/TBD | Not started | - |
 | 6. Deploy + Showcase | 0/TBD | Not started | - |

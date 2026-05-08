@@ -31,7 +31,7 @@ Requirements for the showcase build delivered to Joe for sign-off.
 
 ### Pages — Unique
 
-- [ ] **PAGE-01**: `/` (homepage) renders parity with `mockups/home-v5/index.html` using shared components
+- [x] **PAGE-01**: `/` (homepage) renders parity with `mockups/home-v5/index.html` using shared components
 - [ ] **PAGE-02**: `/east-county-traditional-barbershop` niche-query landing — locks in current accidental AEO win; FAQPage schema; areaServed list; 6 niche-specific FAQ Q&As
 - [x] **PAGE-03**: `/2026-east-county-barbershop-cost-guide` comparative listicle with Article schema; cross-links to all 6 service pages and 5 neighborhood pages
 - [ ] **PAGE-04**: `/about` with Person schema for Joe Denesowicz and Alex
@@ -139,7 +139,7 @@ Deferred — addressed after Joe approves and v1 ships.
 | DESN-02 | Phase 2 | Pending |
 | DESN-03 | Phase 2 | Pending |
 | DESN-04 | Phase 2 | Pending |
-| PAGE-01 | Phase 3 | Pending |
+| PAGE-01 | Phase 3 | Complete |
 | PAGE-02 | Phase 3 | Pending |
 | PAGE-03 | Phase 3 | Complete |
 | PAGE-04 | Phase 3 | Pending |

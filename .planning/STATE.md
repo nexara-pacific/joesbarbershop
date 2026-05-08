@@ -4,14 +4,14 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 3 plans approved by gsd-plan-checker (iter 2 PASS)
-last_updated: "2026-05-08T04:30:35.962Z"
+last_updated: "2026-05-08T05:19:08.577Z"
 last_activity: 2026-05-08
 progress:
   total_phases: 6
   completed_phases: 2
   total_plans: 22
-  completed_plans: 15
-  percent: 68
+  completed_plans: 16
+  percent: 73
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-05-06)
 ## Current Position
 
 Phase: 03 (unique-pages) — EXECUTING
-Plan: 2 of 11
+Plan: 3 of 11
 Status: Ready to execute
 Last activity: 2026-05-08
 
-Progress: [███████░░░] 68%
+Progress: [███████░░░] 73%
 
 ## Performance Metrics
 
@@ -53,6 +53,7 @@ Progress: [███████░░░] 68%
 
 *Updated after each plan completion*
 | Phase 03-unique-pages P03 | 6 | 2 tasks | 1 files |
+| Phase 03-unique-pages P04 | 25 | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,8 @@ Key ones for this build:
 - Schema generated from `business.ts` single source of truth
 - Showcase to Joe before any GBP/Square Site cutover
 - Strategy/playbook stays in vault; this repo is the deployable only
+- [Phase ?]: Homepage is pure composition (no scoped style, no client directives); all styling lives in component files — D-18 locked composition pattern for AEO zero-JS requirement
+- [Phase ?]: dev-mockup-parity.astro retained until Plan 10 cleanup per D-20; parity sign-off recorded in 03-04-SUMMARY — Transitive parity must be confirmed before scratch-page reference is removed
 
 ### Pending Todos
 
@@ -85,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-05-08T04:30:35.957Z
+Last session: 2026-05-08T05:18:30.034Z
 Stopped at: Phase 3 plans approved by gsd-plan-checker (iter 2 PASS)
 Resume file: None
