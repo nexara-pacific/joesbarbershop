@@ -40,7 +40,7 @@ check_homepage_faq() {
   local page="${DIST_DIR}/index.html"
   if [ ! -f "$page" ]; then skip "homepage-faq" "page not built yet"; return; fi
   local count
-  count=$(grep -c '<article class="faq-q"' "$page" 2>/dev/null || echo 0)
+  count=$(grep -o '<article class="faq-q"' "$page" 2>/dev/null | wc -l | tr -d ' ' || echo 0)
   if [ "$count" -ge 5 ] && [ "$count" -le 6 ]; then
     pass
   else
@@ -52,7 +52,7 @@ check_niche_faq() {
   local page="${DIST_DIR}/east-county-traditional-barbershop/index.html"
   if [ ! -f "$page" ]; then skip "niche-faq" "page not built yet"; return; fi
   local count
-  count=$(grep -c '<article class="faq-q"' "$page" 2>/dev/null || echo 0)
+  count=$(grep -o '<article class="faq-q"' "$page" 2>/dev/null | wc -l | tr -d ' ' || echo 0)
   if [ "$count" -eq 6 ]; then
     pass
   else
@@ -101,7 +101,7 @@ check_cost_guide_entries() {
   local page="${DIST_DIR}/2026-east-county-barbershop-cost-guide/index.html"
   if [ ! -f "$page" ]; then skip "cost-guide-entries" "page not built yet"; return; fi
   local count
-  count=$(grep -c '<article class="entry"' "$page" 2>/dev/null || echo 0)
+  count=$(grep -o '<article class="entry"' "$page" 2>/dev/null | wc -l | tr -d ' ' || echo 0)
   if [ "$count" -ge 4 ]; then
     pass
   else
@@ -141,7 +141,7 @@ check_reviews_cards() {
   local page="${DIST_DIR}/reviews/index.html"
   if [ ! -f "$page" ]; then skip "reviews-cards" "page not built yet"; return; fi
   local count
-  count=$(grep -c '<article class="review-card"' "$page" 2>/dev/null || echo 0)
+  count=$(grep -o '<article class="review-card"' "$page" 2>/dev/null | wc -l | tr -d ' ' || echo 0)
   if [ "$count" -ge 6 ] && [ "$count" -le 8 ]; then
     pass
   else
@@ -165,7 +165,7 @@ check_faq_master_count() {
   local page="${DIST_DIR}/faq/index.html"
   if [ ! -f "$page" ]; then skip "faq-master-count" "page not built yet"; return; fi
   local count
-  count=$(grep -c '<article class="faq-q"' "$page" 2>/dev/null || echo 0)
+  count=$(grep -o '<article class="faq-q"' "$page" 2>/dev/null | wc -l | tr -d ' ' || echo 0)
   if [ "$count" -ge 10 ]; then
     pass
   else

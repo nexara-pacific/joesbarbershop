@@ -1,7 +1,27 @@
 ---
 import Base from '../layouts/Base.astro';
+import CheckDivider from '../components/CheckDivider.astro';
+import Hero from '../components/Hero.astro';
+import FactStrip from '../components/FactStrip.astro';
+import PriceBoard from '../components/PriceBoard.astro';
+import Heritage from '../components/Heritage.astro';
+import Visit from '../components/Visit.astro';
+import FAQ from '../components/FAQ.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
 ---
-<Base title="Joe's Barbershop">
-  <h1>Joe's Barbershop — Phase 1 placeholder</h1>
-  <p>This page exists to verify the Base layout renders.</p>
+<Base
+  title="Joe's Barbershop — Bostonia, El Cajon"
+  description="Traditional barbershop in Bostonia, East County San Diego. Walk-ins welcome, cash only. Tue–Sat 10am–7:30pm."
+>
+  <CheckDivider />
+  <Hero />
+  <FactStrip />
+  <CheckDivider />
+  <PriceBoard />
+  <Heritage />
+  <CheckDivider />
+  <Visit />
+  <FAQ />
+  <CheckDivider />
+  <ClosingCTA />
 </Base>
