@@ -18,16 +18,16 @@ Requirements for the showcase build delivered to Joe for sign-off.
 ### Data Source of Truth
 
 - [ ] **DATA-01**: `src/data/business.ts` exports a typed business record (NAP, hours, prices, ratings, sameAs, photos, areaServed) used by every page
-- [ ] **DATA-02**: `src/content/config.ts` defines typed content collections for `services` and `neighborhoods`
+- [ ] **DATA-02**: `src/content.config.ts` (Astro 6 flat path — NOT the legacy nested `src/content/config.ts`, which throws `LegacyContentConfigError`) defines typed content collections for `services` and `neighborhoods`
 - [ ] **DATA-03**: 6 service content files (`fades`, `kids-cuts`, `beard-trim`, `hot-towel-shave`, `line-up`, `classic-cut`) with frontmatter (price, duration, BLUF, FAQ) + markdown body
 - [ ] **DATA-04**: 5 neighborhood content files (`bostonia`, `el-cajon`, `santee`, `lakeside`, `la-mesa`) with frontmatter (landmarks, distance, BLUF, FAQ) + markdown body
 
 ### Design Port
 
-- [ ] **DESN-01**: OD-5 CSS ported to `src/styles/global.css` preserving all design tokens (palette, fonts, checkerboard motif, spacing, breakpoints)
+- [ ] **DESN-01**: OD-5 CSS ported to `src/styles/tokens.css` (`:root` oklch palette + reset + base rules) and `src/styles/utilities.css` (shared atoms — `.wrap`, `.eyebrow`, `.kicker-rule`, `.display`, `.check-divider`, `.section-mark`, `.section-head`, `.btn`), both imported once in `Base.astro` frontmatter; component-specific selectors live in per-component scoped `<style>` blocks. Preserves all design tokens (palette, fonts, checkerboard motif, spacing, breakpoints).
 - [ ] **DESN-02**: Component library extracted: UtilBar, Masthead, Hero, FactStrip, PriceBoard, Heritage, Visit, FAQ, ClosingCTA, Footer, CheckDivider, SectionMark
 - [ ] **DESN-03**: Live tweaks panel removed from production build (was OD review tool only)
-- [ ] **DESN-04**: 6 photos copied to `site/public/photos/` and rendered through Astro `<Image />`
+- [ ] **DESN-04**: 6 photos copied to `src/assets/photos/` (NOT `public/photos/` — Astro `<Image />` only processes `src/`-based assets for AVIF/WebP/srcset/hash; files in `public/` are served verbatim and break Phase 5 perf targets) and rendered through Astro `<Image />` (or `<Picture>` for the hero)
 
 ### Pages — Unique
 
