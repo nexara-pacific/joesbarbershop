@@ -1,0 +1,166 @@
+---
+import Base from '../layouts/Base.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
+import { business } from '../data/business';
+import reviews from '../data/reviews.json';
+
+const lastUpdated = 'May 2026';
+---
+
+<Base
+  title="Reviews · Joe's Barbershop · 4.9★ Google + Yelp"
+  description="Joe's Barbershop is rated 4.9★ across 91 Google and 33 Yelp reviews. Real customer quotes from East County, El Cajon."
+>
+  <header class="article-head">
+    <div class="wrap">
+      <span class="eyebrow kicker-rule">Reviews · Google + Yelp</span>
+      <h1>What customers say.</h1>
+      <p class="datestamp">UPDATED {lastUpdated.toUpperCase()}</p>
+    </div>
+  </header>
+
+  <section class="bluf" aria-label="Answer capsule">
+    <div class="wrap">
+      <p class="bluf-lead">
+        <strong>Joe's Barbershop is rated {business.ratings.google.value}★ across {business.ratings.google.count} Google reviews and {business.ratings.yelp.count} Yelp reviews — {business.ratings.google.count + business.ratings.yelp.count} verified ratings from East County customers.</strong>
+        The shop at 723 E Bradley Ave in Bostonia, El Cajon has earned that rating serving walk-in customers since 2020.
+        Cash-only, no booking app required, walk-ins welcome Tuesday through Saturday.
+        Every review below is from a customer who sat in the chair at Joe's Barbershop — no curated testimonials, no paid placements.
+        Traditional barbering at ${business.prices.haircut} a cut, backed by {business.ratings.google.count + business.ratings.yelp.count} real reviews.
+      </p>
+    </div>
+  </section>
+
+  <section class="reviews-section">
+    <div class="wrap">
+      <div class="review-grid">
+        {reviews.map(r => (
+          <article class="review-card">
+            <div class="stars" aria-label={`${r.rating} out of 5 stars`}>
+              {'★'.repeat(r.rating)}
+            </div>
+            <p class="review-quote">"{r.quote}"</p>
+            <h3 class="reviewer">{r.name}</h3>
+            <p class="review-source">{r.source}{r.date ? ` · ${r.date}` : ''}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ClosingCTA />
+</Base>
+
+<style>
+  /* Article header */
+  .article-head {
+    padding: clamp(56px, 7vw, 96px) 0 clamp(32px, 4vw, 48px);
+    background: var(--bg);
+  }
+  .article-head .wrap { max-width: 820px; }
+  .article-head h1 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.008em;
+    margin: 0 0 18px;
+  }
+  .datestamp {
+    font-family: var(--font-board);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* BLUF capsule */
+  .bluf {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding-block: clamp(40px, 5vw, 64px);
+  }
+  .bluf-lead {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 66ch;
+    margin: 0;
+  }
+
+  /* Reviews section */
+  .reviews-section {
+    background: var(--bg);
+    padding: clamp(56px, 7vw, 96px) 0;
+  }
+
+  /* Review grid — 2-col desktop, 2-col tablet, 1-col mobile */
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  /* Review card */
+  .review-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px 28px 24px;
+  }
+
+  /* Star row */
+  .review-card .stars {
+    font-size: 18px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+
+  /* Review quote — plain <p> with inline curly quotes, NOT <blockquote> */
+  .review-card .review-quote {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--fg);
+    margin: 0 0 18px;
+  }
+
+  /* Reviewer name */
+  .review-card h3.reviewer {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2vw, 24px);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 4px;
+  }
+
+  /* Source + date line */
+  .review-card .review-source {
+    font-family: var(--font-board);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* Tablet — keep 2 cols, reduce gap + padding */
+  @media (max-width: 980px) {
+    .review-grid { gap: 22px; }
+    .review-card { padding: 24px 24px 20px; }
+  }
+
+  /* Mobile — single column */
+  @media (max-width: 600px) {
+    .review-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .review-card { padding: 20px 20px 16px; }
+    .bluf-lead { font-size: 17px; }
+  }
+</style>
