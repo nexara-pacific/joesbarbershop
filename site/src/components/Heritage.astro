@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets';
+import heritagePhoto from '../assets/photos/04-heritage-chair.jpg';
+---
+<section class="heritage" aria-label="Our heritage and history">
+  <div class="wrap">
+    <div class="heritage-grid">
+      <div class="heritage-photo">
+        <Image src={heritagePhoto} alt="Joe's Barbershop heritage barber chair — vintage black leather and mahogany frame, checkerboard tile floor, ATM and Joe's logo wall art visible" loading="lazy" />
+      </div>
+      <div class="heritage-copy">
+        <span class="eyebrow kicker-rule">Opened 2020</span>
+        <h2>Five years in Bostonia.<br />Built to last.</h2>
+        <p>Joe Denesowicz opened the shop on Bradley Avenue in 2020. Three chairs, two cutters, one rule: do good work and charge a fair price.</p>
+        <p>The checkerboard floor, the heritage chair, the letter-board prices on the wall — this is what a barbershop looks like when it's built for the neighborhood, not a brand deck.</p>
+        <div class="heritage-stats">
+          <div class="stat">
+            <div class="num">4.9★</div>
+            <div class="label">Google rating</div>
+          </div>
+          <div class="stat">
+            <div class="num">90+</div>
+            <div class="label">Google reviews</div>
+          </div>
+          <div class="stat">
+            <div class="num">5yr</div>
+            <div class="label">Serving Bostonia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .heritage { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .heritage-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(28px, 4vw, 72px); align-items: center; }
+  .heritage-photo { position: relative; }
+  .heritage-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
+  .heritage-copy h2 { font-family: var(--font-display); font-size: clamp(38px, 4.4vw, 60px); font-weight: 600; line-height: 1.02; letter-spacing: -0.006em; margin: 14px 0 22px; }
+  .heritage-copy p { font-size: 17.5px; line-height: 1.65; margin: 0 0 14px; max-width: 60ch; }
+  .heritage-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; border-top: 1px solid var(--border); padding-top: 24px; }
+  .heritage-stats .stat .num { font-family: var(--font-display); font-size: 40px; font-weight: 600; line-height: 1; letter-spacing: -0.01em; color: var(--accent); }
+  .heritage-stats .stat .label { font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; color: var(--muted); font-weight: 600; margin-top: 6px; }
+  @media (max-width: 980px) { .heritage-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) {
+    .heritage-stats { grid-template-columns: 1fr 1fr; }
+    .heritage-stats .stat:last-child { grid-column: span 2; }
+  }
+</style>

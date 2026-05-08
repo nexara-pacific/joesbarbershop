@@ -1,5 +1,25 @@
 ---
+import { business } from '../data/business';
 ---
-<div class="util-bar" data-phase1-stub="util-bar">
-  <span>(Phase 2: util-bar — phone, hours, walk-ins welcome)</span>
+<div class="util-bar">
+  <div class="wrap">
+    <span>Walk-ins welcome</span>
+    <span class="util-dot">●</span>
+    <span>Family-friendly</span>
+    <span class="util-dot">●</span>
+    <span>ATM on site</span>
+    <span class="util-dot">●</span>
+    <span>Tue–Sat · open at 10am</span>
+    <span class="util-phone">{business.phone}</span>
+  </div>
 </div>
+<style>
+  .util-bar { background: var(--fg); color: var(--bg); font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.16em; font-size: 12px; font-weight: 500; }
+  .util-bar .wrap { display: flex; align-items: center; gap: 28px; padding-block: 9px; flex-wrap: wrap; }
+  .util-bar .util-dot { color: var(--accent); font-size: 14px; line-height: 1; }
+  .util-bar .util-phone { margin-left: auto; font-weight: 600; letter-spacing: 0.08em; }
+  @media (max-width: 600px) {
+    .util-bar .wrap { gap: 14px; }
+    .util-bar .util-phone { margin-left: 0; }
+  }
+</style>

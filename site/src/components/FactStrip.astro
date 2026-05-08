@@ -1,0 +1,47 @@
+---
+import { business } from '../data/business';
+---
+<section class="fact-strip tight" aria-label="Quick facts about Joe's Barbershop">
+  <div class="wrap">
+    <div class="fact">
+      <span class="label">Established</span>
+      <span class="value">2020</span>
+      <span class="sub">Five years on Bradley Ave.</span>
+    </div>
+    <div class="fact">
+      <span class="label">Google rating</span>
+      <span class="value"><span class="star">★</span> {business.ratings.google.value}</span>
+      <span class="sub">{business.ratings.google.count} reviews · Yelp {business.ratings.yelp.value}</span>
+    </div>
+    <div class="fact">
+      <span class="label">Neighborhood</span>
+      <span class="value">Bostonia</span>
+      <span class="sub">East County · El Cajon CA</span>
+    </div>
+    <div class="fact">
+      <span class="label">Walk-ins</span>
+      <span class="value">Always</span>
+      <span class="sub">No appointment required.</span>
+    </div>
+    <div class="fact">
+      <span class="label">Barbers</span>
+      <span class="value">Joe + Alex</span>
+      <span class="sub">Three chairs, two cutters.</span>
+    </div>
+  </div>
+</section>
+<style>
+  .fact-strip { background: var(--surface); border-bottom: 1px solid var(--border); }
+  .fact-strip .wrap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; padding-block: 0; }
+  .fact { padding: 22px 18px; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+  .fact:last-child { border-right: 0; }
+  .fact .label { font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.16em; font-size: 10.5px; color: var(--muted); font-weight: 600; }
+  .fact .value { font-family: var(--font-display); font-size: 22px; font-weight: 600; line-height: 1.1; }
+  .fact .value .star { color: var(--accent); }
+  .fact .sub { font-size: 13.5px; color: var(--muted); }
+  @media (max-width: 980px) {
+    .fact-strip .wrap { grid-template-columns: repeat(2, 1fr); }
+    .fact { border-right: 0; border-top: 1px solid var(--border); }
+    .fact:nth-child(odd) { border-right: 1px solid var(--border); }
+  }
+</style>
