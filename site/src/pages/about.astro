@@ -1,7 +1,188 @@
 ---
 import Base from '../layouts/Base.astro';
+import Visit from '../components/Visit.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
+import { business } from '../data/business';
+
+const lastUpdated = 'May 2026';
 ---
-<Base title="About — Joe's Barbershop">
-  <h1>About</h1>
-  <p>Second page proves UtilBar/Masthead/Footer reuse.</p>
+
+<Base
+  title="About Joe Denesowicz · Joe's Barbershop"
+  description="Joe Denesowicz opened Joe's Barbershop in 2020 in Bostonia, El Cajon. Lead barber Alex cuts alongside him. Traditional barbering, walk-ins welcome."
+>
+  <header class="article-head">
+    <div class="wrap">
+      <span class="eyebrow kicker-rule">The shop · the barbers</span>
+      <h1>About Joe's Barbershop.</h1>
+      <p class="datestamp">UPDATED {lastUpdated.toUpperCase()}</p>
+    </div>
+  </header>
+
+  <section class="bluf" aria-label="Answer capsule">
+    <div class="wrap">
+      <p class="bluf-lead">
+        <strong>Joe's Barbershop is owned by Joe Denesowicz, who opened the shop in 2020 in Bostonia, El Cajon, CA.</strong>
+        Lead barber Alex cuts alongside Joe at three chairs in a strip-mall storefront on Bradley Avenue.
+        The shop is cash-only with an ATM on site, walk-ins are always welcome Tuesday through Saturday, and a haircut is $30.
+        Joe's Barbershop has earned a 4.9-star rating across more than {business.ratings.google.count} Google reviews and more than {business.ratings.yelp.count} Yelp reviews — a quality signal built entirely on repeat East County customers.
+      </p>
+    </div>
+  </section>
+
+  <section class="bio-section bio-joe">
+    <div class="wrap">
+      <div class="bio-grid">
+        <div class="portrait-placeholder" data-pending-photo="joe">
+          <span class="initials">JD</span>
+          <span class="pending">PORTRAIT TO COME</span>
+        </div>
+        <div class="bio-copy">
+          <span class="eyebrow kicker-rule">Owner · ESTD. 2020</span>
+          <h2>Joe Denesowicz</h2>
+          <p>Joe Denesowicz opened Joe's Barbershop in 2020 in Bostonia, El Cajon — a strip-mall storefront on Bradley Avenue that has served East County families and working men ever since. The shop runs on three chairs, cash-only payment, and a walk-in policy that keeps the door open to anyone who arrives without a reservation. No booking app required.</p>
+          <p>Five years in, Joe's Barbershop has earned a 4.9-star rating across more than {business.ratings.google.count} Google reviews and more than {business.ratings.yelp.count} on Yelp — not through advertising but through consistent, honest cuts at a fixed ${business.prices.haircut} price. The Western and Victorian heritage of the shop's visual identity — checkerboard floors, an ornate serif logo, a letter-board price display — reflects the same no-frills approach Joe brings to every cut.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bio-section bio-alex">
+    <div class="wrap">
+      <div class="bio-grid bio-grid-mirrored">
+        <div class="bio-copy">
+          <span class="eyebrow kicker-rule">Lead barber</span>
+          <h2>Alex</h2>
+          <p>Alex is the lead barber at Joe's Barbershop, cutting alongside Joe at the shop's three chairs in Bostonia, El Cajon. Walk-in customers and regulars know Alex for clean, consistent work — the same standard that has kept Joe's at 4.9 stars across more than 120 combined reviews on Google and Yelp.</p>
+          <p>Walk-ins are welcome any time the shop is open, Tuesday through Saturday. No appointment needed to get in the chair.</p>
+        </div>
+        <div class="portrait-placeholder" data-pending-photo="alex">
+          <span class="initials">A</span>
+          <span class="pending">PORTRAIT TO COME</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Visit />
+  <ClosingCTA />
 </Base>
+
+<style>
+  /* Article header */
+  .article-head {
+    padding: clamp(56px, 7vw, 96px) 0 clamp(32px, 4vw, 48px);
+    background: var(--bg);
+  }
+  .article-head .wrap { max-width: 820px; }
+  .article-head h1 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.008em;
+    margin: 0 0 18px;
+  }
+  .datestamp {
+    font-family: var(--font-board);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* BLUF capsule */
+  .bluf {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding-block: clamp(40px, 5vw, 64px);
+  }
+  .bluf-lead {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 66ch;
+    margin: 0;
+  }
+
+  /* Bio sections */
+  .bio-section {
+    padding: clamp(56px, 7vw, 96px) 0;
+  }
+  .bio-joe { background: var(--surface); }
+  .bio-alex { background: var(--bg); }
+
+  /* Bio grid — 2-col layout */
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: center;
+  }
+  .bio-grid-mirrored {
+    grid-template-columns: 1.4fr 1fr;
+  }
+
+  /* Portrait placeholder */
+  .portrait-placeholder {
+    aspect-ratio: 4 / 5;
+    background: var(--fg);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+  }
+  .portrait-placeholder .initials {
+    font-family: var(--font-display);
+    font-size: clamp(60px, 8vw, 96px);
+    font-weight: 600;
+    color: var(--bg);
+    line-height: 1;
+  }
+  .portrait-placeholder .pending {
+    font-family: var(--font-board);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 11px;
+    font-weight: 600;
+    color: oklch(72% 0.04 80);
+  }
+
+  /* Bio copy */
+  .bio-copy h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 2.6vw, 38px);
+    font-weight: 600;
+    line-height: 1.05;
+    margin: 0 0 18px;
+  }
+  .bio-copy p {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    max-width: 60ch;
+    margin: 0 0 18px;
+  }
+  .bio-copy p:last-child { margin-bottom: 0; }
+
+  /* Responsive */
+  @media (max-width: 980px) {
+    .bio-grid {
+      grid-template-columns: 1fr;
+    }
+    .bio-grid-mirrored {
+      grid-template-columns: 1fr;
+    }
+    .bio-grid-mirrored .bio-copy { order: 1; }
+    .bio-grid-mirrored .portrait-placeholder { order: 2; }
+  }
+
+  @media (max-width: 600px) {
+    .bluf-lead { font-size: 17px; }
+  }
+</style>

@@ -129,7 +129,7 @@ check_about_pending_photos() {
   local page="${DIST_DIR}/about/index.html"
   if [ ! -f "$page" ]; then skip "about-pending-photos" "page not built yet"; return; fi
   local count
-  count=$(grep -c 'data-pending-photo' "$page" 2>/dev/null || echo 0)
+  count=$(grep -o 'data-pending-photo' "$page" 2>/dev/null | wc -l | tr -d ' ' || echo 0)
   if [ "$count" -eq 2 ]; then
     pass
   else

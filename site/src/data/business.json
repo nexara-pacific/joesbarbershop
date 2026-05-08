@@ -51,6 +51,10 @@
     "reviews.json — 4 of 8 entries are Google placeholders pending Firecrawl re-extraction; Google Maps review content blocked by JS gating; Yelp real quotes (4) are from verified public surface; data shape stable for Wave 3 page build",
     "sameAs.facebook — empty string; Joe to provide FB page URL if any",
     "prices.kidsCut — null pending Joe's confirmation at showcase",
-    "prices.haircutBeard — 50 cited from inputs/00-brief.md L25 (Square Site listing); Joe to confirm or correct at showcase"
+    "prices.haircutBeard — 50 cited from inputs/00-brief.md L25 (Square Site listing); Joe to confirm or correct at showcase",
+    "about.bios.joe — skill-drafted bio committed; specifics minimal until Joe confirms biographical details at showcase",
+    "about.bios.alex — skill-drafted minimal bio committed; specifics deferred to Joe's confirmation at showcase",
+    "about.portraits.joe — placeholder rendered as JD initials card; replace with real headshot post-Phase-3",
+    "about.portraits.alex — placeholder rendered as A initial card; replace with real headshot post-Phase-3"
   ]
 }
