@@ -1,0 +1,409 @@
+---
+import Base from '../layouts/Base.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
+import { business } from '../data/business';
+import competitors from '../data/competitors.json';
+
+const lastUpdated = 'May 2026';
+const services = [
+  { name: 'Fades', slug: 'fades' },
+  { name: 'Classic Cut', slug: 'classic-cut' },
+  { name: 'Kids Cuts', slug: 'kids-cuts' },
+  { name: 'Beard Trim', slug: 'beard-trim' },
+  { name: 'Line-Up', slug: 'line-up' },
+  { name: 'Hot-Towel Shave', slug: 'hot-towel-shave' },
+];
+const neighborhoods = [
+  { name: 'Bostonia',  slug: 'bostonia-barber'  },
+  { name: 'El Cajon',  slug: 'el-cajon-barber'  },
+  { name: 'Santee',    slug: 'santee-barber'    },
+  { name: 'Lakeside',  slug: 'lakeside-barber'  },
+  { name: 'La Mesa',   slug: 'la-mesa-barber'   },
+];
+---
+
+<Base
+  title="2026 East County barbershop cost guide · Joe's Barbershop"
+  description="What barbershop services cost in El Cajon, Bostonia, and East County in 2026. $30 base haircuts at Joe's; competitive pricing across the area."
+>
+  <header class="article-head">
+    <div class="wrap">
+      <span class="eyebrow kicker-rule">2026 cost guide · East County</span>
+      <h1>What a barbershop costs in East County, 2026.</h1>
+      <p class="datestamp">UPDATED {lastUpdated.toUpperCase()}</p>
+    </div>
+  </header>
+
+  <section class="bluf" aria-label="Answer capsule">
+    <div class="wrap">
+      <p class="bluf-lead">
+        <strong>Barbershop prices in East County, San Diego range from $15 to $50 in 2026 — with traditional walk-in shops anchored at $30 for a standard haircut.</strong>
+        Joe's Barbershop at 723 E Bradley Ave in Bostonia charges $30 for a haircut, $30 for a straight-razor shave, $20 for a beard line-up, and $15 for a clean-up. Most East County traditional shops keep prices in the $15–$50 range. Chain-style shops start lower but add on fees. Grooming lounges start at $40 and climb. Cash-only shops like Joe's absorb no card processing cost — so the board price is the actual price.
+      </p>
+    </div>
+  </section>
+
+  <section class="prose">
+    <div class="wrap">
+      <h2>What an East County barbershop costs in 2026</h2>
+      <p>East County barbershop pricing in 2026 divides along a simple line: traditional shops versus everybody else. Traditional shops — the walk-in, cash-friendly, neighborhood-based shops that have anchored East County for decades — hold the line at $30 for a standard haircut. Joe's Barbershop in Bostonia is the anchor: a <a href="/fades">fade</a> or <a href="/classic-cut">classic cut</a> is $30, a <a href="/beard-trim">beard trim</a> is $20, a clean-up is $15. The pricing is visible on a letter board before you sit down. No hidden fees, no card surcharge baked in. That $30 base is not a promotional rate — it reflects the actual operating cost of a strip-mall barbershop serving working-class East County customers who have been coming in weekly for years. The price is the shop's positioning statement.</p>
+      <p>Move up the price spectrum and the picture changes. Appointment-required shops in East County tend toward higher base prices because their volume is lower and their overhead is managed through booking systems rather than walk-in density. Grooming lounges — typically $40–$60 and up for a standard cut — are positioned toward a different customer: the one who wants product recommendations, a beverage, and an atmosphere that reads "experience" rather than "haircut." Neither is wrong. But if you are searching for "how much does a barbershop cost in East County" in 2026, the honest answer is: $30 at a traditional walk-in shop like Joe's, $25–$45 at a chain or volume shop with add-ons, and $40–$75 at grooming lounges. The <a href="/hot-towel-shave">hot-towel shave</a> and <a href="/line-up">line-up</a> services at <a href="/bostonia-barber">Bostonia's</a> Joe's sit at $30 and $20 respectively — within the same traditional-shop band. Knowing this range before you sit down is why this guide exists.</p>
+    </div>
+  </section>
+
+  <section class="entries-section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-mark" aria-hidden="true"></span>
+        <div class="section-head-text">
+          <span class="eyebrow">East County · 2026 listing</span>
+          <h2>Top barbershops, with prices.</h2>
+        </div>
+      </div>
+      <ol class="entries">
+        {competitors.map((c, i) => (
+          <li>
+            <article class="entry" data-host={c.host ? 'true' : undefined} data-archetype={c.archetype ? 'true' : undefined}>
+              <header class="entry-head">
+                <span class="entry-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{c.name}</h3>
+              </header>
+              <div class="nap">
+                <dl>
+                  {c.address && <><dt>Address</dt><dd>{c.address}</dd></>}
+                  {c.phone && <><dt>Phone</dt><dd>{c.phone}</dd></>}
+                  <dt>Hours</dt><dd>{c.hours}</dd>
+                  <dt>Price range</dt><dd>{c.priceRange}</dd>
+                  <dt>Rating</dt><dd>{c.rating}</dd>
+                </dl>
+              </div>
+              {c.quote && <blockquote class="entry-quote">"{c.quote}"</blockquote>}
+              <p class="entry-diff">{c.differentiator}</p>
+            </article>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="faq" aria-label="Cost-related questions">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-mark" aria-hidden="true"></span>
+        <div class="section-head-text">
+          <span class="eyebrow">Cost · what people ask</span>
+          <h2>Cost questions.</h2>
+        </div>
+      </div>
+      <div class="faq-list">
+        <article class="faq-q">
+          <span class="num" aria-hidden="true">01</span>
+          <div>
+            <h3>Why is $30 the base price in East County?</h3>
+            <p>$30 has become the traditional-shop anchor in East County because it reflects actual operating costs — not urban premium pricing. A strip-mall shop in Bostonia or El Cajon carries lower rent than a downtown location or a grooming lounge in a mixed-use development. Joe's Barbershop has held $30 since opening in 2020. The cash-only model means no card processing fees are embedded in the price. What the board says is what you pay — no surprise at the register.</p>
+          </div>
+        </article>
+        <article class="faq-q">
+          <span class="num" aria-hidden="true">02</span>
+          <div>
+            <h3>Do East County barbershops take cards?</h3>
+            <p>Most East County barbershops accept credit and debit cards. Joe's Barbershop is cash-only — with an ATM on site. The cash-only model keeps pricing simple: the $30 you see on the board is the $30 you pay, with no 2–3% card processing fee folded in. For customers who prefer card, nearby shops like Clipper Crew accept cards and Zelle. Joe's ATM handles the gap.</p>
+          </div>
+        </article>
+        <article class="faq-q">
+          <span class="num" aria-hidden="true">03</span>
+          <div>
+            <h3>Does a walk-in haircut cost more than booking an appointment?</h3>
+            <p>No. Walk-in and appointment pricing is identical at virtually every East County barbershop. Joe's Barbershop charges the same $30 whether you walk in or book online through the Square link. The difference is wait time, not price. Appointment-only shops tend to run at higher base prices because their business model is structured around fewer clients per day — but walk-in availability does not add cost at any shop in this market.</p>
+          </div>
+        </article>
+        <article class="faq-q">
+          <span class="num" aria-hidden="true">04</span>
+          <div>
+            <h3>What's the cheapest haircut in El Cajon versus the most expensive?</h3>
+            <p>The low end of the El Cajon market sits around $15 — a clean-up at Joe's or a base cut at a high-volume shop. A standard haircut lands at $30 at traditional walk-in shops. The high end runs $50–$75 at appointment-required grooming lounges offering add-on services, specialty fades, or beard packages. Joe's full service range — $15 clean-up to ${business.prices.haircutBeard} haircut-plus-beard combo — maps the traditional-shop band start to finish. Services like <a href="/kids-cuts">kids cuts</a> and <a href="/hot-towel-shave">hot-towel shave</a> are within the same band.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <aside class="see-also">
+    <div class="wrap">
+      <h2>See also: services &amp; neighborhoods</h2>
+      <div class="see-also-grid">
+        <ul>
+          {services.map(({ name, slug }) => (
+            <li><a href={`/${slug}`}>{name}</a></li>
+          ))}
+        </ul>
+        <ul>
+          {neighborhoods.map(({ name, slug }) => (
+            <li><a href={`/${slug}`}>{name}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <ClosingCTA />
+</Base>
+
+<style>
+  .article-head {
+    padding: clamp(56px, 7vw, 96px) 0 clamp(32px, 4vw, 48px);
+    background: var(--bg);
+  }
+  .article-head .wrap {
+    max-width: 820px;
+  }
+  .article-head h1 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.008em;
+    margin: 0 0 18px;
+  }
+  .article-head .datestamp {
+    font-family: var(--font-board);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .bluf {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding-block: clamp(40px, 5vw, 64px);
+  }
+  .bluf .bluf-lead {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 66ch;
+    margin: 0;
+  }
+  @media (max-width: 600px) {
+    .bluf .bluf-lead {
+      font-size: 17px;
+    }
+  }
+
+  .prose {
+    background: var(--bg);
+    padding-block: clamp(56px, 7vw, 96px);
+  }
+  .prose h2 {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 4vw, 52px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.006em;
+    margin: 0 0 28px;
+  }
+  .prose p {
+    font-size: 17.5px;
+    line-height: 1.65;
+    max-width: 70ch;
+    margin: 0 0 24px;
+  }
+  .prose p:last-child {
+    margin-bottom: 0;
+  }
+  .prose a {
+    color: var(--fg);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  .prose a:hover {
+    color: var(--accent);
+  }
+
+  .entries-section {
+    background: var(--bg);
+    padding-block: clamp(56px, 7vw, 96px);
+  }
+  .entries {
+    list-style: none;
+    padding: 0;
+    margin: 40px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  @media (max-width: 980px) {
+    .entries { gap: 36px; }
+  }
+  @media (max-width: 600px) {
+    .entries { gap: 28px; }
+  }
+  .entry {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px;
+  }
+  @media (max-width: 980px) {
+    .entry { padding: 24px; }
+  }
+  @media (max-width: 600px) {
+    .entry { padding: 20px; }
+  }
+  .entry[data-host] {
+    border-left: 3px solid var(--accent);
+  }
+  .entry-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .entry-num {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .entry-head h3 {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.2vw, 28px);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .nap dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 10px 16px;
+  }
+  .nap dt {
+    font-family: var(--font-board);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    align-self: start;
+    padding-top: 3px;
+  }
+  .nap dd {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+  .entry-quote {
+    border-left: 2px solid var(--border);
+    padding-left: 14px;
+    margin: 16px 0 0;
+    font-style: italic;
+    font-size: 15.5px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .entry-diff {
+    margin: 14px 0 0;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--fg);
+  }
+
+  .faq {
+    background: var(--surface);
+    padding-block: clamp(56px, 7vw, 96px);
+  }
+  .faq-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 980px;
+    margin-top: 40px;
+  }
+  .faq-q {
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 32px;
+  }
+  .faq-q .num {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .faq-q h3 {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.2vw, 28px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    margin: 0 0 12px;
+  }
+  .faq-q p {
+    margin: 0;
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--fg);
+    max-width: 70ch;
+  }
+  .faq-q p a {
+    color: var(--fg);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  .faq-q p a:hover {
+    color: var(--accent);
+  }
+
+  .see-also {
+    background: var(--bg);
+    padding-block: clamp(40px, 5vw, 64px);
+    border-top: 1px solid var(--border);
+  }
+  .see-also h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0 0 32px;
+  }
+  .see-also-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  @media (max-width: 980px) {
+    .see-also-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+  .see-also ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .see-also li a {
+    font-size: 16px;
+    color: var(--fg);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  .see-also li a:hover {
+    color: var(--accent);
+  }
+</style>
