@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Joe's Barbershop",
+    "host": true,
+    "address": "723 E Bradley Ave, Suite C, El Cajon CA 92021",
+    "phone": "(619) 891-2775",
+    "hours": "Tue–Sat 10am–7:30pm",
+    "priceRange": "$15-$50 (haircut $30, shave $30, beard line-up $20, clean-up $15, haircut+beard $50)",
+    "rating": "4.9★ · 91 Google reviews",
+    "quote": "Best $30 haircut in East County. Every time.",
+    "differentiator": "No-frills traditional barbershop. Walk-ins only, cash only, ATM on site. Family-friendly. The $30 base price is the East County value anchor."
+  },
+  {
+    "name": "Ducky's Barber Shop",
+    "host": false,
+    "address": "941 Broadway, Ste L, El Cajon CA 92021",
+    "phone": "",
+    "hours": "Mon 8am–7pm, Tue–Sat 8am–6pm, Sun 9am–6pm",
+    "priceRange": "unknown",
+    "rating": "4.7★ · 237 Yelp reviews",
+    "quote": "Tapered me up, hot towel shave and best of all made me feel welcomed and at home.",
+    "differentiator": "Appointment-only traditional shop in Bostonia. Highest review count in East County (237 Yelp). Open Sundays. Specializes in hot towel straight razor shaves."
+  },
+  {
+    "name": "Clipper Crew Barber Shop",
+    "host": false,
+    "address": "700 N Johnson Ave, Ste B, El Cajon CA 92020",
+    "phone": "",
+    "hours": "Mon–Fri 9am–9pm, Sat 8am–10pm, Sun 9am–9pm",
+    "priceRange": "unknown",
+    "rating": "4.1★ · 106 Yelp reviews",
+    "quote": "Just got my haircut by J and honestly this was one of the best cuts I've ever had.",
+    "differentiator": "Walk-ins welcome, extended hours daily (open until 9–10pm). Accepts credit cards and Zelle. Modern shop positioned for after-work and weekend walk-in traffic."
+  },
+  {
+    "name": "Artists Barber Shop",
+    "host": false,
+    "address": "433 E Main St, El Cajon CA 92020",
+    "phone": "",
+    "hours": "Mon–Sun 10am–8pm",
+    "priceRange": "unknown",
+    "rating": "4.1★ · 28 Yelp reviews",
+    "quote": "Coming from LA down to SD I was skeptical trying out a new barber.",
+    "differentiator": "Full-service downtown El Cajon shop open 7 days a week. Offers razor shaves, threading, hair coloring, and beard dye alongside standard cuts. Walk-ins welcome."
+  }
+]
