@@ -72,8 +72,8 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. `/2026-east-county-barbershop-cost-guide` links to all 6 service pages and all 5 neighborhood pages (no 404s from those links)
   4. `/about` names Joe Denesowicz and Alex in plain text; `/reviews` shows pulled quotes from Google and Yelp; `/faq` has 10+ visible Q&As
 **Plans**: 11 plans
-- [ ] 03-00-PLAN.md — Validation infra: audit.sh + canonical-slugs.txt + .gitignore (Wave 0)
-- [ ] 03-01-PLAN.md — Marketing-skills setup: product-marketing-context + ai-seo (Wave 1)
+- [x] 03-00-PLAN.md — Validation infra: audit.sh + canonical-slugs.txt + .gitignore (Wave 0)
+- [x] 03-01-PLAN.md — Marketing-skills setup: product-marketing-context + ai-seo (Wave 1)
 - [ ] 03-02-PLAN.md — Firecrawl reviews data + Yelp slug fix → reviews.json (Wave 2)
 - [ ] 03-03-PLAN.md — Firecrawl competitor data + archetype fallback → competitors.json (Wave 2)
 - [ ] 03-04-PLAN.md — Homepage / pixel-parity port + visual checkpoint (Wave 3)
