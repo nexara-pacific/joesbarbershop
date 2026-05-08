@@ -1,10 +1,11 @@
 ---
 phase: 3
 slug: unique-pages
-status: draft
+status: approved
 shadcn_initialized: false
 preset: none
 created: 2026-05-07
+reviewed_at: 2026-05-07
 ---
 
 # Phase 3 — UI Design Contract
