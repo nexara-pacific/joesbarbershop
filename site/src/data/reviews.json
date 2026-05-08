@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Javier H.",
+    "rating": 5,
+    "quote": "Joe at Joe's Barbershop is rad! Killer haircut, solid conversation, and reasonable price. 10/10 would recommend!",
+    "source": "Yelp",
+    "date": "Sep 2021"
+  },
+  {
+    "name": "Jay W.",
+    "rating": 5,
+    "quote": "Professional service and excellent quality. Joe is very friendly and kind and his staff is great. The shop is comfortable and clean. I highly recommend for anyone looking for a high quality haircut.",
+    "source": "Yelp",
+    "date": "May 2024"
+  },
+  {
+    "name": "Daniel V.",
+    "rating": 5,
+    "quote": "Awesome guy, awesome haircut always! Joe has been cutting my hair for over a year now and every time I go to him I always walk out feeling like $1 million.",
+    "source": "Yelp",
+    "date": "Dec 2023"
+  },
+  {
+    "name": "Larry A.",
+    "rating": 5,
+    "quote": "Joe is incredible in his craft, he's talented, and he takes his time to make sure he gives you nothing short of exceptional service. He's a great guy and very personable.",
+    "source": "Yelp",
+    "date": "Aug 2021"
+  },
+  {
+    "name": "[Reviewer name pending]",
+    "rating": 5,
+    "quote": "[Quote pending — extracted at showcase]",
+    "source": "Google",
+    "date": ""
+  },
+  {
+    "name": "[Reviewer name pending]",
+    "rating": 5,
+    "quote": "[Quote pending — extracted at showcase]",
+    "source": "Google",
+    "date": ""
+  },
+  {
+    "name": "[Reviewer name pending]",
+    "rating": 5,
+    "quote": "[Quote pending — extracted at showcase]",
+    "source": "Google",
+    "date": ""
+  },
+  {
+    "name": "[Reviewer name pending]",
+    "rating": 5,
+    "quote": "[Quote pending — extracted at showcase]",
+    "source": "Google",
+    "date": ""
+  }
+]
