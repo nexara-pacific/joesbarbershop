@@ -1036,32 +1036,32 @@ The See-Also block (UI-SPEC § See-Also Block) is the belt-and-suspenders patter
 
 **If this table feels light:** Most claims in this research are CITED to UI-SPEC, CONTEXT.md, SKILL.md files, or Phase 2 verified outputs. The 8 assumptions above are the ones that depend on tool behavior or external data the researcher couldn't directly verify in-session.
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Does the copywriting skill auto-discover `.agents/aeo-frame.md`, or must the executor pass it explicitly?**
    - What we know: copywriting/SKILL.md says it auto-reads `.agents/product-marketing-context.md`. It does NOT mention `.agents/aeo-frame.md` in the SKILL.md "Before Writing" section.
    - What's unclear: whether the skill will discover any `.agents/*.md` file on its own.
-   - Recommendation: **Plan task instructs executor to explicitly cite `.agents/aeo-frame.md` in every per-page copywriting invocation.** Don't depend on auto-discovery for the AEO frame. Capture skill output → save to file → cite explicitly per page.
+   - **RESOLVED:** Plan task instructs executor to explicitly cite `.agents/aeo-frame.md` in every per-page copywriting invocation. Don't depend on auto-discovery for the AEO frame. Capture skill output → save to file → cite explicitly per page. Plans 05/06/07/08/09 each include the explicit-cite contract in their `<actions>` blocks.
 
 2. **What's the canonical Google Maps URL for scraping Joe's reviews?**
    - What we know: `business.json` `sameAs.gbp` is `"https://maps.google.com/?cid=PLACEHOLDER-confirm-with-Joe"` (deferred from Phase 2). The actual GBP listing exists (4.9★/91 reviews) but the canonical URL with `cid=` requires GBP login or place ID lookup.
    - What's unclear: whether `https://www.google.com/maps/place/Joe's+Barbershop/@32.8088,-116.9412` (search-style URL) will scrape the same reviews as the canonical place URL.
-   - Recommendation: **Try the search-style URL first via `firecrawl search "Joe's Barbershop El Cajon" --scrape --limit 3` to discover the canonical URL via Firecrawl's redirect chain.** Then scrape that URL for reviews. If neither produces extractable 5-star reviews, fall through to D-10.
+   - **RESOLVED:** Try the search-style URL first via `firecrawl search "Joe's Barbershop El Cajon" --scrape --limit 3` to discover the canonical URL via Firecrawl's redirect chain. Then scrape that URL for reviews. If neither produces extractable 5-star reviews, fall through to D-10. Plan 02 wires this discovery flow.
 
 3. **Should Phase 3 fix `business.json` `sameAs.yelp` URL discrepancy, or defer to `/gsd-transition`?**
    - What we know: business.json has `joes-barbershop-el-cajon`; canonical is `joe-s-barbershop-el-cajon` (with hyphen).
    - What's unclear: whether Phase 3 scope can/should touch `business.json` (D-07 already plans to add 2 entries to `_showcase_review_pending` for portrait placeholders).
-   - Recommendation: **Fix the URL inline as part of the `/reviews` page-build plan** (`sed`-style one-character correction). It's adjacent work that prevents Phase 5 emitting an invalid Yelp URL into JSON-LD `sameAs`.
+   - **RESOLVED:** Fix the URL inline as part of Plan 02's `/reviews` data work (`sed`-style one-character correction). It's adjacent work that prevents Phase 5 emitting an invalid Yelp URL into JSON-LD `sameAs`. Plan 02 includes the slug fix in scope.
 
 4. **Do the 5–6 homepage FAQs match the Phase 2 hard-coded `FAQ.astro` Q&As exactly, or should the skill chain rewrite them?**
    - What we know: D-19 says homepage FAQs are a subset of `/faq` master. Existing `FAQ.astro` has 5 hard-coded Q&As that already cover hours/walk-ins/cash/kids/location.
    - What's unclear: whether D-19's "skill-generated" applies to homepage FAQs too (re-running the existing 5) or only to `/faq` master's 10+ extending the hard-coded 5.
-   - Recommendation: **Treat the existing 5 in `FAQ.astro` as canonical for homepage** (they were Phase 2 work; re-generating risks voice drift between homepage and `/faq` master). The skill chain generates `/faq` master's 10+ Q&As, of which 5 are the existing homepage subset, and 5+ are new (parking, services-offered, walk-in-vs-appointment, family-friendly, COVID-or-similar).
+   - **RESOLVED:** Treat the existing 5 in `FAQ.astro` as canonical for homepage (they were Phase 2 work; re-generating risks voice drift between homepage and `/faq` master). The skill chain generates `/faq` master's 10+ Q&As, of which 5 are the existing homepage subset, and 5+ are new (parking, services-offered, walk-in-vs-appointment, family-friendly, COVID-or-similar). Plan 04 reuses the existing FAQ.astro component verbatim; Plan 09 generates the master's full Q&A bank.
 
 5. **What's the exact verification protocol for D-18 ROADMAP success criterion #1 (pixel-parity at desktop / 980px / 600px)?**
    - What we know: Phase 2 verification report has SC-3 still in "human_needed" status — visual fidelity awaits a human eye-test against `mockups/home-v5/index.html`.
    - What's unclear: whether Phase 3 ships with that human eye-test still pending, or whether Phase 3's per-page parity verification on `/` clears it.
-   - Recommendation: **Phase 3 ships with `index.astro` matching `dev-mockup-parity.astro` exactly except for populated FAQ.** Since Phase 2's parity verification is structural (auto-passed) and visual (human-pending), Phase 3 inherits that. The verification gate is: "open `/` and `/dev-mockup-parity` side-by-side at 1440 / 980 / 600; FAQ block content differs, everything else identical." After verification commit, delete `dev-mockup-parity.astro` per D-20.
+   - **RESOLVED:** Phase 3 ships with `index.astro` matching `dev-mockup-parity.astro` exactly except for populated FAQ. Since Phase 2's parity verification is structural (auto-passed) and visual (human-pending), Phase 3 inherits that. The verification gate is: open `/` and `/dev-mockup-parity` side-by-side at 1440 / 980 / 600; FAQ block content differs, everything else identical. Plan 04 Task 2 owns this `checkpoint:human-verify` gate; Plan 10 Task 3 re-runs the cross-page voice + factual review. After verification commit, delete `dev-mockup-parity.astro` per D-20 (Plan 10 Task 1).
 
 ## Environment Availability
 
