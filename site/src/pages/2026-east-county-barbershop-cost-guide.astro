@@ -63,7 +63,7 @@ const neighborhoods = [
       <ol class="entries">
         {competitors.map((c, i) => (
           <li>
-            <article class="entry" data-host={c.host ? 'true' : undefined} data-archetype={c.archetype ? 'true' : undefined}>
+            <article class="entry" data-host={c.host ? 'true' : undefined} data-archetype={('archetype' in c && (c as { archetype?: boolean }).archetype) ? 'true' : undefined}>
               <header class="entry-head">
                 <span class="entry-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                 <h3>{c.name}</h3>
