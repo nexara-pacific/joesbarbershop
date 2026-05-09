@@ -8,9 +8,10 @@ import '../styles/utilities.css';
 interface Props {
   title: string;
   description?: string;
+  variant?: 'page' | 'article';
 }
 
-const { title, description } = Astro.props;
+const { title, description, variant = 'page' } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -27,7 +28,7 @@ const { title, description } = Astro.props;
   <body>
     <UtilBar />
     <Masthead />
-    <main><slot /></main>
+    <main class={variant === 'article' ? 'article-page' : undefined}><slot /></main>
     <Footer />
   </body>
 </html>

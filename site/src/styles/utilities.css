@@ -7,9 +7,20 @@
 
 .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gutter); }
 
-/* Editorial column — keeps article-head, BLUF, and body prose on the same 820px left edge.
-   Wider sections (.faq-master, .review-grid, .cost-table, .see-also, .bio-grid, .area-served) opt out by overriding their own .wrap. */
+/* Editorial column — keeps article-style pages on a single 820px left edge across all sections.
+   Inner pages opt in by passing variant="article" to Base.astro, which adds .article-page on <main>.
+   The homepage keeps its 1240px landing-page width because it's not flagged. */
 .article-head .wrap, .bluf .wrap, .prose .wrap { max-width: 820px; }
+main.article-page .area-served .wrap,
+main.article-page .bio-section .wrap,
+main.article-page .reviews-section .wrap,
+main.article-page .entries-section .wrap,
+main.article-page .see-also .wrap,
+main.article-page .visit .wrap,
+main.article-page .faq .wrap,
+main.article-page .faq-master .wrap {
+  max-width: 820px;
+}
 
 .check-divider { height: 22px; width: 100%; background-image: conic-gradient(from 90deg at 50% 50%, var(--check-fg) 25%, var(--check-bg) 0 50%, var(--check-fg) 0 75%, var(--check-bg) 0); background-size: 22px 22px; }
 
