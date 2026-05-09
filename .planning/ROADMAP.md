@@ -99,7 +99,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. All 6 service slugs (`/fades`, `/kids-cuts`, `/beard-trim`, `/hot-towel-shave`, `/line-up`, `/classic-cut`) return 200 and display the correct price, BLUF, and FAQs from their content file
   2. All 5 neighborhood slugs (`/bostonia-barber`, `/el-cajon-barber`, `/santee-barber`, `/lakeside-barber`, `/la-mesa-barber`) return 200 and display the correct landmarks and neighborhood-specific FAQs
   3. Adding a new content file to the `services` or `neighborhoods` collection generates a new page at the correct slug without touching the template file
-**Plans**: TBD
+**Plans**: 5 plans
+- [ ] 04-01-PLAN.md — Service route template src/pages/[service].astro (Wave 1)
+- [ ] 04-02-PLAN.md — Neighborhood route template src/pages/[neighborhood]-barber.astro (Wave 1)
+- [ ] 04-03-PLAN.md — Service collection content authoring + /fades + /kids-cuts polish (Wave 2)
+- [ ] 04-04-PLAN.md — Neighborhood collection content authoring + /bostonia-barber + /el-cajon-barber polish (Wave 2)
+- [ ] 04-05-PLAN.md — Audit script extension for 11 templated pages (Wave 3)
 **UI hint**: yes
 
 ### Phase 5: AEO + Performance + Meta
@@ -147,7 +152,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 | 1. Scaffold | 4/4 | Complete | 2026-05-07 |
 | 2. Data + Design System | 7/7 | Complete | 2026-05-07 |
 | 3. Unique Pages | 17/17 | Complete | 2026-05-08 |
-| 4. Templated Pages | 0/TBD | Not started | - |
+| 4. Templated Pages | 0/5 | Not started | - |
 | 5. AEO + Performance + Meta | 0/TBD | Not started | - |
 | 6. Deploy + Showcase | 0/TBD | Not started | - |
 | 7. Measurement + Baseline | 0/TBD | Not started | - |
