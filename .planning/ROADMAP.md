@@ -82,13 +82,13 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] 03-07-PLAN.md — /about with Joe + Alex bios + portrait placeholders (Wave 3)
 - [x] 03-08-PLAN.md — /reviews with 6–8 review cards (Wave 3)
 - [x] 03-09-PLAN.md — /faq master with 10+ topic-grouped Q&As (Wave 3)
-- [ ] 03-10-PLAN.md — Cleanup + full audit + visual checkpoint (Wave 4)
-- [ ] 03-11-PLAN.md — [GAP] Homepage copy refresh — conversion-angle differentiation (Wave 5)
-- [ ] 03-12-PLAN.md — [GAP] Niche-landing copy refresh — heritage/craft differentiation (Wave 5)
-- [ ] 03-13-PLAN.md — [GAP] Cost guide copy refresh — price-economics differentiation (Wave 5)
-- [ ] 03-14-PLAN.md — [GAP] About copy refresh — owner-identity differentiation (Wave 5)
-- [ ] 03-15-PLAN.md — [GAP] Reviews copy refresh — trust-signal differentiation (Wave 5)
-- [ ] 03-16-PLAN.md — [GAP] FAQ copy refresh — authoritative-source depth (Wave 5)
+- [x] 03-10-PLAN.md — Cleanup + full audit + visual checkpoint (Wave 4)
+- [x] 03-11-PLAN.md — [GAP] Homepage copy refresh — conversion-angle differentiation (Wave 5)
+- [x] 03-12-PLAN.md — [GAP] Niche-landing copy refresh — heritage/craft differentiation (Wave 5)
+- [x] 03-13-PLAN.md — [GAP] Cost guide copy refresh — price-economics differentiation (Wave 5)
+- [x] 03-14-PLAN.md — [GAP] About copy refresh — owner-identity differentiation (Wave 5)
+- [x] 03-15-PLAN.md — [GAP] Reviews copy refresh — trust-signal differentiation (Wave 5)
+- [x] 03-16-PLAN.md — [GAP] FAQ copy refresh — authoritative-source depth (Wave 5)
 **UI hint**: yes
 
 ### Phase 4: Templated Pages
