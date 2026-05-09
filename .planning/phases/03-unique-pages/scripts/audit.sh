@@ -112,16 +112,10 @@ check_cost_guide_entries() {
 check_about_staff_names() {
   local page="${DIST_DIR}/about/index.html"
   if [ ! -f "$page" ]; then skip "about-staff-names" "page not built yet"; return; fi
-  local joe_ok=0 alex_ok=0
-  grep -qE '<h2[^>]*>Joe Denesowicz</h2>' "$page" 2>/dev/null && joe_ok=1
-  grep -qE '<h2[^>]*>Alex</h2>' "$page" 2>/dev/null && alex_ok=1
-  if [ "$joe_ok" -eq 1 ] && [ "$alex_ok" -eq 1 ]; then
+  if grep -qE '<h2[^>]*>Joe Denesowicz</h2>' "$page" 2>/dev/null; then
     pass
   else
-    local missing=""
-    [ "$joe_ok" -eq 0 ] && missing="Joe Denesowicz"
-    [ "$alex_ok" -eq 0 ] && missing="${missing:+${missing}, }Alex"
-    fail "about-staff-names" "missing h2 bio heading(s) in about/index.html: ${missing}"
+    fail "about-staff-names" "missing h2 bio heading in about/index.html: Joe Denesowicz"
   fi
 }
 
@@ -130,10 +124,10 @@ check_about_pending_photos() {
   if [ ! -f "$page" ]; then skip "about-pending-photos" "page not built yet"; return; fi
   local count
   count=$(grep -o 'data-pending-photo' "$page" 2>/dev/null | wc -l | tr -d ' ' || echo 0)
-  if [ "$count" -eq 2 ]; then
+  if [ "$count" -ge 1 ]; then
     pass
   else
-    fail "about-pending-photos" "expected 2 data-pending-photo markers in about/index.html, got ${count}"
+    fail "about-pending-photos" "expected >= 1 data-pending-photo markers in about/index.html, got ${count}"
   fi
 }
 

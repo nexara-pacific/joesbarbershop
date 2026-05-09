@@ -23,16 +23,11 @@ import { business } from '../data/business';
       <span class="value">Always</span>
       <span class="sub">No appointment required.</span>
     </div>
-    <div class="fact">
-      <span class="label">Barbers</span>
-      <span class="value">Joe + Alex</span>
-      <span class="sub">Three chairs, two cutters.</span>
-    </div>
   </div>
 </section>
 <style>
   .fact-strip { background: var(--surface); border-bottom: 1px solid var(--border); }
-  .fact-strip .wrap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; padding-block: 0; }
+  .fact-strip .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; padding-block: 0; }
   .fact { padding: 22px 18px; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
   .fact:last-child { border-right: 0; }
   .fact .label { font-family: var(--font-board); text-transform: uppercase; letter-spacing: 0.16em; font-size: 10.5px; color: var(--muted); font-weight: 600; }
