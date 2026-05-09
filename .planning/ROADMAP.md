@@ -124,15 +124,30 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Joe receives the preview URL and responds with approval (verbal, text, or email confirmation)
 **Plans**: TBD
 
+### Phase 7: Measurement + Baseline
+**Goal**: Ship v1.0 with telemetry on Day 1 — instrument the live site with client-side observability and capture a Day-0 baseline of every metric we'll measure against, so any future "the AEO play worked" claim is defensible against a frozen reference point. Closes the loop on the consulting proof asset (the hire-trigger event becomes the case-study payoff).
+**Depends on**: Phase 6
+**Requirements**: MEAS-01, MEAS-02, MEAS-03, MEAS-04, MEAS-05, MEAS-06, BASE-01, BASE-02, BASE-03
+**Success Criteria** (what must be TRUE):
+  1. Microsoft Clarity dashboard receiving sessions from the production domain (free, 1-line script in Base.astro)
+  2. Vercel Web Analytics + Speed Insights dashboards both receiving traffic from the production domain
+  3. Search Console + Bing Webmaster Tools both verified for the production domain with `sitemap.xml` submitted
+  4. CallRail dynamic number insertion live — published phone number routes through CallRail to Joe's actual line; a test call confirms the swap and source attribution
+  5. Counter-card with QR pointing at `/welcome?src=qr` printed and on Joe's counter; the route exists and fires a Vercel Analytics event
+  6. Day-0 baseline captured: manual AI prompt panel (10–15 prompts × ChatGPT/Perplexity/Gemini/Google AI Mode, logged-out browser, sheets log committed); LocalFalcon grid screenshot saved; GBP Insights last-90-days export committed; Search Console 90-day backfill running
+  7. Hire-trigger event documented in Joe's own words ("when do you know you'd hire/rent another chair?") in `joes-barbershop-sandbox.md` vault note
+**Plans**: TBD
+
 ## Progress
 
-**Execution Order:** 1 → 2 → 3 → 4 → 5 → 6
+**Execution Order:** 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Scaffold | 4/4 | Complete | 2026-05-07 |
-| 2. Data + Design System | 0/7 | Ready to execute | - |
-| 3. Unique Pages | 10/17 | In Progress (gap closure pending) |  |
+| 2. Data + Design System | 7/7 | Complete | 2026-05-07 |
+| 3. Unique Pages | 17/17 | Complete | 2026-05-08 |
 | 4. Templated Pages | 0/TBD | Not started | - |
 | 5. AEO + Performance + Meta | 0/TBD | Not started | - |
 | 6. Deploy + Showcase | 0/TBD | Not started | - |
+| 7. Measurement + Baseline | 0/TBD | Not started | - |
