@@ -1,0 +1,396 @@
+---
+import Base from '../layouts/Base.astro';
+import Visit from '../components/Visit.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import storefront from '../assets/photos/02-storefront.jpg';
+
+export async function getStaticPaths() {
+  const neighborhoods = await getCollection('neighborhoods');
+  // entry.id values are 'bostonia', 'el-cajon', 'santee', 'lakeside', 'la-mesa'
+  // (no -barber suffix in filenames; suffix lives in route filename per CONTEXT D-01)
+  return neighborhoods.map((entry) => ({
+    params: { neighborhood: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const lastUpdated = 'May 2026';
+
+// Strip "Barber" from title for clean neighborhood-name display in section headers
+const neighborhoodName = entry.data.title.replace(/ Barber$/, '');
+
+const services = [
+  { name: 'Fades',           slug: 'fades' },
+  { name: 'Classic Cut',     slug: 'classic-cut' },
+  { name: 'Kids Cuts',       slug: 'kids-cuts' },
+  { name: 'Beard Trim',      slug: 'beard-trim' },
+  { name: 'Line-Up',         slug: 'line-up' },
+  { name: 'Hot-Towel Shave', slug: 'hot-towel-shave' },
+];
+---
+
+<Base
+  title={`${entry.data.title} · Joe's Barbershop`}
+  description={entry.data.bluf}
+  variant="article"
+>
+  <header class="article-head">
+    <div class="wrap">
+      <span class="eyebrow kicker-rule">East County · {neighborhoodName.toLowerCase()}</span>
+      <h1>{entry.data.title} — Joe's Barbershop.</h1>
+      <p class="date-stamp">UPDATED {lastUpdated.toUpperCase()}</p>
+    </div>
+  </header>
+
+  <section class="bluf" aria-label="Answer capsule">
+    <div class="wrap">
+      <p class="bluf-lead"><strong>{entry.data.bluf}</strong></p>
+    </div>
+  </section>
+
+  <section class="neighborhood-photo">
+    <div class="wrap">
+      <Image src={storefront} alt={`Joe's Barbershop storefront serving ${neighborhoodName}`} loading="lazy" />
+    </div>
+  </section>
+
+  <section class="getting-here">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-mark" aria-hidden="true"></span>
+        <div class="section-head-text">
+          <span class="eyebrow">Getting here from {neighborhoodName}</span>
+          <h2>The drive.</h2>
+        </div>
+      </div>
+      <p class="distance"><strong>{entry.data.distance}</strong></p>
+      <ul class="landmarks">
+        {entry.data.landmarks.map((landmark) => (
+          <li>{landmark}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="prose">
+    <div class="wrap">
+      <Content />
+    </div>
+  </section>
+
+  <Visit />
+
+  <section class="services-mesh">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-mark" aria-hidden="true"></span>
+        <div class="section-head-text">
+          <span class="eyebrow">For {neighborhoodName} customers</span>
+          <h2>What we cut.</h2>
+        </div>
+      </div>
+      <ul>
+        {services.map(({ name, slug }) => (
+          <li><a href={`/${slug}`}>{name}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <aside class="see-also">
+    <div class="wrap">
+      <h2>See also</h2>
+      <ul>
+        <li><a href="/east-county-traditional-barbershop">East County traditional barbershop</a></li>
+        <li><a href="/2026-east-county-barbershop-cost-guide">2026 East County cost guide</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <section class="faq" aria-label="Frequently asked questions">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-mark" aria-hidden="true"></span>
+        <div class="section-head-text">
+          <span class="eyebrow">{neighborhoodName} · what people ask</span>
+          <h2>Frequently asked questions.</h2>
+        </div>
+      </div>
+      <div class="faq-list">
+        {entry.data.faqs.map((faq, i) => (
+          <article class="faq-q">
+            <span class="num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{faq.q}</h3>
+              <p>{faq.a}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ClosingCTA />
+</Base>
+
+<style>
+  /* Article header — copied from east-county-traditional-barbershop.astro */
+  .article-head {
+    padding: clamp(56px, 7vw, 96px) 0 clamp(32px, 4vw, 48px);
+    background: var(--bg);
+  }
+  .article-head .wrap {
+    max-width: 820px;
+  }
+  .article-head h1 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.008em;
+    margin: 0 0 18px;
+  }
+  .article-head .date-stamp {
+    font-family: var(--font-board);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* BLUF capsule — copied from niche-landing */
+  .bluf {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding-block: clamp(40px, 5vw, 64px);
+  }
+  .bluf .bluf-lead {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 66ch;
+    margin: 0;
+  }
+  @media (max-width: 600px) {
+    .bluf .bluf-lead {
+      font-size: 17px;
+    }
+  }
+
+  /* Shared storefront photo (D-10) */
+  .neighborhood-photo {
+    background: var(--bg);
+    padding-block: clamp(40px, 5vw, 64px);
+  }
+  .neighborhood-photo img {
+    width: 100%;
+    height: auto;
+    max-width: 980px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Getting-here block (D-11) — distance + landmarks list */
+  .getting-here {
+    background: var(--surface);
+    padding-block: clamp(56px, 7vw, 96px);
+  }
+  .getting-here .distance {
+    font-family: var(--font-board);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 14px;
+    margin: 24px 0 16px;
+  }
+  .getting-here .landmarks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+  }
+  .getting-here .landmarks li {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-family: var(--font-board);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--fg);
+  }
+  @media (max-width: 600px) {
+    .getting-here .landmarks {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  /* Prose section — copied from niche-landing */
+  .prose {
+    background: var(--bg);
+    padding-block: clamp(56px, 7vw, 96px);
+  }
+  .prose :global(h2) {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 4vw, 52px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.006em;
+    margin: 0 0 28px;
+  }
+  .prose :global(p) {
+    font-size: 17.5px;
+    line-height: 1.65;
+    max-width: 70ch;
+    margin: 0 0 24px;
+  }
+  .prose :global(p:last-child) {
+    margin-bottom: 0;
+  }
+  .prose :global(a) {
+    color: var(--fg);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  .prose :global(a:hover) {
+    color: var(--accent);
+  }
+
+  /* Services-mesh block (D-13) — mirrors .area-served from niche-landing */
+  .services-mesh {
+    background: var(--surface);
+    padding-block: clamp(56px, 7vw, 96px);
+  }
+  .services-mesh ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+  }
+  .services-mesh li a {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-family: var(--font-board);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--fg);
+  }
+  .services-mesh li a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  @media (max-width: 600px) {
+    .services-mesh ul {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  /* See-also aside — niche-landing + cost guide cross-links */
+  .see-also {
+    background: var(--bg);
+    padding-block: clamp(40px, 5vw, 64px);
+    border-top: 1px solid var(--border);
+  }
+  .see-also h2 {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.4vw, 32px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+    margin: 0 0 20px;
+  }
+  .see-also ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+  }
+  .see-also li a {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-family: var(--font-board);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--fg);
+  }
+  .see-also li a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  @media (max-width: 600px) {
+    .see-also ul {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  /* FAQ — copied from niche-landing */
+  .faq {
+    background: var(--bg);
+    padding-block: clamp(56px, 7vw, 96px);
+  }
+  .faq-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 980px;
+    margin-top: 40px;
+  }
+  .faq-q {
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 32px;
+  }
+  .faq-q .num {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .faq-q h3 {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.2vw, 28px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    margin: 0 0 12px;
+  }
+  .faq-q p {
+    margin: 0;
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--fg);
+    max-width: 70ch;
+  }
+</style>
