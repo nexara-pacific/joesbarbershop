@@ -26,8 +26,8 @@
     "kidsCut":      null
   },
   "ratings": {
-    "google": { "value": 4.9, "count": 91, "asOf": "2026-05-07" },
-    "yelp":   { "value": 4.9, "count": 33, "asOf": "2026-05-07" }
+    "google": { "value": 5.0, "count": 114, "asOf": "2026-05-08" },
+    "yelp":   { "value": 4.9, "count": 33,  "asOf": "2026-05-08" }
   },
   "sameAs": {
     "gbp":       "https://maps.google.com/?cid=PLACEHOLDER-confirm-with-Joe",
@@ -48,7 +48,7 @@
     "hours.saturday.close — vault says 19:30, mockup shows 18:30; using vault baseline pending Joe's GBP confirmation",
     "sameAs.gbp — placeholder URL pending GBP login + canonical maps.google.com URL",
     "sameAs.yelp — canonical hyphenated slug confirmed via Firecrawl scrape 2026-05-08",
-    "reviews.json — 4 of 8 entries are Google placeholders pending Firecrawl re-extraction; Google Maps review content blocked by JS gating; Yelp real quotes (4) are from verified public surface; data shape stable for Wave 3 page build",
+    "reviews.json — 8 of 8 entries are real customer quotes (4 Yelp via Firecrawl 2026-05-08, 4 Google manually curated by Darrell from Joe's GBP review feed 2026-05-08); Google last names truncated to first-initial format to match Yelp privacy convention",
     "sameAs.facebook — empty string; Joe to provide FB page URL if any",
     "prices.kidsCut — null pending Joe's confirmation at showcase",
     "prices.haircutBeard — 50 cited from inputs/00-brief.md L25 (Square Site listing); Joe to confirm or correct at showcase",
