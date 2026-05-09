@@ -5,6 +5,23 @@ import { business } from '../data/business';
 import reviews from '../data/reviews.json';
 
 const lastUpdated = 'May 2026';
+
+const MONTHS: Record<string, number> = {
+  Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+  Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11,
+};
+
+function reviewTimestamp(date: string): number {
+  if (!date) return 0;
+  const [mon, year] = date.split(' ');
+  const m = MONTHS[mon as keyof typeof MONTHS] ?? 0;
+  const y = parseInt(year, 10) || 0;
+  return new Date(y, m).getTime();
+}
+
+const sortedReviews = [...reviews].sort(
+  (a, b) => reviewTimestamp(b.date) - reviewTimestamp(a.date),
+);
 ---
 
 <Base
@@ -23,9 +40,8 @@ const lastUpdated = 'May 2026';
     <div class="wrap">
       <p class="bluf-lead">
         <strong>Joe's Barbershop is rated {business.ratings.google.value}★ across {business.ratings.google.count} Google reviews and {business.ratings.yelp.count} Yelp reviews — {business.ratings.google.count + business.ratings.yelp.count} verified ratings from East County customers.</strong>
-        That rating comes from repeat neighborhood customers, not a campaign — the same barbers, same consistent cuts, same shop at 723 E Bradley Ave in Bostonia since 2020.
-        Four real Yelp quotes appear below. Four Google cards show placeholder text — those quotes will be filled in at showcase once Google's review content is accessible.
-        Every quote is from a customer who sat in the chair at Joe's Barbershop — {business.ratings.google.count + business.ratings.yelp.count} reasons to walk in.
+        That rating comes from repeat neighborhood customers, not a campaign — the same barber, same consistent cuts, same shop at 723 E Bradley Ave in Bostonia since 2020.
+        Eight customer quotes appear below — four from Google, four from Yelp, sorted newest first. Every one is from a customer who sat in the chair at Joe&rsquo;s Barbershop — {business.ratings.google.count + business.ratings.yelp.count} reasons to walk in.
       </p>
     </div>
   </section>
@@ -33,7 +49,7 @@ const lastUpdated = 'May 2026';
   <section class="reviews-section">
     <div class="wrap">
       <div class="review-grid">
-        {reviews.map(r => (
+        {sortedReviews.map(r => (
           <article class="review-card">
             <div class="stars" aria-label={`${r.rating} out of 5 stars`}>
               {'★'.repeat(r.rating)}
