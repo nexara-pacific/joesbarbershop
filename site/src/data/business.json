@@ -7,6 +7,11 @@
     "state": "CA",
     "zip": "92021"
   },
+  "geo": {
+    "latitude": 32.8211,
+    "longitude": -116.9303
+  },
+  "priceRange": "$$",
   "phone": "(619) 891-2775",
   "hours": {
     "tuesday":   { "open": "10:00", "close": "19:30" },
