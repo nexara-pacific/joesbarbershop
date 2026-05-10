@@ -1,9 +1,45 @@
 ---
 import Base from '../layouts/Base.astro';
+import Article from '../components/schema/Article.astro';
+import FAQPage from '../components/schema/FAQPage.astro';
 import ClosingCTA from '../components/ClosingCTA.astro';
 import { business } from '../data/business';
 
 const lastUpdated = 'May 2026';
+
+// TODO Plan 06: replace with mtimes['site/src/pages/east-county-traditional-barbershop.astro']
+const dateModified = '2026-05-10T00:00:00-07:00';
+const datePublished = '2026-05-08';
+
+// Parallel array mirroring the 6 DOM FAQs below.
+// TODO Phase 7: consolidate DOM ↔ schema array duplication.
+const faqs = [
+  {
+    q: "What makes Joe's Barbershop a traditional barbershop?",
+    a: "The traditional model has three non-negotiables: the barber knows the craft, the price is fixed and visible before you sit, and the shop is open without an appointment. Joe's Barbershop delivers all three. Joe Denesowicz opened the shop in 2020 in a Bostonia strip mall — checkerboard floors, mahogany chairs, a letter board that shows the price. No upsell scripts. No add-on pressure. The opposite of the chain experience, where you might see a different stylist every visit and get a pitch for a $15 scalp treatment before you leave.",
+  },
+  {
+    q: "Where is Joe's Barbershop in East County?",
+    a: `Joe's Barbershop is at ${business.address.street}, ${business.address.suite}, ${business.address.city}, ${business.address.state} ${business.address.zip} — a Bostonia strip mall near the 8 freeway. The location is central to all five East County neighborhoods the shop serves: Bostonia, El Cajon, Santee, Lakeside, and La Mesa. Phone: ${business.phone}. Open Tue–Sat.`,
+  },
+  {
+    q: "Do I need an appointment at Joe's Barbershop?",
+    a: "No appointment needed — and that is not a convenience feature at Joe's, it is the traditional barbershop model. Walk-in availability is part of what separates a neighborhood shop from a booking-app grooming lounge. Joe's is open Tue–Sat and takes walk-ins every day. If you want a reserved slot, the Square booking link is available. But most customers walk straight in.",
+  },
+  {
+    q: "What does a haircut cost at Joe's Barbershop?",
+    a: `Transparent pricing is a traditional-shop value, not a feature. The price is on the board before you sit. A standard haircut is $${business.prices.haircut}. A shave is $${business.prices.shave}. A beard line-up is $${business.prices.beardLineUp}. A haircut-plus-beard combo is $${business.prices.haircutBeard}. Clean-ups are $${business.prices.cleanUp}. All cash — no card processing fee layered into the price. ATM on site.`,
+  },
+  {
+    q: "Does Joe's Barbershop serve neighborhoods across East County?",
+    a: "Joe's Barbershop serves five East County neighborhoods: Bostonia, El Cajon, Santee, Lakeside, and La Mesa. The Bostonia strip-mall location on E Bradley Ave sits close to the 8 freeway, making it a short drive from all five. Customers from across East County choose Joe's over closer chains for the same reason: consistent craft at a fixed price, no booking required.",
+  },
+  {
+    q: "Does Joe's Barbershop do kids' haircuts?",
+    a: "Kids' haircuts are part of the regular service at Joe's. Families walk in together — kids sit alongside parents, no separate kids-only setup, no awkward handoff. A traditional neighborhood shop serves the whole family. That is how it has always worked, and that is how it works at Joe's. Same walk-in standard, same craft, same clean cut.",
+  },
+];
+
 const neighborhoods = [
   { name: 'Bostonia',  slug: 'bostonia-barber'  },
   { name: 'El Cajon',  slug: 'el-cajon-barber'  },
@@ -17,7 +53,19 @@ const neighborhoods = [
   title="Traditional barbershop · East County · Joe's Barbershop"
   description="Joe's Barbershop is the traditional barbershop in Bostonia, East County San Diego. Walk-ins welcome, cash only, $30 cuts. Tue–Sat."
   variant="article"
+  ogType="article"
 >
+  <Fragment slot="head">
+    <Article
+      headline="What 'traditional barbershop' means in East County."
+      description="What traditional barbershop means in East County: fixed price on the board, same barber every visit, no upsell, no booking app required. Joe's in Bostonia."
+      url={Astro.url.href}
+      datePublished={datePublished}
+      dateModified={dateModified}
+      authorName="Joe Denesowicz"
+    />
+    <FAQPage faqs={faqs} pageUrl={Astro.url.href} />
+  </Fragment>
   <header class="article-head">
     <div class="wrap">
       <span class="eyebrow kicker-rule">East County · traditional barbering</span>

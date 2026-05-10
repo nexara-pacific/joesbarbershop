@@ -1,10 +1,38 @@
 ---
 import Base from '../layouts/Base.astro';
+import Article from '../components/schema/Article.astro';
+import FAQPage from '../components/schema/FAQPage.astro';
 import ClosingCTA from '../components/ClosingCTA.astro';
 import { business } from '../data/business';
 import competitors from '../data/competitors.json';
 
 const lastUpdated = 'May 2026';
+
+// TODO Plan 06: replace with mtimes['site/src/pages/2026-east-county-barbershop-cost-guide.astro']
+const dateModified = '2026-05-10T00:00:00-07:00';
+const datePublished = '2026-05-08';
+
+// Parallel array mirroring the 4 DOM FAQs below.
+// TODO Phase 7: consolidate DOM ↔ schema array duplication.
+const faqs = [
+  {
+    q: "Why is $30 the base price at East County walk-in shops?",
+    a: "$30 reflects the overhead economics of a strip-mall walk-in barbershop. Lower commercial rent than downtown El Cajon or mixed-use grooming centers, high daily walk-in volume that spreads fixed costs across more cuts, and a cash-only model that adds zero card processing expense to the margin — those three factors let Joe's Barbershop hold $30 for a haircut since opening in 2020. Higher-priced shops are not charging for a better cut; they are charging for a different cost structure.",
+  },
+  {
+    q: "Why do cash-only shops often cost less than shops that take cards?",
+    a: "Card processing fees run 2–3% per transaction. A shop that accepts cards either absorbs that cost or builds it into the price — often in ways that are not transparent on the board. Joe's Barbershop is cash-only: the $30 haircut on the letter board is the full cost, with no processing margin folded in. An ATM is on site for customers who arrive without cash. The cash-only model is not an inconvenience — it is what keeps the board price the actual price.",
+  },
+  {
+    q: "Do appointment-only shops charge more than walk-in shops?",
+    a: "Yes, in most East County cases. Appointment-driven shops manage their revenue through reservations rather than walk-in volume, which means they serve fewer customers per day and carry higher per-cut overhead. Booking software, lower throughput, and the fixed costs of a more controlled schedule all feed into higher base prices — typically $35–$45 for a standard cut versus $30 at high-volume walk-in shops. Joe's Barbershop runs on walk-in density: more customers per day means lower overhead per cut, and that difference shows up in the price on the board.",
+  },
+  {
+    q: "What's the cheapest haircut in El Cajon versus the most expensive?",
+    a: `The low end of the El Cajon market sits around $15 — a clean-up at Joe's or a base cut at a high-volume shop. A standard haircut lands at $30 at traditional walk-in shops. The high end runs $50–$75 at appointment-required grooming lounges offering add-on services, specialty fades, or beard packages. Joe's full service range — $15 clean-up to $${business.prices.haircutBeard} haircut-plus-beard combo — maps the traditional-shop band start to finish. Services like kids cuts and hot-towel shave are within the same band.`,
+  },
+];
+
 const services = [
   { name: 'Fades', slug: 'fades' },
   { name: 'Classic Cut', slug: 'classic-cut' },
@@ -26,7 +54,19 @@ const neighborhoods = [
   title="2026 East County barbershop cost guide · Joe's Barbershop"
   description="What barbershop services cost in El Cajon, Bostonia, and East County in 2026. $30 base haircuts at Joe's; competitive pricing across the area."
   variant="article"
+  ogType="article"
 >
+  <Fragment slot="head">
+    <Article
+      headline="2026 East County Barbershop Cost Guide"
+      description="What barbershop services cost in El Cajon, Bostonia, and East County in 2026 — traditional walk-in shops, chains, and grooming lounges priced side by side."
+      url={Astro.url.href}
+      datePublished={datePublished}
+      dateModified={dateModified}
+      authorName="Darrell Tang"
+    />
+    <FAQPage faqs={faqs} pageUrl={Astro.url.href} />
+  </Fragment>
   <header class="article-head">
     <div class="wrap">
       <span class="eyebrow kicker-rule">2026 cost guide · East County</span>
