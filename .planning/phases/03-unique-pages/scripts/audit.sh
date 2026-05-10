@@ -383,6 +383,75 @@ check_neighborhood_data_populated() {
 }
 
 # ---------------------------------------------------------------------------
+# Phase 5 — AEO Performance & Meta checks (stubs)
+#
+# All bodies are stubs that call `pass`. Plan 07 (Wave 6) replaces stub
+# bodies with real implementations. Stubs ensure audit.sh keeps passing
+# while later plans land. Function names are the canonical contract —
+# downstream plans match by name.
+# ---------------------------------------------------------------------------
+
+check_jsonld() {
+  # STUB — Plan 07 (Wave 6) wraps `node site/scripts/validate-schema.mjs`.
+  # Required field: D-23.1, AEO-01..06 + Pitfall 1 (no </script> substring in JSON-LD).
+  pass
+}
+
+check_sitemap_links() {
+  # STUB — Plan 07 (Wave 6) verifies dist/sitemap-0.xml lists all 17 URLs.
+  # D-23.2 — 11 canonical-slugs + 6 unique pages.
+  pass
+}
+
+check_robots() {
+  # STUB — Plan 07 (Wave 6) verifies dist/robots.txt exists + has Sitemap: line.
+  # D-23.3, META-04.
+  pass
+}
+
+check_text_as_image() {
+  # STUB — Plan 07 (Wave 6) greps site/src/pages + site/src/components for forbidden alt patterns.
+  # D-23.4 — AEO no-text-as-image rule.
+  pass
+}
+
+check_bluf() {
+  # STUB — Plan 07 (Wave 6) extracts first 100 words of 5 sample pages,
+  # asserts business name + location + service term present.
+  # D-23.5.
+  pass
+}
+
+check_lighthouse() {
+  # STUB — Plan 07 (Wave 6) runs `npx lighthouse` median-of-3 against astro preview,
+  # enforces P90/A95/S95 + LCP<2500ms + CLS<0.1.
+  # D-23.6, PERF-01.
+  pass
+}
+
+check_meta_unique_titles() {
+  # STUB — Plan 07 (Wave 6) iterates dist/**/*.html, extracts <title> +
+  # <meta name="description">, asserts uniqueness across all 17 pages.
+  # META-02 (Blocker 2 fix).
+  pass
+}
+
+check_meta_og_twitter() {
+  # STUB — Plan 07 (Wave 6) iterates dist/**/*.html, asserts each page contains
+  # og:title, og:url, og:type, og:site_name, twitter:card, twitter:title.
+  # META-03 (Blocker 3 fix).
+  pass
+}
+
+check_responsive_breakpoints() {
+  # STUB — Plan 07 (Wave 6) greps site/src/styles/ for the OD-5 @media rules at
+  # 980px + 600px (Phase 1 DESN-01 port). Visual confirmation is the manual
+  # checkpoint in Plan 07 Task 2.
+  # PERF-01 (Blocker 1 fix).
+  pass
+}
+
+# ---------------------------------------------------------------------------
 # Self-test
 # ---------------------------------------------------------------------------
 
@@ -453,9 +522,18 @@ run_check() {
     no-stub-content)             check_no_stub_content ;;
     templated-bluf)              check_templated_bluf ;;
     neighborhood-data-populated) check_neighborhood_data_populated ;;
+    jsonld)                      check_jsonld ;;
+    sitemap-links)               check_sitemap_links ;;
+    robots)                      check_robots ;;
+    text-as-image)               check_text_as_image ;;
+    bluf)                        check_bluf ;;
+    lighthouse)                  check_lighthouse ;;
+    meta-unique-titles)          check_meta_unique_titles ;;
+    meta-og-twitter)             check_meta_og_twitter ;;
+    responsive-breakpoints)      check_responsive_breakpoints ;;
     *)
       echo "ERROR: unknown check '${name}'"
-      echo "Valid names: bluf-position cost-guide-slugs no-client-directives no-anti-patterns no-accordions homepage-faq niche-faq niche-areaserved cost-guide-entries about-staff-names about-pending-photos reviews-cards reviews-sources faq-master-count service-pages-built neighborhood-pages-built no-stub-content templated-bluf neighborhood-data-populated"
+      echo "Valid names: bluf-position cost-guide-slugs no-client-directives no-anti-patterns no-accordions homepage-faq niche-faq niche-areaserved cost-guide-entries about-staff-names about-pending-photos reviews-cards reviews-sources faq-master-count service-pages-built neighborhood-pages-built no-stub-content templated-bluf neighborhood-data-populated jsonld sitemap-links robots text-as-image bluf lighthouse meta-unique-titles meta-og-twitter responsive-breakpoints"
       exit 1
       ;;
   esac
@@ -481,6 +559,16 @@ run_all_checks() {
   check_no_stub_content
   check_templated_bluf
   check_neighborhood_data_populated
+  # Phase 5 — stubs (real bodies land in Plan 07)
+  check_jsonld
+  check_sitemap_links
+  check_robots
+  check_text_as_image
+  check_bluf
+  check_lighthouse
+  check_meta_unique_titles
+  check_meta_og_twitter
+  check_responsive_breakpoints
 }
 
 # ---------------------------------------------------------------------------
@@ -511,8 +599,17 @@ case "${1:-}" in
     fi
     exit 0
     ;;
+  # Phase 5 — positional check names route directly through run_check.
+  # Lets downstream plans invoke `bash audit.sh <check-name>` without --check.
+  jsonld|sitemap-links|robots|text-as-image|bluf|lighthouse|meta-unique-titles|meta-og-twitter|responsive-breakpoints)
+    run_check "$1"
+    if [ "$FAIL_COUNT" -gt 0 ]; then
+      exit 1
+    fi
+    exit 0
+    ;;
   *)
-    echo "Usage: $0 [--self-test | --check <name>]"
+    echo "Usage: $0 [--self-test | --check <name> | <phase-5-check-name>]"
     exit 1
     ;;
 esac
