@@ -809,37 +809,37 @@ Claims tagged `[ASSUMED]` are based on training knowledge or general ecosystem p
 
 **Recommendation to discuss-phase / planner:** A1-A2 are the only assumptions worth flagging to the user. A3-A6 are well-trodden patterns where any failure is loud and the fallback obvious.
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Geocoding source for `geo.latitude/longitude` of 723 E Bradley Ave #C, El Cajon CA 92021** (CONTEXT D-04 + Claude's discretion)
    - What we know: Address is canonical from Phase 2 D-21; vault `joes-barbershop-sandbox.md` audit baseline confirms.
    - What's unclear: Whether to use Nominatim (OpenStreetMap API, free, no key), Google Maps Geocoding API (requires a key + billing setup), or hand-paste from Google Maps URL.
-   - Recommendation: **Hand-paste from Google Maps URL** (`https://maps.google.com/?q=723+E+Bradley+Ave+%23C,+El+Cajon,+CA+92021`). The URL fragment after manual click on the marker gives `@32.8XX,-116.9XX` lat/long. One-shot lookup, no API, deterministic. Cross-check against Nominatim if paranoid. Hand-paste a single time into `business.json.geo`.
+   - **RESOLVED:** Hand-paste from Google Maps URL (`https://maps.google.com/?q=723+E+Bradley+Ave+%23C,+El+Cajon,+CA+92021`), verified manually before commit. Per D-04 Claude's discretion line in CONTEXT.md ("Geocoding source for lat/long. ... pick whichever the planner trusts. Hand-verify against Google Maps for accuracy before committing").
 
 2. **`Service` schema `offers` shape — `Offer` vs `PriceSpecification`** (CONTEXT deferred specifics)
    - What we know: CONTEXT says Phase 5 emits basic `Offer { priceCurrency: USD, price: 30 }`. Full `PriceSpecification` deferred.
    - What's unclear: Does `Offer.priceCurrency: "USD"` + `Offer.price: 30` validate cleanly in Google Rich Results, or does it want `priceSpecification: { '@type': 'UnitPriceSpecification', priceCurrency: 'USD', price: 30 }`?
-   - Recommendation: Start with simple `Offer { price, priceCurrency }` — it's the documented minimum. Validate via D-25 Rich Results paste; widen to `PriceSpecification` only if Rich Results flags the simpler form.
+   - **RESOLVED:** Simple `Offer { priceCurrency: "USD", price: 30 }` per D-04 + CONTEXT Deferred Ideas ("PriceSpecification complexity on Service schemas — Phase 5 emits basic Offer { priceCurrency: USD, price: 30 }"). Widen to `PriceSpecification` only if D-25 Rich Results paste flags it.
 
 3. **`aggregateRating` formula on homepage — weighted average vs higher-of** (CONTEXT D-04 Claude discretion)
    - What we know: Two ratings (Google 5.0/114, Yelp 4.9/33). Sum: 147 reviews. Weighted average: (5.0×114 + 4.9×33)/147 = 4.978 ≈ 4.98.
    - What's unclear: Some AEO sources recommend picking the higher rating to avoid "ratings inflation" appearance; others prefer weighted average.
-   - Recommendation: **Weighted average rounded to 2 decimals: 4.98 / 147 reviews.** Most defensible mathematically; documented in the `combinedAggregateRating()` helper. If a future review platform shifts numbers significantly, the math holds.
+   - **RESOLVED:** Weighted average rounded to 2 decimals (4.98 / 147 reviews). Documented in `AggregateRating.astro` component header comment and in `aggregateRating()` helper in `business.ts` per D-04 ("Weighted-average formula or pick-the-higher policy is planner's discretion — both produce defensible numbers; document the choice in the schema component file").
 
 4. **Sitemap `priority`/`changefreq` — emit or omit?** (CONTEXT D-17)
    - What we know: D-17 says skip — modern Google ignores these largely.
    - What's unclear: Does `@astrojs/sitemap` v3.7.2 emit them by default with placeholder values, or only when configured? Searching docs: it does not emit by default in 3.x.
-   - Recommendation: Leave `astro.config.mjs` `sitemap()` call argument-less (already is). Default behavior emits `<loc>` + `<lastmod>` only (the latter from page mtime, which Vercel may make stale but Google still uses).
+   - **RESOLVED:** Skip; Google ignores these fields per D-17 ("No `priority` or `changefreq` customization in v1 — those fields are largely ignored by Google per current consensus"). Leave `astro.config.mjs` `sitemap()` argument-less; default emits `<loc>` + `<lastmod>` only.
 
 5. **`Person` schema for Joe — what fields beyond `name`?** (D-09)
    - What we know: About page emits Person × 1 (Alex dropped per Phase 3 cleanup).
    - What's unclear: Whether to include `image` (we don't have a Joe headshot yet — placeholder is JD initials per `_showcase_review_pending`), `jobTitle: "Barber"`, `worksFor: { @id: '#business' }`.
-   - Recommendation: Emit `{ name, jobTitle, worksFor }`. Skip `image` until Joe sends a real headshot (v1.5). Avoids the Rich Results Test "missing image" warning by simply omitting the field rather than pointing at the placeholder card.
+   - **RESOLVED:** Emit `name + jobTitle + worksFor.@id` per D-09 (Joe only — Alex no longer cutting). Skip `image` until v1.5 per CONTEXT Deferred Ideas ("OG image strategy ... Blocked on Joe sending better photos") + the same photo-set constraint applies to Person.image. Avoids Rich Results "missing image" warning.
 
 6. **Robots.txt — `Disallow: /api/`?** (CONTEXT D-18 default allow-all)
    - What we know: D-18 specifies allow-all.
    - What's unclear: The site has no `/api/` route currently. Pre-emptive disallow is over-engineering.
-   - Recommendation: Stick with bare `User-agent: * / Allow: / / Sitemap: ...`. Three lines.
+   - **RESOLVED:** Allow-all per D-18 (verbatim three-line content: `User-agent: *` / `Allow: /` / `Sitemap: https://joesbarbershop.vercel.app/sitemap-index.xml`). No `Disallow` rules in v1.
 
 ## Environment Availability
 
