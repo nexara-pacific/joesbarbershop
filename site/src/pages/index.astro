@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import AggregateRating from '../components/schema/AggregateRating.astro';
+import FAQPage from '../components/schema/FAQPage.astro';
 import CheckDivider from '../components/CheckDivider.astro';
 import Hero from '../components/Hero.astro';
 import FactStrip from '../components/FactStrip.astro';
@@ -8,11 +10,40 @@ import Heritage from '../components/Heritage.astro';
 import Visit from '../components/Visit.astro';
 import FAQ from '../components/FAQ.astro';
 import ClosingCTA from '../components/ClosingCTA.astro';
+
+// Homepage FAQs — verbatim text from FAQ.astro lines 13-47.
+// TODO Phase 7: consolidate DOM ↔ schema duplication (FAQ.astro hard-codes the same 5 Q&As inline).
+const homepageFaqs = [
+  {
+    q: 'Do I need an appointment?',
+    a: 'No appointment needed. Walk-ins are always welcome Tuesday through Saturday. If you want to guarantee a specific time, you can book online at the Square Site link.',
+  },
+  {
+    q: 'Do you take cards?',
+    a: 'Cash only. There is an ATM on site if you need it. ATM fee is on the machine, not us.',
+  },
+  {
+    q: 'How long does a haircut take?',
+    a: 'Standard haircut is about 30 minutes. A shave or beard service adds 20–30 minutes on top. Walk in with enough time and you will be taken care of.',
+  },
+  {
+    q: "Do you cut kids' hair?",
+    a: 'Yes. Family-friendly shop. Kids cuts are the same price as adult cuts — $30. Bring the whole family.',
+  },
+  {
+    q: 'Where are you located?',
+    a: '723 E Bradley Ave, Suite C, El Cajon CA 92021 — Bostonia neighborhood, strip mall on Bradley Avenue. Easy parking in the lot out front.',
+  },
+];
 ---
 <Base
   title="Joe's Barbershop — Bostonia, El Cajon"
   description="Traditional barbershop in Bostonia, East County San Diego. Walk-ins welcome, cash only. Tue–Sat 10am–7:30pm."
 >
+  <Fragment slot="head">
+    <AggregateRating />
+    <FAQPage faqs={homepageFaqs} pageUrl={Astro.url.href} />
+  </Fragment>
   <CheckDivider />
   <Hero />
   <FactStrip />

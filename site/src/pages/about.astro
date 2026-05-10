@@ -1,10 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
+import Person from '../components/schema/Person.astro';
 import Visit from '../components/Visit.astro';
 import ClosingCTA from '../components/ClosingCTA.astro';
 import { business } from '../data/business';
 
 const lastUpdated = 'May 2026';
+
+// Per D-09: single Person emission for Joe (Alex no longer cutting).
+const joeDescription = "Joe Denesowicz opened Joe's Barbershop in 2020 in Bostonia, El Cajon. Owner and barber for the shop.";
 ---
 
 <Base
@@ -12,6 +16,14 @@ const lastUpdated = 'May 2026';
   description="Joe Denesowicz opened Joe's Barbershop in 2020 in Bostonia, El Cajon. Traditional barbering, walk-ins welcome."
   variant="article"
 >
+  <Fragment slot="head">
+    <Person
+      name="Joe Denesowicz"
+      jobTitle="Owner / Barber"
+      description={joeDescription}
+      slug="joe-denesowicz"
+    />
+  </Fragment>
   <header class="article-head">
     <div class="wrap">
       <span class="eyebrow kicker-rule">The shop · the owner</span>

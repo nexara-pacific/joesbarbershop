@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Review from '../components/schema/Review.astro';
 import ClosingCTA from '../components/ClosingCTA.astro';
 import { business } from '../data/business';
 import reviews from '../data/reviews.json';
@@ -29,6 +30,9 @@ const sortedReviews = [...reviews].sort(
   description="Joe's Barbershop is rated 5.0★ across 114 Google reviews and 4.9★ across 33 Yelp reviews. Real customer quotes from East County, El Cajon."
   variant="article"
 >
+  <Fragment slot="head">
+    <Review reviews={sortedReviews} />
+  </Fragment>
   <header class="article-head">
     <div class="wrap">
       <span class="eyebrow kicker-rule">Reviews · Google + Yelp</span>

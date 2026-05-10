@@ -1,14 +1,84 @@
 ---
 import Base from '../layouts/Base.astro';
+import FAQPage from '../components/schema/FAQPage.astro';
 import ClosingCTA from '../components/ClosingCTA.astro';
 
 const lastUpdated = 'May 2026';
+
+// Parallel array mirroring the 14 DOM FAQs below, flattened across the 5 category groups.
+// TODO Phase 7: consolidate DOM ↔ schema array duplication.
+const allFaqs = [
+  // Hours & Days
+  {
+    q: "What are Joe's Barbershop's hours?",
+    a: "Joe's Barbershop is open Tuesday through Saturday, 10am to 7:30pm. The shop is closed Sunday and Monday. Hours are consistent week to week — no seasonal changes, no holiday-week surprises on regular operating days. If you are not sure before making the drive, call ahead at (619) 891-2775.",
+  },
+  {
+    q: "Are you open on Sundays or Mondays?",
+    a: "No. Joe's Barbershop is closed Sunday and Monday. Tuesday through Saturday, 10am to 7:30pm is the full operating schedule. Plan your visit on any of those five days and the shop will be open.",
+  },
+  {
+    q: "Are you open on holidays?",
+    a: "Holiday hours vary. Joe's Barbershop follows a Tuesday-through-Saturday schedule as its baseline. For specific holiday closures, call the shop at (619) 891-2775 before your visit. The safest approach is to call same-day if you are visiting on or around a major holiday.",
+  },
+  // Walk-ins & Booking
+  {
+    q: "Do I need an appointment?",
+    a: "No appointment needed. Walk-ins are always welcome Tuesday through Saturday, 10am to 7:30pm. Walk-ins are how most customers visit — you show up, get in the queue, and get cut. If you want to guarantee a specific time slot, the Square booking link accepts online appointments with a card hold. Calling ahead at (619) 891-2775 is useful on busy Fridays and Saturdays — you can hear how full the shop is before you make the drive. But there is no requirement to call or book; walking in is the norm, not the exception.",
+  },
+  {
+    q: "How long does a haircut take?",
+    a: "A standard haircut takes about 30 minutes in the chair. A shave or beard service adds 20 to 30 minutes on top of that. A haircut-plus-beard combo typically runs 45 to 60 minutes total. These are service times — actual shop time depends on how many customers are ahead of you. On a quiet Tuesday or Wednesday morning you may be in and out in under 45 minutes. On a busy Friday or Saturday afternoon, add 15 to 30 minutes of queue time. If your schedule is tight, call ahead at (619) 891-2775 to check the wait before driving over.",
+  },
+  {
+    q: "How long is the wait for a walk-in?",
+    a: "Wait times depend on how many customers are ahead of you. Busy periods are typically late afternoon on Fridays and Saturdays. Early weekday mornings tend to be faster. If you are concerned about the wait, call (619) 891-2775 to ask how full the shop is before driving over.",
+  },
+  // Payment & Cash
+  {
+    q: "Do you take cards?",
+    a: "Cash only for in-shop services. Joe's Barbershop does not accept credit cards, debit cards, tap-to-pay, or any digital wallet at the chair. There is an ATM on site — the fee is charged by the machine, not by the shop. The cash-only model keeps the price at $30 because there is no card processing fee built into the service rate. Square's booking platform accepts a card to hold an online appointment, but payment at the chair is still cash. Bring $30 to $50 and you are covered for any service on the menu.",
+  },
+  {
+    q: "Do you accept Venmo, Cash App, or Zelle?",
+    a: "No digital payment apps are accepted for in-shop services. Cash is the only payment method. The on-site ATM handles cash withdrawals if you arrive without enough. Prices are fixed and visible on the board: haircut $30, shave $30, beard line-up $20, clean-up $15, haircut-plus-beard $50.",
+  },
+  {
+    q: "How much does a haircut cost?",
+    a: "A standard haircut is $30. A shave is $30. A beard line-up is $20. A clean-up is $15. A haircut-plus-beard combo is $50. All prices are on the board before you sit down. No hidden fees, no upsell pressure. The price you see is what you pay.",
+  },
+  // Kids & Family
+  {
+    q: "Do you cut kids' hair?",
+    a: "Yes. Joe's Barbershop cuts kids' hair. School-age kids through teens are all regulars. Kids cuts are priced the same as adult cuts at $30 — there is no separate \"kids pricing\" tier. Walk-ins work the same way for kids as for adults: show up during open hours and you will be taken care of. Families commonly bring dad and one or two kids in on the same visit. The shop does not run a separate kids-only queue or a special kids appointment slot — kids sit in the same chair, served by the same barber every visit. There is no minimum age, but very young children who cannot sit still may need a parent in the chair alongside them.",
+  },
+  {
+    q: "Is the shop welcoming to kids and families?",
+    a: "Yes. Joe's Barbershop is a neighborhood shop that serves East County families. Kids come in with their parents regularly. The atmosphere is relaxed and straightforward — no appointment pressure, no upscale grooming-lounge feel. If you are bringing your kid for their first barbershop cut, this is the kind of shop where that goes fine.",
+  },
+  // Parking & Location
+  {
+    q: "Where is Joe's Barbershop?",
+    a: "Joe's Barbershop is at 723 E Bradley Ave, Suite C, El Cajon CA 92021 — in the Bostonia neighborhood, in a strip mall on Bradley Avenue. Coming from the I-8 freeway, exit at Greenfield Drive or Johnson Avenue and head east on Bradley Avenue. The shop is in a strip mall on the south side of Bradley Avenue. There is free parking directly in front. Phone: (619) 891-2775. Hours: Tuesday through Saturday, 10am to 7:30pm. When navigating, use \"723 E Bradley Ave, El Cajon, CA 92021\" — Suite C is the barbershop inside the plaza.",
+  },
+  {
+    q: "Where do I park?",
+    a: "Free parking is available in the strip-mall lot directly in front of the shop. The lot is shared with other businesses in the same plaza. Parking is typically easy to find. There is no paid parking or parking garage involved — pull in, park, walk in.",
+  },
+  {
+    q: "Is Joe's in El Cajon proper or Bostonia?",
+    a: "The shop is in Bostonia, which is a community within the El Cajon area of East County San Diego. The mailing address uses El Cajon as the city. Bostonia is on Bradley Avenue, east of downtown El Cajon. Both \"Joe's Barbershop El Cajon\" and \"Joe's Barbershop Bostonia\" will get you to the right place: 723 E Bradley Ave, Suite C.",
+  },
+];
 ---
 <Base
   title="FAQ · Joe's Barbershop · Hours, Payment, Walk-ins, Kids"
   description="Frequently asked questions for Joe's Barbershop in Bostonia, El Cajon. Hours, walk-ins, cash-only, kids cuts, parking — answered."
   variant="article"
 >
+  <Fragment slot="head">
+    <FAQPage faqs={allFaqs} pageUrl={Astro.url.href} />
+  </Fragment>
   <header class="article-head">
     <div class="wrap">
       <span class="eyebrow kicker-rule">Frequently asked · what people ask</span>
