@@ -1,0 +1,18 @@
+---
+// site/src/components/schema/AggregateRating.astro
+// Per D-08: emitted ONLY on homepage. References HairSalon via @id (D-07).
+import { business, aggregateRating, canonicalUrl } from '../../data/business';
+
+const rating = aggregateRating(business.ratings);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AggregateRating',
+  itemReviewed: { '@id': `${canonicalUrl}/#business` },
+  ratingValue: rating.ratingValue,
+  reviewCount: rating.reviewCount,
+  bestRating: 5,
+  worstRating: 1,
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,0 +1,32 @@
+---
+// site/src/components/schema/Service.astro
+// Per AEO-03 + D-09: emitted by each service page via [service].astro.
+// Per D-07: references HairSalon as provider via @id.
+// Per CONTEXT Deferred: basic Offer (no full PriceSpecification — overkill for $30 ticket).
+import { business, canonicalUrl } from '../../data/business';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'services'>;
+  pageUrl: string;
+}
+
+const { entry, pageUrl } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${pageUrl}#service`,
+  name: entry.data.title,
+  description: entry.data.bluf,
+  provider: { '@id': `${canonicalUrl}/#business` },
+  areaServed: business.areaServed.map((name) => ({ '@type': 'Place', name })),
+  offers: {
+    '@type': 'Offer',
+    price: entry.data.price,
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+  },
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
