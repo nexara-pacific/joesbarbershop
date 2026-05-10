@@ -264,6 +264,125 @@ check_bluf_position() {
 }
 
 # ---------------------------------------------------------------------------
+# Phase 4 — Templated Pages checks
+# ---------------------------------------------------------------------------
+
+check_service_pages_built() {
+  local services=(fades classic-cut kids-cuts beard-trim line-up hot-towel-shave)
+  local missing=()
+  for slug in "${services[@]}"; do
+    local page="${DIST_DIR}/${slug}/index.html"
+    if [ ! -f "$page" ]; then
+      missing+=("$slug")
+    fi
+  done
+  if [ "${#missing[@]}" -eq 0 ]; then
+    pass
+  else
+    fail "service-pages-built" "missing dist/<slug>/index.html for: ${missing[*]}"
+  fi
+}
+
+check_neighborhood_pages_built() {
+  local hoods=(bostonia-barber el-cajon-barber santee-barber lakeside-barber la-mesa-barber)
+  local missing=()
+  for slug in "${hoods[@]}"; do
+    local page="${DIST_DIR}/${slug}/index.html"
+    if [ ! -f "$page" ]; then
+      missing+=("$slug")
+    fi
+  done
+  if [ "${#missing[@]}" -eq 0 ]; then
+    pass
+  else
+    fail "neighborhood-pages-built" "missing dist/<slug>/index.html for: ${missing[*]}"
+  fi
+}
+
+check_no_stub_content() {
+  local content_dir="${SITE_DIR}/src/content"
+  if [ ! -d "$content_dir" ]; then
+    fail "no-stub-content" "src/content/ not found at ${content_dir}"
+    return
+  fi
+  local matches
+  matches=$(grep -rl "Stub content — Phase" "$content_dir" 2>/dev/null || true)
+  local n
+  if [ -z "$matches" ]; then
+    n=0
+  else
+    n=$(echo "$matches" | wc -l | tr -d ' ')
+  fi
+  if [ "$n" -eq 0 ]; then
+    pass
+  else
+    echo "  Files still containing stub markers:"
+    echo "$matches" | sed 's/^/    /'
+    fail "no-stub-content" "found ${n} collection file(s) still containing 'Stub content — Phase' markers"
+  fi
+}
+
+check_templated_bluf() {
+  local pages=(fades classic-cut kids-cuts beard-trim line-up hot-towel-shave \
+               bostonia-barber el-cajon-barber santee-barber lakeside-barber la-mesa-barber)
+  local missing=()
+  for slug in "${pages[@]}"; do
+    local page="${DIST_DIR}/${slug}/index.html"
+    if [ ! -f "$page" ]; then
+      # if page not built, the *-pages-built check covers it; skip here
+      continue
+    fi
+    if ! grep -q '<section class="bluf"' "$page" 2>/dev/null; then
+      missing+=("$slug")
+    fi
+  done
+  if [ "${#missing[@]}" -eq 0 ]; then
+    pass
+  else
+    fail "templated-bluf" "pages missing <section class=\"bluf\">: ${missing[*]}"
+  fi
+}
+
+check_neighborhood_data_populated() {
+  local content_dir="${SITE_DIR}/src/content/neighborhoods"
+  if [ ! -d "$content_dir" ]; then
+    fail "neighborhood-data-populated" "neighborhoods content dir not found at ${content_dir}"
+    return
+  fi
+  local issues=()
+
+  # Placeholder landmarks pairs from Phase 2 stubs (single-line inline-array form)
+  if grep -lE '"Bostonia area"' "$content_dir"/*.md >/dev/null 2>&1; then
+    issues+=("placeholder landmarks 'Bostonia area' present")
+  fi
+  # Pair pattern: ["X", "East County (San Diego)?"] specifically used in stubs
+  for f in "$content_dir"/santee.md "$content_dir"/lakeside.md "$content_dir"/la-mesa.md; do
+    [ -f "$f" ] || continue
+    if grep -qE '^landmarks: \[".+", "East County( San Diego)?"\][[:space:]]*$' "$f"; then
+      issues+=("$(basename "$f"): stub landmarks pair (only neighborhood + East County)")
+    fi
+  done
+  if grep -lE '^landmarks: \["El Cajon", "East County"\]' "$content_dir"/el-cajon.md >/dev/null 2>&1; then
+    issues+=("el-cajon.md: stub landmarks pair")
+  fi
+
+  # Placeholder distance
+  if grep -lE '^distance: "local"' "$content_dir"/*.md >/dev/null 2>&1; then
+    issues+=("placeholder distance 'local' present")
+  fi
+
+  if [ "${#issues[@]}" -eq 0 ]; then
+    pass
+  else
+    echo "  Placeholder issues:"
+    for issue in "${issues[@]}"; do
+      echo "    $issue"
+    done
+    fail "neighborhood-data-populated" "${#issues[@]} placeholder issue(s) in neighborhoods collection"
+  fi
+}
+
+# ---------------------------------------------------------------------------
 # Self-test
 # ---------------------------------------------------------------------------
 
@@ -329,9 +448,14 @@ run_check() {
     reviews-cards)         check_reviews_cards ;;
     reviews-sources)       check_reviews_sources ;;
     faq-master-count)      check_faq_master_count ;;
+    service-pages-built)         check_service_pages_built ;;
+    neighborhood-pages-built)    check_neighborhood_pages_built ;;
+    no-stub-content)             check_no_stub_content ;;
+    templated-bluf)              check_templated_bluf ;;
+    neighborhood-data-populated) check_neighborhood_data_populated ;;
     *)
       echo "ERROR: unknown check '${name}'"
-      echo "Valid names: bluf-position cost-guide-slugs no-client-directives no-anti-patterns no-accordions homepage-faq niche-faq niche-areaserved cost-guide-entries about-staff-names about-pending-photos reviews-cards reviews-sources faq-master-count"
+      echo "Valid names: bluf-position cost-guide-slugs no-client-directives no-anti-patterns no-accordions homepage-faq niche-faq niche-areaserved cost-guide-entries about-staff-names about-pending-photos reviews-cards reviews-sources faq-master-count service-pages-built neighborhood-pages-built no-stub-content templated-bluf neighborhood-data-populated"
       exit 1
       ;;
   esac
@@ -352,6 +476,11 @@ run_all_checks() {
   check_reviews_cards
   check_reviews_sources
   check_faq_master_count
+  check_service_pages_built
+  check_neighborhood_pages_built
+  check_no_stub_content
+  check_templated_bluf
+  check_neighborhood_data_populated
 }
 
 # ---------------------------------------------------------------------------
