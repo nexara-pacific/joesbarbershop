@@ -122,7 +122,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] 05-02-PLAN.md — business.json + business.ts extension (geo, priceRange, 3 helpers, canonicalUrl) (Wave 2)
 - [x] 05-03-PLAN.md — 7 schema components (HairSalon, AggregateRating, FAQPage, Service, Person, Article, Review) (Wave 3)
 - [x] 05-04-PLAN.md — Base.astro: auto-inject HairSalon + meta tags + canonical + Vercel Analytics + Clarity (Wave 4)
-- [ ] 05-05-PLAN.md — Page-level schema overlays via Fragment slot=head across 8 page files (Wave 5)
+- [x] 05-05-PLAN.md — Page-level schema overlays via Fragment slot=head across 8 page files (Wave 5)
 - [ ] 05-06-PLAN.md — generate-mtimes.mjs real impl + LastUpdated component + Article dateModified wire (Wave 6)
 - [ ] 05-07-PLAN.md — validate-schema.mjs real impl + audit.sh 6 check_* bodies + D-25 manual Rich Results paste (Wave 7)
 
