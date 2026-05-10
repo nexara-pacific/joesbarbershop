@@ -1,0 +1,37 @@
+---
+// site/src/components/schema/Article.astro
+// Per D-09: emitted by /east-county-traditional-barbershop + /2026-east-county-barbershop-cost-guide.
+// Per D-07: publisher references HairSalon via @id.
+// Per RESEARCH § specifics: include image to avoid Google Rich Results "Article needs image" warning.
+import type { Article, WithContext } from 'schema-dts';
+import { canonicalUrl } from '../../data/business';
+
+interface Props {
+  headline: string;
+  description: string;
+  url: string;
+  datePublished: string;   // ISO 8601 (e.g., '2026-05-01')
+  dateModified: string;    // ISO 8601 from git-mtimes.json (Plan 06)
+  authorName: string;      // typically "Joe Denesowicz" or "Darrell Tang"
+}
+
+const { headline, description, url, datePublished, dateModified, authorName } = Astro.props;
+
+const schema: WithContext<Article> = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline,
+  description,
+  url,
+  datePublished,
+  dateModified,
+  image: `${canonicalUrl}/photos/02-storefront.jpg`,
+  author: { '@type': 'Person', name: authorName },
+  publisher: {
+    '@type': 'Organization',
+    '@id': `${canonicalUrl}/#business`,
+    name: "Joe's Barbershop",
+  },
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

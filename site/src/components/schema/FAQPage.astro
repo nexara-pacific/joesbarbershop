@@ -1,0 +1,33 @@
+---
+// site/src/components/schema/FAQPage.astro
+// Per AEO-02: emit FAQPage wherever FAQs appear (homepage, niche-landing, cost guide,
+// faq master, all 6 services, all 5 neighborhoods).
+// Per RESEARCH Pitfall 5: emit only the page's own questions — no duplication.
+
+interface FAQ {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  faqs: FAQ[];
+  pageUrl: string;
+}
+
+const { faqs, pageUrl } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${pageUrl}#faq`,
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: a,
+    },
+  })),
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

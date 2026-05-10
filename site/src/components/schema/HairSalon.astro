@@ -1,0 +1,35 @@
+---
+// site/src/components/schema/HairSalon.astro
+// Per D-06: auto-injected by Base.astro on every page.
+// Per D-07: stable @id for cross-page entity dedup.
+// Per D-04: includes geo, priceRange, openingHoursSpecification, sameAs.
+import { business, toE164, toOpeningHoursSpecification, canonicalUrl } from '../../data/business';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'HairSalon',
+  '@id': `${canonicalUrl}/#business`,
+  name: business.name,
+  url: canonicalUrl,
+  telephone: toE164(business.phone),
+  priceRange: business.priceRange,
+  image: `${canonicalUrl}/photos/03-interior-hero.jpg`,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `${business.address.street} ${business.address.suite}`.trim(),
+    addressLocality: business.address.city,
+    addressRegion: business.address.state,
+    postalCode: business.address.zip,
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: business.geo.latitude,
+    longitude: business.geo.longitude,
+  },
+  openingHoursSpecification: toOpeningHoursSpecification(business.hours),
+  areaServed: business.areaServed.map((name) => ({ '@type': 'City', name })),
+  sameAs: Object.values(business.sameAs).filter((u) => Boolean(u)),
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

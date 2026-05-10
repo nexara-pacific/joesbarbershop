@@ -1,0 +1,39 @@
+---
+// site/src/components/schema/Review.astro
+// Per CONTEXT line 279: scoped IN for Phase 5. /reviews page only.
+// Per D-07: each Review references the business via itemReviewed.@id.
+import { canonicalUrl } from '../../data/business';
+
+interface ReviewItem {
+  name: string;
+  rating: number;
+  quote: string;
+  source: string;   // "Google" or "Yelp"
+  date: string;     // e.g., "Sep 2021" or ISO — Schema.org accepts year-month
+}
+
+interface Props {
+  reviews: ReviewItem[];
+}
+
+const { reviews } = Astro.props;
+
+const schemas = reviews.map((r) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Review',
+  itemReviewed: { '@id': `${canonicalUrl}/#business` },
+  author: { '@type': 'Person', name: r.name },
+  reviewRating: {
+    '@type': 'Rating',
+    ratingValue: r.rating,
+    bestRating: 5,
+    worstRating: 1,
+  },
+  reviewBody: r.quote,
+  publisher: { '@type': 'Organization', name: r.source },
+  datePublished: r.date,
+}));
+---
+{schemas.map((s) => (
+  <script type="application/ld+json" set:html={JSON.stringify(s)} />
+))}
