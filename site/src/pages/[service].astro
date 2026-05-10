@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import Service from '../components/schema/Service.astro';
+import FAQPage from '../components/schema/FAQPage.astro';
 import ClosingCTA from '../components/ClosingCTA.astro';
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
@@ -60,6 +62,10 @@ const neighborhoods = [
   description={entry.data.bluf}
   variant="article"
 >
+  <Fragment slot="head">
+    <Service entry={entry} pageUrl={Astro.url.href} />
+    <FAQPage faqs={entry.data.faqs} pageUrl={Astro.url.href} />
+  </Fragment>
   <header class="article-head">
     <div class="wrap">
       <span class="eyebrow kicker-rule">East County · {entry.data.title.toLowerCase()}</span>
@@ -78,7 +84,7 @@ const neighborhoods = [
 
   <section class="service-hero">
     <div class="wrap">
-      <Image src={heroPhoto} alt={`${entry.data.title} at Joe's Barbershop`} loading="lazy" />
+      <Image src={heroPhoto} alt={`${entry.data.title} at Joe's Barbershop`} loading="eager" fetchpriority="high" decoding="sync" />
     </div>
   </section>
 
