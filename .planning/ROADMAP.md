@@ -119,7 +119,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. The first 100 words of every page are declarative entity-first prose (sampled spot-check of 5 pages)
 **Plans**: 7 plans
 - [x] 05-01-PLAN.md — Wave 0 scaffolding: npm deps + robots.txt + .env.example + script stubs + audit.sh stub checks (Wave 1)
-- [ ] 05-02-PLAN.md — business.json + business.ts extension (geo, priceRange, 3 helpers, canonicalUrl) (Wave 2)
+- [x] 05-02-PLAN.md — business.json + business.ts extension (geo, priceRange, 3 helpers, canonicalUrl) (Wave 2)
 - [ ] 05-03-PLAN.md — 7 schema components (HairSalon, AggregateRating, FAQPage, Service, Person, Article, Review) (Wave 3)
 - [ ] 05-04-PLAN.md — Base.astro: auto-inject HairSalon + meta tags + canonical + Vercel Analytics + Clarity (Wave 4)
 - [ ] 05-05-PLAN.md — Page-level schema overlays via Fragment slot=head across 8 page files (Wave 5)
