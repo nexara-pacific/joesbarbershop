@@ -12,17 +12,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.7.2",
     "@astrojs/vercel": "^10.0.6",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "astro": "^6.3.0",
-    "typescript": "^6.0.3"
+    "astro": "^6.3.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "cheerio": "^1.2.0",
     "lighthouse": "^13.3.0",
-    "schema-dts": "^2.0.0"
+    "schema-dts": "^2.0.0",
+    "typescript": "^6.0.3"
   }
 }
