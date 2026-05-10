@@ -117,7 +117,14 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. `sitemap.xml` lists all 17–19 URLs; `robots.txt` references it; every page has a unique `<title>`, `<meta name="description">`, and Open Graph tags
   4. No page has text inside an `<img>` that conveys service names, hours, prices, or FAQ questions — all such content is in real DOM text nodes
   5. The first 100 words of every page are declarative entity-first prose (sampled spot-check of 5 pages)
-**Plans**: TBD
+**Plans**: 7 plans
+- [ ] 05-01-PLAN.md — Wave 0 scaffolding: npm deps + robots.txt + .env.example + script stubs + audit.sh stub checks (Wave 1)
+- [ ] 05-02-PLAN.md — business.json + business.ts extension (geo, priceRange, 3 helpers, canonicalUrl) (Wave 2)
+- [ ] 05-03-PLAN.md — 7 schema components (HairSalon, AggregateRating, FAQPage, Service, Person, Article, Review) (Wave 3)
+- [ ] 05-04-PLAN.md — Base.astro: auto-inject HairSalon + meta tags + canonical + Vercel Analytics + Clarity (Wave 4)
+- [ ] 05-05-PLAN.md — Page-level schema overlays via Fragment slot=head across 8 page files (Wave 5)
+- [ ] 05-06-PLAN.md — generate-mtimes.mjs real impl + LastUpdated component + Article dateModified wire (Wave 6)
+- [ ] 05-07-PLAN.md — validate-schema.mjs real impl + audit.sh 6 check_* bodies + D-25 manual Rich Results paste (Wave 7)
 
 ### Phase 6: Deploy + Showcase
 **Goal**: The complete site is live on a Vercel preview URL, all routes return 200, and Joe Denesowicz receives the link and gives his sign-off — converting v1 from "built" to "validated"
@@ -153,6 +160,6 @@ Decimal phases appear between their surrounding integers in numeric order.
 | 2. Data + Design System | 7/7 | Complete | 2026-05-07 |
 | 3. Unique Pages | 17/17 | Complete | 2026-05-08 |
 | 4. Templated Pages | 2/5 | In Progress|  |
-| 5. AEO + Performance + Meta | 0/TBD | Not started | - |
+| 5. AEO + Performance + Meta | 0/7 | Not started | - |
 | 6. Deploy + Showcase | 0/TBD | Not started | - |
 | 7. Measurement + Baseline | 0/TBD | Not started | - |
