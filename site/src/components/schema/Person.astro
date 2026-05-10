@@ -1,0 +1,26 @@
+---
+// site/src/components/schema/Person.astro
+// Per AEO-04 + D-09: emitted by /about with stable @id (D-07).
+// Per CONTEXT: Joe only — Alex no longer cutting.
+import { canonicalUrl } from '../../data/business';
+
+interface Props {
+  name: string;          // "Joe Denesowicz"
+  jobTitle: string;      // "Owner / Barber"
+  description: string;   // bio summary
+  slug: string;          // "joe-denesowicz" — used in @id fragment
+}
+
+const { name, jobTitle, description, slug } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${canonicalUrl}/#${slug}`,
+  name,
+  jobTitle,
+  description,
+  worksFor: { '@id': `${canonicalUrl}/#business` },
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
