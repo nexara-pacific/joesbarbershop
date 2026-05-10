@@ -2,6 +2,9 @@
 import UtilBar from '../components/UtilBar.astro';
 import Masthead from '../components/Masthead.astro';
 import Footer from '../components/Footer.astro';
+import HairSalon from '../components/schema/HairSalon.astro';
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/tokens.css';
 import '../styles/utilities.css';
 
@@ -9,9 +12,25 @@ interface Props {
   title: string;
   description?: string;
   variant?: 'page' | 'article';
+  ogType?: 'website' | 'article';
+  twitterCard?: 'summary' | 'summary_large_image';
 }
 
-const { title, description, variant = 'page' } = Astro.props;
+const {
+  title,
+  description,
+  variant = 'page',
+  ogType = 'website',
+  twitterCard = 'summary',
+} = Astro.props;
+
+// Canonical URL per D-16 — computed from astro.config.mjs `site` + current pathname.
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const siteName = "Joe's Barbershop";
+
+// Microsoft Clarity gating per D-02 + D-03.
+const clarityId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
+const enableClarity = import.meta.env.PROD && clarityId;
 ---
 <!doctype html>
 <html lang="en">
@@ -20,10 +39,44 @@ const { title, description, variant = 'page' } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph per D-15 — text-only for v1; og:image deferred to v1.5 -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteName} />
+
+    <!-- Twitter Card per D-15 — summary; no twitter:site (Joe has no handle) -->
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Playfair+Display:wght@600;800;900&family=DM+Serif+Display:ital@0;1&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" />
+
+    <!-- Auto-inject HairSalon JSON-LD on every page per D-06 -->
+    <HairSalon />
+
+    <!-- Per-page schema overlays consume this slot (Phase 2 D-26 reservation, first use in Phase 5) -->
     <slot name="head" />
+
+    <!-- Vercel telemetry per D-01 — both self-disable in dev -->
+    <Analytics />
+    <SpeedInsights />
+
+    <!-- Microsoft Clarity per D-02 — PROD-only emission -->
+    {enableClarity && (
+      <script is:inline define:vars={{ clarityId }}>
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", clarityId);
+      </script>
+    )}
   </head>
   <body>
     <UtilBar />
