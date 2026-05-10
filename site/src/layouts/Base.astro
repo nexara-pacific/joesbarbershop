@@ -2,6 +2,9 @@
 import UtilBar from '../components/UtilBar.astro';
 import Masthead from '../components/Masthead.astro';
 import Footer from '../components/Footer.astro';
+import HairSalon from '../components/schema/HairSalon.astro';
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/tokens.css';
 import '../styles/utilities.css';
 
@@ -9,9 +12,25 @@ interface Props {
   title: string;
   description?: string;
   variant?: 'page' | 'article';
+  ogType?: 'website' | 'article';
+  twitterCard?: 'summary' | 'summary_large_image';
 }
 
-const { title, description, variant = 'page' } = Astro.props;
+const {
+  title,
+  description,
+  variant = 'page',
+  ogType = 'website',
+  twitterCard = 'summary',
+} = Astro.props;
+
+// Canonical URL per D-16 — computed from astro.config.mjs `site` + current pathname.
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const siteName = "Joe's Barbershop";
+
+// Microsoft Clarity gating per D-02 + D-03.
+const clarityId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
+const enableClarity = import.meta.env.PROD && clarityId;
 ---
 <!doctype html>
 <html lang="en">
