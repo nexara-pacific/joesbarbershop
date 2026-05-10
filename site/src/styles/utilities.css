@@ -18,7 +18,12 @@ main.article-page .entries-section .wrap,
 main.article-page .see-also .wrap,
 main.article-page .visit .wrap,
 main.article-page .faq .wrap,
-main.article-page .faq-master .wrap {
+main.article-page .faq-master .wrap,
+main.article-page .service-hero .wrap,
+main.article-page .price-callout .wrap,
+main.article-page .neighborhood-photo .wrap,
+main.article-page .getting-here .wrap,
+main.article-page .services-mesh .wrap {
   max-width: 820px;
 }
 

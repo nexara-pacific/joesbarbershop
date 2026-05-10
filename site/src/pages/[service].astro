@@ -188,9 +188,6 @@ const neighborhoods = [
     border-left: 3px solid var(--accent);
     padding-block: clamp(40px, 5vw, 64px);
   }
-  .bluf .wrap {
-    max-width: 820px;
-  }
   .bluf .bluf-lead {
     font-size: 18px;
     line-height: 1.6;
@@ -203,13 +200,11 @@ const neighborhoods = [
     }
   }
 
-  /* Service hero — bespoke per CONTEXT D-05 (lazy-load, simple <Image>, NOT the OD-5 <Hero> component) */
+  /* Service hero — bespoke per CONTEXT D-05 (lazy-load, simple <Image>, NOT the OD-5 <Hero> component).
+     Column width comes from utilities.css article-page allowlist. */
   .service-hero {
     background: var(--bg);
     padding-block: clamp(40px, 5vw, 64px);
-  }
-  .service-hero .wrap {
-    max-width: 820px;
   }
   .service-hero img {
     width: 100%;
@@ -220,14 +215,12 @@ const neighborhoods = [
   }
 
   /* Price callout — bespoke per CONTEXT D-06. Echoes PriceBoard heritage (board font, board-bg, large $ callout)
-     without importing the homepage-only PriceBoard component (Phase 3 D-17). */
+     without importing the homepage-only PriceBoard component (Phase 3 D-17).
+     Column width comes from utilities.css article-page allowlist. */
   .price-callout {
     background: var(--board-bg);
     color: var(--board-fg);
     padding-block: clamp(40px, 5vw, 64px);
-  }
-  .price-callout .wrap {
-    max-width: 820px;
   }
   .price-callout-card {
     text-align: center;
@@ -262,9 +255,6 @@ const neighborhoods = [
     background: var(--bg);
     padding-block: clamp(56px, 7vw, 96px);
   }
-  .prose .wrap {
-    max-width: 820px;
-  }
   .prose h2 {
     font-family: var(--font-display);
     font-size: clamp(34px, 4vw, 52px);
@@ -297,9 +287,6 @@ const neighborhoods = [
   .see-also {
     background: var(--surface);
     padding-block: clamp(40px, 5vw, 64px);
-  }
-  .see-also .wrap {
-    max-width: 820px;
   }
   .see-also h2 {
     font-family: var(--font-display);
@@ -344,9 +331,6 @@ const neighborhoods = [
     background: var(--bg);
     padding-block: clamp(56px, 7vw, 96px);
   }
-  .area-served .wrap {
-    max-width: 820px;
-  }
   .area-served .area-intro {
     font-size: 17px;
     line-height: 1.6;
@@ -388,9 +372,6 @@ const neighborhoods = [
   .faq {
     background: var(--surface);
     padding-block: clamp(56px, 7vw, 96px);
-  }
-  .faq .wrap {
-    max-width: 820px;
   }
   .faq-list {
     display: grid;
