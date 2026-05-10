@@ -3,6 +3,9 @@ dist/
 # generated types
 .astro/
 
+# Phase 5 pre-build generated manifest (regenerated every prebuild)
+src/data/git-mtimes.json
+
 # dependencies
 node_modules/
 
