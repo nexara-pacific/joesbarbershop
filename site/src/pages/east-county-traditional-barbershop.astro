@@ -3,12 +3,13 @@ import Base from '../layouts/Base.astro';
 import Article from '../components/schema/Article.astro';
 import FAQPage from '../components/schema/FAQPage.astro';
 import ClosingCTA from '../components/ClosingCTA.astro';
+import LastUpdated from '../components/LastUpdated.astro';
 import { business } from '../data/business';
+import mtimes from '../data/git-mtimes.json';
 
 const lastUpdated = 'May 2026';
 
-// TODO Plan 06: replace with mtimes['site/src/pages/east-county-traditional-barbershop.astro']
-const dateModified = '2026-05-10T00:00:00-07:00';
+const dateModified = mtimes['site/src/pages/east-county-traditional-barbershop.astro'];
 const datePublished = '2026-05-08';
 
 // Parallel array mirroring the 6 DOM FAQs below.
@@ -82,6 +83,10 @@ const neighborhoods = [
       </p>
     </div>
   </section>
+
+  <div class="wrap">
+    <LastUpdated isoDate={dateModified} />
+  </div>
 
   <section class="prose">
     <div class="wrap">
