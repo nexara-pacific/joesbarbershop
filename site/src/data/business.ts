@@ -111,4 +111,4 @@ export function aggregateRating(
  * Canonical site URL — single source for schema @id values per D-07.
  * Custom domain swap (v1.5 / Phase 7) is a one-line edit here.
  */
-export const canonicalUrl = 'https://joesbarbershop.vercel.app';
+export const canonicalUrl = 'https://joes-barbershop.vercel.app';
