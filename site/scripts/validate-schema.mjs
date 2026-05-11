@@ -7,7 +7,7 @@
 //
 // Exits 0 if all blocks pass; exits 1 with a detailed FAIL list otherwise.
 
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { load } from 'cheerio';
@@ -96,7 +96,7 @@ function walk(dir) {
   }
 }
 
-if (!statSync(distDir).isDirectory()) {
+if (!existsSync(distDir) || !statSync(distDir).isDirectory()) {
   console.error(`FAIL: dist directory not found at ${distDir} — run \`npm run build\` first`);
   process.exit(1);
 }
