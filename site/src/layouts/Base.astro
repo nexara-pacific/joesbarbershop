@@ -31,6 +31,11 @@ const siteName = "Joe's Barbershop";
 // Microsoft Clarity gating per D-02 + D-03.
 const clarityId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
 const enableClarity = import.meta.env.PROD && clarityId;
+
+// Showcase-mode noindex gating per D-02 + D-03.
+// PUBLIC_SHOWCASE_MODE defaults to true (safe — assume noindex until explicitly flipped).
+// Set PUBLIC_SHOWCASE_MODE=false in Vercel env vars after Joe's approval to enable indexing.
+const showcaseMode = import.meta.env.PUBLIC_SHOWCASE_MODE !== 'false';
 ---
 <!doctype html>
 <html lang="en">
@@ -39,6 +44,7 @@ const enableClarity = import.meta.env.PROD && clarityId;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    {showcaseMode && <meta name="robots" content="noindex,nofollow,noarchive" />}
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph per D-15 — text-only for v1; og:image deferred to v1.5 -->

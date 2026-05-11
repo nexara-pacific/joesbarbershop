@@ -440,12 +440,18 @@ check_robots() {
     fail "robots" "missing dist/robots.txt — confirm site/public/robots.txt exists (Plan 01)"
     return
   fi
-  if ! grep -qE '^Sitemap: https?://' "$file"; then
-    fail "robots" "robots.txt missing 'Sitemap:' line"
-    return
-  fi
   if ! grep -qE '^User-agent:' "$file"; then
     fail "robots" "robots.txt missing 'User-agent:' line"
+    return
+  fi
+  # Showcase mode (PUBLIC_SHOWCASE_MODE != 'false'): Disallow: / is valid — no Sitemap required.
+  # Go-live mode (PUBLIC_SHOWCASE_MODE=false): Allow: / + Sitemap: required.
+  if grep -qE '^Disallow: /$' "$file"; then
+    pass
+    return
+  fi
+  if ! grep -qE '^Sitemap: https?://' "$file"; then
+    fail "robots" "robots.txt missing 'Sitemap:' line (go-live mode requires Sitemap)"
     return
   fi
   pass

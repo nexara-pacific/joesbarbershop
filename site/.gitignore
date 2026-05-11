@@ -6,6 +6,9 @@ dist/
 # Phase 5 pre-build generated manifest (regenerated every prebuild)
 src/data/git-mtimes.json
 
+# Phase 6 pre-build generated robots.txt (regenerated every prebuild via generate-robots.mjs)
+public/robots.txt
+
 # dependencies
 node_modules/
 
