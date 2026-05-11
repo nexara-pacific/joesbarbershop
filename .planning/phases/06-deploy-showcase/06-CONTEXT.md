@@ -55,7 +55,7 @@ Get the v1 site onto a live, publicly-reachable Vercel preview URL with all 17 r
 - **D-12:** Sign-off capture: a screenshot/copy of Joe's text response saved into `.planning/phases/06-deploy-showcase/joe-approval/` as `<date>-joe-signoff.txt` (or `.png` for screenshot). This is the SHOW-01 artifact that proves the gating event happened.
 
 ### Phase wave structure
-- **D-13:** Phase 6 organizes into 5 waves:
+- **D-13:** [informational] Phase 6 organizes into 5 waves (implemented via each plan's `wave:` frontmatter field — not a single-plan decision):
   - **Wave 1 — Cleanup:** Apply D-01 fixes. Each fix is its own atomic commit; full `npm run build` + `audit.sh` gate at end of wave.
   - **Wave 2 — Pre-deploy setup + showcase deploy:** Set env vars (D-04/D-05), implement noindex flag (D-02/D-03), build, deploy via `vercel --cwd site --yes` (preview, NOT `--prod`) to the existing project, curl every route for 200 status.
   - **Wave 3 — D-25 Rich Results paste:** Human-action checkpoint per D-06/07/08/09.

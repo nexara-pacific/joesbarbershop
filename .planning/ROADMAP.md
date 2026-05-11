@@ -134,7 +134,18 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. `npm run build` in CI exits 0 with no errors or warnings
   2. A publicly accessible Vercel preview URL is live and returns 200 on every route (spot-checked via curl or link checker)
   3. Joe receives the preview URL and responds with approval (verbal, text, or email confirmation)
-**Plans**: TBD
+**Plans**: 11 plans
+- [ ] 06-01-PLAN.md — CR-02 fix: guard aggregateRating against empty input (Wave 1)
+- [ ] 06-02-PLAN.md — CR-03 fix: reorder validate-schema preflight with existsSync (Wave 1)
+- [ ] 06-03-PLAN.md — CR-04 fix: add publisher.url + logo ImageObject to Article schema (Wave 1)
+- [ ] 06-04-PLAN.md — D-01 fix: correct business.geo to real shop coordinates (Wave 1)
+- [ ] 06-05-PLAN.md — Document + set Vercel env vars (VERCEL_DEEP_CLONE, PUBLIC_CLARITY_PROJECT_ID, PUBLIC_SHOWCASE_MODE) (Wave 2, human action)
+- [ ] 06-06-PLAN.md — Wire PUBLIC_SHOWCASE_MODE flag for robots.txt + noindex meta (Wave 2)
+- [ ] 06-07-PLAN.md — audit.sh check_deployed_routes + showcase deploy + 17-route gate (Wave 2)
+- [ ] 06-08-PLAN.md — D-25 Rich Results paste against deployed preview (Wave 3, human action)
+- [ ] 06-09-PLAN.md — Author SHARE-CHECKLIST.md + scaffold joe-approval/ (Wave 4)
+- [ ] 06-10-PLAN.md — Text Joe + capture sign-off response (Wave 4, human action — SHOW-01 gate)
+- [ ] 06-11-PLAN.md — Go-live flip: PUBLIC_SHOWCASE_MODE=false + redeploy (Wave 5, conditional on Plan 06-10 approval)
 
 ### Phase 7: Measurement + Baseline
 **Goal**: Ship v1.0 with telemetry on Day 1 — instrument the live site with client-side observability and capture a Day-0 baseline of every metric we'll measure against, so any future "the AEO play worked" claim is defensible against a frozen reference point. Closes the loop on the consulting proof asset (the hire-trigger event becomes the case-study payoff).
@@ -161,5 +172,5 @@ Decimal phases appear between their surrounding integers in numeric order.
 | 3. Unique Pages | 17/17 | Complete | 2026-05-08 |
 | 4. Templated Pages | 2/5 | In Progress|  |
 | 5. AEO + Performance + Meta | 7/7 | Complete | 2026-05-10 |
-| 6. Deploy + Showcase | 0/TBD | Not started | - |
+| 6. Deploy + Showcase | 0/11 | Not started | - |
 | 7. Measurement + Baseline | 0/TBD | Not started | - |
