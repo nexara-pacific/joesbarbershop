@@ -92,12 +92,16 @@ export function toOpeningHoursSpecification(
  * Per D-04 + D-08 — weighted average by review count; emitted on homepage only.
  * Formula: (sum(value × count)) / sum(count), rounded to 2 decimals.
  * Yields: (5.0×114 + 4.9×33) / (114+33) = 4.98 across 147 reviews.
+ * Throws Error if all sources have count===0 (prevents NaN in JSON-LD).
  */
 export function aggregateRating(
   ratings: BusinessRecord['ratings']
 ): { ratingValue: number; reviewCount: number } {
   const sources = Object.values(ratings);
   const totalCount = sources.reduce((sum, r) => sum + r.count, 0);
+  if (totalCount === 0) {
+    throw new Error('aggregateRating: no rating sources with count > 0');
+  }
   const weightedSum = sources.reduce((sum, r) => sum + r.value * r.count, 0);
   const ratingValue = Number((weightedSum / totalCount).toFixed(2));
   return { ratingValue, reviewCount: totalCount };
