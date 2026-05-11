@@ -31,6 +31,13 @@ const schema: WithContext<Article> = {
     '@type': 'Organization',
     '@id': `${canonicalUrl}/#business`,
     name: "Joe's Barbershop",
+    url: canonicalUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${canonicalUrl}/photos/01-logo.jpg`,
+      width: 1600,
+      height: 1600,
+    },
   },
 };
 ---
