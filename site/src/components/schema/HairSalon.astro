@@ -29,7 +29,7 @@ const schema = {
   },
   openingHoursSpecification: toOpeningHoursSpecification(business.hours),
   areaServed: business.areaServed.map((name) => ({ '@type': 'City', name })),
-  sameAs: Object.values(business.sameAs).filter((u) => Boolean(u)),
+  sameAs: Object.values(business.sameAs).filter((u) => Boolean(u) && !u.includes('PLACEHOLDER')),
 };
 ---
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
