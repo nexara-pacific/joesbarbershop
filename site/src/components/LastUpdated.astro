@@ -1,0 +1,34 @@
+---
+// site/src/components/LastUpdated.astro
+// Per D-11: visible "Last updated: Month D, YYYY" line on cost guide + niche-landing.
+// Pairs with Article.dateModified — both read from site/src/data/git-mtimes.json so
+// human display and schema field stay in sync by construction.
+
+interface Props {
+  isoDate: string;  // e.g., '2026-05-09T22:30:32-07:00'
+}
+
+const { isoDate } = Astro.props;
+
+const human = new Date(isoDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});  // e.g., "May 9, 2026"
+---
+<p class="last-updated">Last updated: {human}</p>
+
+<style>
+  /* Style values copied from existing east-county-traditional-barbershop.astro
+     .date-stamp rule so the new visible date-line matches existing visual treatment. */
+  .last-updated {
+    font-family: var(--font-board);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 0;
+    padding-block: 16px;
+  }
+</style>
