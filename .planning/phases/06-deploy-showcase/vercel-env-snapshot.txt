@@ -1,0 +1,25 @@
+# Vercel env-var snapshot — Plan 06-05 Task 2 proof artifact
+# Captured: 2026-05-11
+# Vercel scope: darrell-tang-consulting-s-projects/joes-barbershop (work Hobby account, darrell.tang@nexarapacific.com)
+# (Previous personal-scope project at darrell-tangs-projects/site is abandoned — see project_vercel_scope.md memory)
+#
+# Deviation from Plan 06-05 acceptance criteria:
+# - Preview-scope env vars NOT set. Reason: the new joes-barbershop project has no GitHub repo
+#   connected, and `vercel env add ... preview` requires git-branch context. CLI deploys via
+#   `vercel deploy` (without --prod) operate without git context and inherit Production-scope
+#   env vars, so the showcase preview deploy works correctly with Production-only setup.
+# - Migration path documented: when GitHub repo gets connected later (`gh repo create` + push +
+#   `vercel git connect`), copy Production vars to Preview scope as a one-time backfill.
+
+Retrieving project…
+> Environment Variables found for darrell-tang-consulting-s-projects/joes-barbershop [109ms]
+
+ name                               value               environments        created
+ PUBLIC_CLARITY_PROJECT_ID          Encrypted           Production          651ms ago
+ PUBLIC_SHOWCASE_MODE               Encrypted           Production          23m ago
+ VERCEL_DEEP_CLONE                  Encrypted           Production          23m ago
+
+Common next commands:
+- `vercel env add`
+- `vercel env rm`
+- `vercel env pull`
