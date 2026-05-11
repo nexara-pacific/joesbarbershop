@@ -1,0 +1,17 @@
+/=200
+about=200
+reviews=200
+faq=200
+east-county-traditional-barbershop=200
+2026-east-county-barbershop-cost-guide=200
+fades=200
+classic-cut=200
+kids-cuts=200
+beard-trim=200
+line-up=200
+hot-towel-shave=200
+bostonia-barber=200
+el-cajon-barber=200
+santee-barber=200
+lakeside-barber=200
+la-mesa-barber=200
