@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "node scripts/generate-mtimes.mjs",
+    "prebuild": "node scripts/generate-mtimes.mjs && node scripts/generate-robots.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
