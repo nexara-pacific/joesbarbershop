@@ -124,7 +124,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] 05-04-PLAN.md — Base.astro: auto-inject HairSalon + meta tags + canonical + Vercel Analytics + Clarity (Wave 4)
 - [x] 05-05-PLAN.md — Page-level schema overlays via Fragment slot=head across 8 page files (Wave 5)
 - [x] 05-06-PLAN.md — generate-mtimes.mjs real impl + LastUpdated component + Article dateModified wire (Wave 6)
-- [ ] 05-07-PLAN.md — validate-schema.mjs real impl + audit.sh 6 check_* bodies + D-25 manual Rich Results paste (Wave 7)
+- [x] 05-07-PLAN.md — validate-schema.mjs real impl + audit.sh 6 check_* bodies + D-25 manual Rich Results paste (Wave 7)
 
 ### Phase 6: Deploy + Showcase
 **Goal**: The complete site is live on a Vercel preview URL, all routes return 200, and Joe Denesowicz receives the link and gives his sign-off — converting v1 from "built" to "validated"
