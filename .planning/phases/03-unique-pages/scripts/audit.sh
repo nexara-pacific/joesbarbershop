@@ -392,63 +392,270 @@ check_neighborhood_data_populated() {
 # ---------------------------------------------------------------------------
 
 check_jsonld() {
-  # STUB — Plan 07 (Wave 6) wraps `node site/scripts/validate-schema.mjs`.
-  # Required field: D-23.1, AEO-01..06 + Pitfall 1 (no </script> substring in JSON-LD).
-  pass
+  local script="${REPO_ROOT}/site/scripts/validate-schema.mjs"
+  if [ ! -f "$script" ]; then
+    fail "jsonld" "missing site/scripts/validate-schema.mjs"
+    return
+  fi
+  if (cd "$REPO_ROOT" && node "$script" 2>&1); then
+    pass
+  else
+    fail "jsonld" "validate-schema.mjs reported errors (see output above)"
+  fi
 }
 
 check_sitemap_links() {
-  # STUB — Plan 07 (Wave 6) verifies dist/sitemap-0.xml lists all 17 URLs.
-  # D-23.2 — 11 canonical-slugs + 6 unique pages.
-  pass
+  local sitemap="${DIST_DIR}/sitemap-0.xml"
+  if [ ! -f "$sitemap" ]; then
+    fail "sitemap-links" "missing dist/sitemap-0.xml (run npm run build first?)"
+    return
+  fi
+  local missing=()
+  # 11 templated slugs from canonical-slugs.txt
+  while IFS= read -r slug || [ -n "$slug" ]; do
+    [ -z "$slug" ] && continue
+    if ! grep -qE "<loc>https://[^<]*/${slug}/?</loc>" "$sitemap"; then
+      missing+=("$slug")
+    fi
+  done < "$SLUGS_FILE"
+  # 6 unique pages (homepage + 5 named uniques)
+  local unique_pages=("/" "about" "reviews" "faq" "east-county-traditional-barbershop" "2026-east-county-barbershop-cost-guide")
+  for page in "${unique_pages[@]}"; do
+    if [ "$page" = "/" ]; then
+      grep -qE "<loc>https://[^<]+/</loc>" "$sitemap" || missing+=("/")
+    else
+      grep -qE "<loc>https://[^<]*/${page}/?</loc>" "$sitemap" || missing+=("$page")
+    fi
+  done
+  if [ "${#missing[@]}" -eq 0 ]; then
+    pass
+  else
+    fail "sitemap-links" "missing in sitemap-0.xml: ${missing[*]}"
+  fi
 }
 
 check_robots() {
-  # STUB — Plan 07 (Wave 6) verifies dist/robots.txt exists + has Sitemap: line.
-  # D-23.3, META-04.
+  local file="${DIST_DIR}/robots.txt"
+  if [ ! -f "$file" ]; then
+    fail "robots" "missing dist/robots.txt — confirm site/public/robots.txt exists (Plan 01)"
+    return
+  fi
+  if ! grep -qE '^Sitemap: https?://' "$file"; then
+    fail "robots" "robots.txt missing 'Sitemap:' line"
+    return
+  fi
+  if ! grep -qE '^User-agent:' "$file"; then
+    fail "robots" "robots.txt missing 'User-agent:' line"
+    return
+  fi
   pass
 }
 
 check_text_as_image() {
-  # STUB — Plan 07 (Wave 6) greps site/src/pages + site/src/components for forbidden alt patterns.
-  # D-23.4 — AEO no-text-as-image rule.
-  pass
+  if [ ! -d "$SRC_PAGES" ]; then
+    fail "text-as-image" "src/pages/ not found"
+    return
+  fi
+  # Forbidden: alt attrs containing price markers or service words (AEO-07).
+  # Filter out grep failure (no matches → exit 1 is desired success here).
+  local matches
+  matches=$(grep -rEn 'alt="[^"]*\$[0-9]|alt="[^"]*(haircut|fade|shave|hours)"' "$SRC_PAGES" "${SITE_DIR}/src/components" 2>/dev/null || true)
+  if [ -z "$matches" ]; then
+    pass
+  else
+    echo "  Matching lines:"
+    echo "$matches" | head -20 | sed 's/^/    /'
+    local n
+    n=$(echo "$matches" | grep -c .)
+    fail "text-as-image" "found ${n} alt-text(s) with price/service words (AEO-07 — text belongs in DOM)"
+  fi
 }
 
 check_bluf() {
-  # STUB — Plan 07 (Wave 6) extracts first 100 words of 5 sample pages,
-  # asserts business name + location + service term present.
-  # D-23.5.
-  pass
+  local pages=(
+    "index"
+    "fades"
+    "bostonia-barber"
+    "east-county-traditional-barbershop"
+    "2026-east-county-barbershop-cost-guide"
+  )
+  local any_fail=0
+  for page_slug in "${pages[@]}"; do
+    local file
+    if [ "$page_slug" = "index" ]; then
+      file="${DIST_DIR}/index.html"
+    else
+      file="${DIST_DIR}/${page_slug}/index.html"
+    fi
+    if [ ! -f "$file" ]; then
+      skip "bluf:${page_slug}" "page not built"
+      continue
+    fi
+    # Extract <main>...</main> text, strip HTML, take first ~600 chars (~100 words).
+    local body
+    body=$(awk '/<main/,/<\/main>/' "$file" | sed 's/<[^>]*>//g' | tr '\n' ' ' | head -c 600)
+    if ! echo "$body" | grep -qi "Joe's Barbershop"; then
+      fail "bluf:${page_slug}" "first ~100 words missing 'Joe's Barbershop'"
+      any_fail=1
+      continue
+    fi
+    if ! echo "$body" | grep -qiE "(El Cajon|Bostonia|East County)"; then
+      fail "bluf:${page_slug}" "first ~100 words missing location term"
+      any_fail=1
+      continue
+    fi
+    if ! echo "$body" | grep -qiE "(barber|barbershop|haircut|fade|shave)"; then
+      fail "bluf:${page_slug}" "first ~100 words missing service term"
+      any_fail=1
+      continue
+    fi
+    pass
+  done
 }
 
 check_lighthouse() {
-  # STUB — Plan 07 (Wave 6) runs `npx lighthouse` median-of-3 against astro preview,
-  # enforces P90/A95/S95 + LCP<2500ms + CLS<0.1.
-  # D-23.6, PERF-01.
+  if ! command -v jq >/dev/null 2>&1; then skip "lighthouse" "jq not installed"; return; fi
+  if ! command -v npx >/dev/null 2>&1; then skip "lighthouse" "npx not installed"; return; fi
+  # Start astro preview in background if not already running on :4321
+  local url="${LIGHTHOUSE_URL:-http://localhost:4321/}"
+  local preview_pid=""
+  if ! curl -sf "$url" >/dev/null 2>&1; then
+    (cd "$SITE_DIR" && npx astro preview --port 4321 >/dev/null 2>&1) &
+    preview_pid=$!
+    # Wait up to 15s for the preview to come up
+    for _ in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; do
+      sleep 1
+      if curl -sf "$url" >/dev/null 2>&1; then break; fi
+    done
+  fi
+  local tmpdir
+  tmpdir=$(mktemp -d)
+  local perf=() a11y=() seo=() lcp=() cls=()
+  for i in 1 2 3; do
+    # Lighthouse 13.x removed --preset=mobile (mobile is the default form-factor for
+    # performance audits). Use --form-factor=mobile explicitly to preserve intent.
+    npx --yes lighthouse "$url" --form-factor=mobile --output=json \
+      --output-path="${tmpdir}/run-${i}.json" --quiet \
+      --chrome-flags="--headless --no-sandbox --disable-gpu" >/dev/null 2>&1 || {
+      [ -n "$preview_pid" ] && kill "$preview_pid" 2>/dev/null
+      fail "lighthouse" "lighthouse run $i failed (check Chrome availability)"
+      return
+    }
+    perf+=("$(jq '.categories.performance.score' "${tmpdir}/run-${i}.json")")
+    a11y+=("$(jq '.categories.accessibility.score' "${tmpdir}/run-${i}.json")")
+    seo+=("$(jq '.categories.seo.score' "${tmpdir}/run-${i}.json")")
+    lcp+=("$(jq '.audits["largest-contentful-paint"].numericValue' "${tmpdir}/run-${i}.json")")
+    cls+=("$(jq '.audits["cumulative-layout-shift"].numericValue' "${tmpdir}/run-${i}.json")")
+  done
+  [ -n "$preview_pid" ] && kill "$preview_pid" 2>/dev/null
+  # Median of 3 (sort + pick middle)
+  local p_med a_med s_med l_med c_med
+  p_med=$(printf '%s\n' "${perf[@]}" | sort -n | sed -n '2p')
+  a_med=$(printf '%s\n' "${a11y[@]}" | sort -n | sed -n '2p')
+  s_med=$(printf '%s\n' "${seo[@]}" | sort -n | sed -n '2p')
+  l_med=$(printf '%s\n' "${lcp[@]}" | sort -n | sed -n '2p')
+  c_med=$(printf '%s\n' "${cls[@]}" | sort -n | sed -n '2p')
+  # Thresholds per PERF-02 + PERF-04
+  awk -v v="$p_med" 'BEGIN { exit (v>=0.90)?0:1 }' || { fail "lighthouse:perf" "median performance ${p_med} < 0.90"; return; }
+  awk -v v="$a_med" 'BEGIN { exit (v>=0.95)?0:1 }' || { fail "lighthouse:a11y" "median accessibility ${a_med} < 0.95"; return; }
+  awk -v v="$s_med" 'BEGIN { exit (v>=0.95)?0:1 }' || { fail "lighthouse:seo" "median seo ${s_med} < 0.95"; return; }
+  awk -v v="$l_med" 'BEGIN { exit (v<2500)?0:1 }' || { fail "lighthouse:lcp" "median LCP ${l_med}ms >= 2500ms"; return; }
+  awk -v v="$c_med" 'BEGIN { exit (v<0.1)?0:1 }' || { fail "lighthouse:cls" "median CLS ${c_med} >= 0.1"; return; }
   pass
+  echo "  perf=$p_med  a11y=$a_med  seo=$s_med  LCP=${l_med}ms  CLS=$c_med"
 }
 
 check_meta_unique_titles() {
-  # STUB — Plan 07 (Wave 6) iterates dist/**/*.html, extracts <title> +
-  # <meta name="description">, asserts uniqueness across all 17 pages.
-  # META-02 (Blocker 2 fix).
+  if [ ! -d "$DIST_DIR" ]; then
+    fail "meta-unique-titles" "dist/ not found — run npm run build first"
+    return
+  fi
+  local titles_file desc_file
+  titles_file=$(mktemp)
+  desc_file=$(mktemp)
+  local missing=()
+  while IFS= read -r f; do
+    local t d
+    t=$(grep -oE '<title[^>]*>[^<]+</title>' "$f" | head -1 | sed 's/<[^>]*>//g')
+    d=$(grep -oE '<meta[^>]*name="description"[^>]*>' "$f" | head -1 | grep -oE 'content="[^"]*"' | sed 's/content="//; s/"$//')
+    if [ -z "$t" ]; then missing+=("$f: missing <title>"); fi
+    if [ -z "$d" ]; then missing+=("$f: missing <meta description>"); fi
+    echo "$t" >> "$titles_file"
+    echo "$d" >> "$desc_file"
+  done < <(find "$DIST_DIR" -name "*.html" -type f)
+  if [ "${#missing[@]}" -ne 0 ]; then
+    fail "meta-unique-titles" "missing fields: ${missing[*]}"
+    rm "$titles_file" "$desc_file" 2>/dev/null
+    return
+  fi
+  local dup_titles dup_descs
+  dup_titles=$(sort "$titles_file" | uniq -d)
+  dup_descs=$(sort "$desc_file" | uniq -d)
+  rm "$titles_file" "$desc_file" 2>/dev/null
+  if [ -n "$dup_titles" ]; then
+    fail "meta-unique-titles" "duplicate <title> values: $(echo "$dup_titles" | tr '\n' '|')"
+    return
+  fi
+  if [ -n "$dup_descs" ]; then
+    fail "meta-unique-titles" "duplicate <meta description> values: $(echo "$dup_descs" | tr '\n' '|')"
+    return
+  fi
   pass
 }
 
 check_meta_og_twitter() {
-  # STUB — Plan 07 (Wave 6) iterates dist/**/*.html, asserts each page contains
-  # og:title, og:url, og:type, og:site_name, twitter:card, twitter:title.
-  # META-03 (Blocker 3 fix).
-  pass
+  if [ ! -d "$DIST_DIR" ]; then
+    fail "meta-og-twitter" "dist/ not found — run npm run build first"
+    return
+  fi
+  local required=('og:title' 'og:url' 'og:type' 'og:site_name' 'twitter:card' 'twitter:title')
+  local missing=()
+  while IFS= read -r f; do
+    for tag in "${required[@]}"; do
+      if ! grep -qE "(property|name)=\"${tag}\"" "$f"; then
+        missing+=("$f: missing ${tag}")
+      fi
+    done
+  done < <(find "$DIST_DIR" -name "*.html" -type f)
+  if [ "${#missing[@]}" -eq 0 ]; then
+    pass
+  else
+    echo "  Missing tags (first 10):"
+    printf '    %s\n' "${missing[@]:0:10}"
+    fail "meta-og-twitter" "${#missing[@]} pages missing required OG/Twitter tags"
+  fi
 }
 
 check_responsive_breakpoints() {
-  # STUB — Plan 07 (Wave 6) greps site/src/styles/ for the OD-5 @media rules at
-  # 980px + 600px (Phase 1 DESN-01 port). Visual confirmation is the manual
-  # checkpoint in Plan 07 Task 2.
-  # PERF-01 (Blocker 1 fix).
-  pass
+  local css_dir="${SITE_DIR}/src/styles"
+  local pages_dir="${SITE_DIR}/src/pages"
+  local components_dir="${SITE_DIR}/src/components"
+  local layouts_dir="${SITE_DIR}/src/layouts"
+  if [ ! -d "$css_dir" ]; then
+    fail "responsive-breakpoints" "site/src/styles/ not found"
+    return
+  fi
+  # Phase 1 DESN-01 + Phase 4 responsive templates port the OD-5 CSS.
+  # Spot-check: both breakpoints must appear at least once across src/ CSS surfaces.
+  local found_980=0 found_600=0
+  for d in "$css_dir" "$pages_dir" "$components_dir" "$layouts_dir"; do
+    [ ! -d "$d" ] && continue
+    if grep -rqE '@media[^{]*\(\s*max-width:\s*980px\s*\)' "$d" 2>/dev/null; then
+      found_980=1
+    fi
+    if grep -rqE '@media[^{]*\(\s*max-width:\s*600px\s*\)' "$d" 2>/dev/null; then
+      found_600=1
+    fi
+  done
+  if [ "$found_980" -eq 1 ] && [ "$found_600" -eq 1 ]; then
+    pass
+    echo "  OD-5 breakpoints 980px + 600px preserved in src/ (PERF-01)"
+  else
+    local why=""
+    [ "$found_980" -eq 0 ] && why="no @media (max-width: 980px) found"
+    [ "$found_600" -eq 0 ] && why="${why:+$why; }no @media (max-width: 600px) found"
+    fail "responsive-breakpoints" "$why — confirm Phase 1 DESN-01 OD-5 CSS port still intact"
+  fi
 }
 
 # ---------------------------------------------------------------------------
