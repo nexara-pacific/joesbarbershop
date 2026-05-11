@@ -15,6 +15,10 @@ Win AI-assistant citations and Google AI Mode visibility for "barbershop in East
 <!-- Shipped and confirmed valuable. -->
 
 - [x] Astro project scaffolded with TypeScript strict mode (Phase 01) — `site/` directory, Astro 6.3, base layout + stub components + 2 pages, deployed to Vercel preview URL `https://site-psi-liard.vercel.app`. Content collections deferred to Phase 02.
+- [x] JSON-LD schema on every page (HairSalon, FAQPage, Service, Person, Article, AggregateRating, Review) generated from `business.ts` (Phase 05) — 7 schema components under `site/src/components/schema/`, auto-injected HairSalon via Base.astro on all 17 pages, overlays via `<Fragment slot="head">`. validate-schema.mjs gate 0, real GBP sameAs URL.
+- [x] BLUF first 100 words on every page; no tabs/accordions hiding content; FAQ as flat text (Phase 05) — verified across 5 sampled pages via audit.sh `check_bluf`.
+- [x] Lighthouse mobile thresholds met (Phase 05) — median perf=1.00, a11y=0.98, seo=1.00, LCP=1.47s, CLS=0.016 on `/`. All five metrics exceed roadmap targets with margin.
+- [x] Sitemap + robots.txt + per-page unique meta (Phase 05) — `dist/sitemap-0.xml` lists 17 URLs, `dist/robots.txt` references it, every page has unique `<title>` + `<meta description>` + OG/Twitter/canonical tags.
 
 ### Active
 
@@ -29,8 +33,6 @@ Win AI-assistant citations and Google AI Mode visibility for "barbershop in East
 - [ ] 5 neighborhood pages (Bostonia, El Cajon, Santee, Lakeside, La Mesa) generated from one template + content collection
 - [ ] Cost guide (`/2026-east-county-barbershop-cost-guide`) — comparative listicle format
 - [ ] FAQ, About, Reviews pages
-- [ ] JSON-LD schema on every page (HairSalon, FAQPage, Service, Person, LocalBusiness, sameAs) generated from `business.ts`
-- [ ] BLUF first 100 words on every page; no tabs/accordions hiding content; FAQ as flat text
 - [ ] Images optimized via Astro `<Image />` (AVIF/WebP, srcset, lazy-load below-fold)
 - [ ] Mobile responsive parity with the OD-5 mockup
 - [x] Vercel preview URL deployed (Phase 01 — `https://site-psi-liard.vercel.app`)
@@ -108,4 +110,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-05-07 after Phase 01 (scaffold) completion*
+*Last updated: 2026-05-10 after Phase 05 (AEO + Performance + Meta) completion*
