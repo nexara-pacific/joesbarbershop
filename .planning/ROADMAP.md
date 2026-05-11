@@ -141,7 +141,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] 06-04-PLAN.md — D-01 fix: correct business.geo to real shop coordinates (Wave 1)
 - [x] 06-05-PLAN.md — Document + set Vercel env vars (VERCEL_DEEP_CLONE, PUBLIC_CLARITY_PROJECT_ID, PUBLIC_SHOWCASE_MODE) (Wave 2, human action)
 - [x] 06-06-PLAN.md — Wire PUBLIC_SHOWCASE_MODE flag for robots.txt + noindex meta (Wave 2)
-- [ ] 06-07-PLAN.md — audit.sh check_deployed_routes + showcase deploy + 17-route gate (Wave 2)
+- [x] 06-07-PLAN.md — audit.sh check_deployed_routes + showcase deploy + 17-route gate (Wave 2)
 - [ ] 06-08-PLAN.md — D-25 Rich Results paste against deployed preview (Wave 3, human action)
 - [ ] 06-09-PLAN.md — Author SHARE-CHECKLIST.md + scaffold joe-approval/ (Wave 4)
 - [ ] 06-10-PLAN.md — Text Joe + capture sign-off response (Wave 4, human action — SHOW-01 gate)
