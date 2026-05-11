@@ -714,6 +714,57 @@ run_self_test() {
   fi
 }
 
+check_deployed_routes() {
+  if ! command -v curl >/dev/null 2>&1; then
+    skip "deployed-routes" "curl not installed"
+    return
+  fi
+  local base_url="${DEPLOYED_BASE_URL:-}"
+  if [ -z "$base_url" ]; then
+    skip "deployed-routes" "DEPLOYED_BASE_URL env var not set (e.g., DEPLOYED_BASE_URL=https://site-xxx.vercel.app)"
+    return
+  fi
+
+  local unique_routes=("/" "about" "reviews" "faq" "east-county-traditional-barbershop" "2026-east-county-barbershop-cost-guide")
+  local missing=()
+  local results=()
+
+  for route in "${unique_routes[@]}"; do
+    local url
+    if [ "$route" = "/" ]; then
+      url="${base_url}/"
+    else
+      url="${base_url}/${route}"
+    fi
+    local code
+    code=$(curl -s -o /dev/null -w '%{http_code}' "$url" 2>/dev/null || echo "000")
+    results+=("${route}=${code}")
+    if [ "$code" != "200" ]; then
+      missing+=("${route}=${code}")
+    fi
+  done
+
+  while IFS= read -r slug || [ -n "$slug" ]; do
+    [ -z "$slug" ] && continue
+    local code
+    code=$(curl -s -o /dev/null -w '%{http_code}' "${base_url}/${slug}" 2>/dev/null || echo "000")
+    results+=("${slug}=${code}")
+    if [ "$code" != "200" ]; then
+      missing+=("${slug}=${code}")
+    fi
+  done < "$SLUGS_FILE"
+
+  if [ -n "${ROUTES_STATUS_FILE:-}" ]; then
+    printf '%s\n' "${results[@]}" > "$ROUTES_STATUS_FILE"
+  fi
+
+  if [ "${#missing[@]}" -eq 0 ]; then
+    pass
+  else
+    fail "deployed-routes" "non-200 routes: ${missing[*]}"
+  fi
+}
+
 # ---------------------------------------------------------------------------
 # Check registry
 # ---------------------------------------------------------------------------
@@ -746,12 +797,13 @@ run_check() {
     text-as-image)               check_text_as_image ;;
     bluf)                        check_bluf ;;
     lighthouse)                  check_lighthouse ;;
+    deployed-routes)             check_deployed_routes ;;
     meta-unique-titles)          check_meta_unique_titles ;;
     meta-og-twitter)             check_meta_og_twitter ;;
     responsive-breakpoints)      check_responsive_breakpoints ;;
     *)
       echo "ERROR: unknown check '${name}'"
-      echo "Valid names: bluf-position cost-guide-slugs no-client-directives no-anti-patterns no-accordions homepage-faq niche-faq niche-areaserved cost-guide-entries about-staff-names about-pending-photos reviews-cards reviews-sources faq-master-count service-pages-built neighborhood-pages-built no-stub-content templated-bluf neighborhood-data-populated jsonld sitemap-links robots text-as-image bluf lighthouse meta-unique-titles meta-og-twitter responsive-breakpoints"
+      echo "Valid names: bluf-position cost-guide-slugs no-client-directives no-anti-patterns no-accordions homepage-faq niche-faq niche-areaserved cost-guide-entries about-staff-names about-pending-photos reviews-cards reviews-sources faq-master-count service-pages-built neighborhood-pages-built no-stub-content templated-bluf neighborhood-data-populated jsonld sitemap-links robots text-as-image bluf lighthouse deployed-routes meta-unique-titles meta-og-twitter responsive-breakpoints"
       exit 1
       ;;
   esac
@@ -819,7 +871,7 @@ case "${1:-}" in
     ;;
   # Phase 5 — positional check names route directly through run_check.
   # Lets downstream plans invoke `bash audit.sh <check-name>` without --check.
-  jsonld|sitemap-links|robots|text-as-image|bluf|lighthouse|meta-unique-titles|meta-og-twitter|responsive-breakpoints)
+  jsonld|sitemap-links|robots|text-as-image|bluf|lighthouse|deployed-routes|meta-unique-titles|meta-og-twitter|responsive-breakpoints)
     run_check "$1"
     if [ "$FAIL_COUNT" -gt 0 ]; then
       exit 1
