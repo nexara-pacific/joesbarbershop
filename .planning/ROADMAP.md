@@ -21,7 +21,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 2: Data + Design System** - business.ts + content collections + OD-5 components live
 - [ ] **Phase 3: Unique Pages** - Homepage parity + 5 unique pages built and readable
 - [ ] **Phase 4: Templated Pages** - 11 service + neighborhood pages generated from data
-- [ ] **Phase 5: AEO + Performance + Meta** - Schema on every page, Lighthouse passes, sitemap complete
+- [x] **Phase 5: AEO + Performance + Meta** - Schema on every page, Lighthouse passes, sitemap complete (2026-05-10)
 - [ ] **Phase 6: Deploy + Showcase** - Vercel preview live; Joe gives sign-off
 
 ## Phase Details
@@ -160,6 +160,6 @@ Decimal phases appear between their surrounding integers in numeric order.
 | 2. Data + Design System | 7/7 | Complete | 2026-05-07 |
 | 3. Unique Pages | 17/17 | Complete | 2026-05-08 |
 | 4. Templated Pages | 2/5 | In Progress|  |
-| 5. AEO + Performance + Meta | 0/7 | Not started | - |
+| 5. AEO + Performance + Meta | 7/7 | Complete | 2026-05-10 |
 | 6. Deploy + Showcase | 0/TBD | Not started | - |
 | 7. Measurement + Baseline | 0/TBD | Not started | - |
