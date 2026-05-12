@@ -4,14 +4,14 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 06 context gathered
-last_updated: "2026-05-11T19:38:40.982Z"
+last_updated: "2026-05-12T05:04:44.271Z"
 last_activity: 2026-05-11 -- Phase 06 execution started
 progress:
   total_phases: 7
   completed_phases: 5
   total_plans: 51
-  completed_plans: 46
-  percent: 90
+  completed_plans: 49
+  percent: 96
 ---
 
 # Project State
@@ -82,6 +82,7 @@ Key ones for this build:
 - [Phase ?]: Inline FAQ markup for niche-landing
 - [Phase ?]: data-host attribute for host entry accent (audit grep compatibility)
 - [Phase ?]: Inline .faq-q markup replication for /faq master — FAQ.astro not modified per UI-SPEC
+- [Phase 06]: Plan 06-11 go-live flip deferred until custom domain — User opted to keep noindex on joes-barbershop.vercel.app indefinitely. Go-live waits for custom domain (joesbarbershop.com or similar) to land first. SHOW-01 reframed: Joe response captures 'reviewed/revisions integrated' rather than 'OK to flip live'.
 
 ### Pending Todos
 
@@ -98,6 +99,9 @@ None yet.
 | v2 | Off-site reinforcement (Wikidata, Foursquare, Bing, Booksy) | Deferred | Init |
 | v2 | Custom domain + GBP cutover | Deferred | Init |
 | v2 | Measurement cadence (30/60/90-day prompt panel) | Deferred | Init |
+| Phase 6 | Plan 06-11 go-live flip (`PUBLIC_SHOWCASE_MODE=false`) | Deferred until custom domain | 2026-05-11 |
+| Phase 6 | Article datePublished ISO 8601 + timezone | Carryforward to Phase 7 or 6.1 | 2026-05-11 |
+| Phase 6 | Article author.url field | Carryforward to Phase 7 or 6.1 | 2026-05-11 |
 
 ## Session Continuity
 

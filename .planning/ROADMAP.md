@@ -144,8 +144,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] 06-07-PLAN.md — audit.sh check_deployed_routes + showcase deploy + 17-route gate (Wave 2)
 - [x] 06-08-PLAN.md — D-25 Rich Results paste against deployed preview (Wave 3, human action)
 - [x] 06-09-PLAN.md — Author SHARE-CHECKLIST.md + scaffold joe-approval/ (Wave 4)
-- [ ] 06-10-PLAN.md — Text Joe + capture sign-off response (Wave 4, human action — SHOW-01 gate)
-- [ ] 06-11-PLAN.md — Go-live flip: PUBLIC_SHOWCASE_MODE=false + redeploy (Wave 5, conditional on Plan 06-10 approval)
+- [ ] 06-10-PLAN.md — Capture Joe's response (revisions/feedback) — SHOW-01 reframed as "reviewed without objection / revisions integrated" per 2026-05-11 decision
+- [~] 06-11-PLAN.md — Go-live flip: **deferred until custom domain wired up** (was Wave 5 conditional; site stays at joes-barbershop.vercel.app with noindex per 2026-05-11 decision)
 
 ### Phase 7: Measurement + Baseline
 **Goal**: Ship v1.0 with telemetry on Day 1 — instrument the live site with client-side observability and capture a Day-0 baseline of every metric we'll measure against, so any future "the AEO play worked" claim is defensible against a frozen reference point. Closes the loop on the consulting proof asset (the hire-trigger event becomes the case-study payoff).
