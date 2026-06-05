@@ -15,8 +15,8 @@ import ClosingCTA from '../components/ClosingCTA.astro';
 // TODO Phase 7: consolidate DOM ↔ schema duplication (FAQ.astro hard-codes the same 5 Q&As inline).
 const homepageFaqs = [
   {
-    q: 'Do I need an appointment?',
-    a: 'No appointment needed. Walk-ins are always welcome Tuesday through Saturday. If you want to guarantee a specific time, you can book online at the Square Site link.',
+    q: 'Should I book an appointment?',
+    a: 'Yes. Booking online is the best way to reserve a chair, especially on weekdays while Joe is usually booked. Walk-ins are accepted when the schedule has room, but calling ahead or booking online helps avoid a wasted trip.',
   },
   {
     q: 'Do you take cards?',
@@ -24,7 +24,7 @@ const homepageFaqs = [
   },
   {
     q: 'How long does a haircut take?',
-    a: 'Standard haircut is about 30 minutes. A shave or beard service adds 20–30 minutes on top. Walk in with enough time and you will be taken care of.',
+    a: 'Standard haircut is about 30 minutes. A shave or beard service adds 20–30 minutes on top. Book enough time for the full service, especially if you need a specific window.',
   },
   {
     q: "Do you cut kids' hair?",
@@ -38,7 +38,7 @@ const homepageFaqs = [
 ---
 <Base
   title="Joe's Barbershop — Bostonia, El Cajon"
-  description="Traditional barbershop in Bostonia, East County San Diego. Walk-ins welcome, cash only. Tue–Sat 10am–7:30pm."
+  description="Traditional barbershop in Bostonia, East County San Diego. Appointments recommended, walk-ins as available, cash only. Tue–Sat 10am–7:30pm."
 >
   <Fragment slot="head">
     <AggregateRating />

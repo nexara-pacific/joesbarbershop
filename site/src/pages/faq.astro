@@ -21,18 +21,18 @@ const allFaqs = [
     q: "Are you open on holidays?",
     a: "Holiday hours vary. Joe's Barbershop follows a Tuesday-through-Saturday schedule as its baseline. For specific holiday closures, call the shop at (619) 891-2775 before your visit. The safest approach is to call same-day if you are visiting on or around a major holiday.",
   },
-  // Walk-ins & Booking
+  // Appointments & Walk-ins
   {
-    q: "Do I need an appointment?",
-    a: "No appointment needed. Walk-ins are always welcome Tuesday through Saturday, 10am to 7:30pm. Walk-ins are how most customers visit — you show up, get in the queue, and get cut. If you want to guarantee a specific time slot, the Square booking link accepts online appointments with a card hold. Calling ahead at (619) 891-2775 is useful on busy Fridays and Saturdays — you can hear how full the shop is before you make the drive. But there is no requirement to call or book; walking in is the norm, not the exception.",
+    q: "Should I book an appointment?",
+    a: "Yes. Appointments are recommended. Joe is often booked during the week, so booking through Square is the best way to guarantee a chair. Walk-ins are accepted when the schedule has room, but calling ahead or booking online helps avoid a wasted trip. The shop is open Tuesday through Saturday, 10am to 7:30pm.",
   },
   {
     q: "How long does a haircut take?",
-    a: "A standard haircut takes about 30 minutes in the chair. A shave or beard service adds 20 to 30 minutes on top of that. A haircut-plus-beard combo typically runs 45 to 60 minutes total. These are service times — actual shop time depends on how many customers are ahead of you. On a quiet Tuesday or Wednesday morning you may be in and out in under 45 minutes. On a busy Friday or Saturday afternoon, add 15 to 30 minutes of queue time. If your schedule is tight, call ahead at (619) 891-2775 to check the wait before driving over.",
+    a: "A standard haircut takes about 30 minutes in the chair. A shave or beard service adds 20 to 30 minutes on top of that. A haircut-plus-beard combo typically runs 45 to 60 minutes total. Book enough time for the full service, especially if you need a specific window. If your schedule is tight, reserve a chair through Square before driving over.",
   },
   {
-    q: "How long is the wait for a walk-in?",
-    a: "Wait times depend on how many customers are ahead of you. Busy periods are typically late afternoon on Fridays and Saturdays. Early weekday mornings tend to be faster. If you are concerned about the wait, call (619) 891-2775 to ask how full the shop is before driving over.",
+    q: "Can I still walk in?",
+    a: "Yes, when the schedule has room. If Joe is fully booked, he may not be able to take walk-ins that day. Book online if you need a guaranteed time, or call (619) 891-2775 before coming over to check availability.",
   },
   // Payment & Cash
   {
@@ -50,11 +50,11 @@ const allFaqs = [
   // Kids & Family
   {
     q: "Do you cut kids' hair?",
-    a: "Yes. Joe's Barbershop cuts kids' hair. School-age kids through teens are all regulars. Kids cuts are priced the same as adult cuts at $30 — there is no separate \"kids pricing\" tier. Walk-ins work the same way for kids as for adults: show up during open hours and you will be taken care of. Families commonly bring dad and one or two kids in on the same visit. The shop does not run a separate kids-only queue or a special kids appointment slot — kids sit in the same chair, served by the same barber every visit. There is no minimum age, but very young children who cannot sit still may need a parent in the chair alongside them.",
+    a: "Yes. Joe's Barbershop cuts kids' hair. School-age kids through teens are all regulars. Kids cuts are priced the same as adult cuts at $30 — there is no separate \"kids pricing\" tier. Booking is recommended if you are bringing more than one person so Joe can block enough time. The shop does not run a separate kids-only queue or a special kids appointment slot — kids sit in the same chair, served by the same barber every visit. There is no minimum age, but very young children who cannot sit still may need a parent in the chair alongside them."
   },
   {
     q: "Is the shop welcoming to kids and families?",
-    a: "Yes. Joe's Barbershop is a neighborhood shop that serves East County families. Kids come in with their parents regularly. The atmosphere is relaxed and straightforward — no appointment pressure, no upscale grooming-lounge feel. If you are bringing your kid for their first barbershop cut, this is the kind of shop where that goes fine.",
+    a: "Yes. Joe's Barbershop is a neighborhood shop that serves East County families. Kids come in with their parents regularly. The atmosphere is relaxed and straightforward — posted prices, same chairs, no upscale grooming-lounge feel. If you are bringing your kid for their first barbershop cut, this is the kind of shop where that goes fine."
   },
   // Parking & Location
   {
@@ -72,8 +72,8 @@ const allFaqs = [
 ];
 ---
 <Base
-  title="FAQ · Joe's Barbershop · Hours, Payment, Walk-ins, Kids"
-  description="Frequently asked questions for Joe's Barbershop in Bostonia, El Cajon. Hours, walk-ins, cash-only, kids cuts, parking — answered."
+  title="FAQ · Joe's Barbershop · Hours, Booking, Payment, Kids"
+  description="Frequently asked questions for Joe's Barbershop in Bostonia, El Cajon. Hours, appointments, walk-ins, cash-only, kids cuts, parking — answered."
   variant="article"
 >
   <Fragment slot="head">
@@ -90,7 +90,7 @@ const allFaqs = [
   <section class="bluf" aria-label="Answer capsule">
     <div class="wrap">
       <p class="bluf-lead">
-        <strong>Joe's Barbershop is open Tuesday through Saturday, 10am to 7:30pm, at 723 E Bradley Ave Suite C in Bostonia, El Cajon.</strong> Walk-ins are always welcome — no appointment needed, though you can book online through Square if you want a reserved slot. The shop is cash-only; there is an ATM on site. Haircuts are $30, shaves are $30, beard line-ups are $20, and kids cuts are $30. Parking is free in the strip-mall lot directly out front. The 14 questions below cover every operational detail customers ask before their first visit — hours, payment, wait times, kids cuts, and how to find the shop.
+        <strong>Joe's Barbershop is open Tuesday through Saturday, 10am to 7:30pm, at 723 E Bradley Ave Suite C in Bostonia, El Cajon.</strong> Appointments are recommended, especially on weekdays while Joe is usually booked; walk-ins are accepted when the schedule has room. The shop is cash-only at the chair; there is an ATM on site. Haircuts are $30, shaves are $30, beard line-ups are $20, and kids cuts are $30. Parking is free in the strip-mall lot directly out front. The 14 questions below cover every operational detail customers ask before their first visit — hours, booking, payment, kids cuts, and how to find the shop.
       </p>
     </div>
   </section>
@@ -123,27 +123,27 @@ const allFaqs = [
         </article>
       </div>
 
-      <h2>Walk-ins &amp; Booking</h2>
+      <h2>Appointments &amp; Walk-ins</h2>
       <div class="faq-list">
         <article class="faq-q">
           <span class="num" aria-hidden="true">04</span>
           <div>
-            <h3>Do I need an appointment?</h3>
-            <p>No appointment needed. Walk-ins are always welcome Tuesday through Saturday, 10am to 7:30pm. Walk-ins are how most customers visit — you show up, get in the queue, and get cut. If you want to guarantee a specific time slot, the Square booking link accepts online appointments with a card hold. Calling ahead at (619) 891-2775 is useful on busy Fridays and Saturdays — you can hear how full the shop is before you make the drive. But there is no requirement to call or book; walking in is the norm, not the exception.</p>
+            <h3>Should I book an appointment?</h3>
+            <p>Yes. Appointments are recommended. Joe is often booked during the week, so booking through Square is the best way to guarantee a chair. Walk-ins are accepted when the schedule has room, but calling ahead or booking online helps avoid a wasted trip. The shop is open Tuesday through Saturday, 10am to 7:30pm.</p>
           </div>
         </article>
         <article class="faq-q">
           <span class="num" aria-hidden="true">05</span>
           <div>
             <h3>How long does a haircut take?</h3>
-            <p>A standard haircut takes about 30 minutes in the chair. A shave or beard service adds 20 to 30 minutes on top of that. A haircut-plus-beard combo typically runs 45 to 60 minutes total. These are service times — actual shop time depends on how many customers are ahead of you. On a quiet Tuesday or Wednesday morning you may be in and out in under 45 minutes. On a busy Friday or Saturday afternoon, add 15 to 30 minutes of queue time. If your schedule is tight, call ahead at (619) 891-2775 to check the wait before driving over.</p>
+            <p>A standard haircut takes about 30 minutes in the chair. A shave or beard service adds 20 to 30 minutes on top of that. A haircut-plus-beard combo typically runs 45 to 60 minutes total. Book enough time for the full service, especially if you need a specific window. If your schedule is tight, reserve a chair through Square before driving over.</p>
           </div>
         </article>
         <article class="faq-q">
           <span class="num" aria-hidden="true">06</span>
           <div>
-            <h3>How long is the wait for a walk-in?</h3>
-            <p>Wait times depend on how many customers are ahead of you. Busy periods are typically late afternoon on Fridays and Saturdays. Early weekday mornings tend to be faster. If you are concerned about the wait, call (619) 891-2775 to ask how full the shop is before driving over.</p>
+            <h3>Can I still walk in?</h3>
+            <p>Yes, when the schedule has room. If Joe is fully booked, he may not be able to take walk-ins that day. Book online if you need a guaranteed time, or call (619) 891-2775 before coming over to check availability.</p>
           </div>
         </article>
       </div>
@@ -179,14 +179,14 @@ const allFaqs = [
           <span class="num" aria-hidden="true">10</span>
           <div>
             <h3>Do you cut kids' hair?</h3>
-            <p>Yes. Joe's Barbershop cuts kids' hair. School-age kids through teens are all regulars. Kids cuts are priced the same as adult cuts at $30 — there is no separate "kids pricing" tier. Walk-ins work the same way for kids as for adults: show up during open hours and you will be taken care of. Families commonly bring dad and one or two kids in on the same visit. The shop does not run a separate kids-only queue or a special kids appointment slot — kids sit in the same chair, served by the same barber every visit. There is no minimum age, but very young children who cannot sit still may need a parent in the chair alongside them.</p>
+            <p>Yes. Joe's Barbershop cuts kids' hair. School-age kids through teens are all regulars. Kids cuts are priced the same as adult cuts at $30 — there is no separate "kids pricing" tier. Booking is recommended if you are bringing more than one person so Joe can block enough time. The shop does not run a separate kids-only queue or a special kids appointment slot — kids sit in the same chair, served by the same barber every visit. There is no minimum age, but very young children who cannot sit still may need a parent in the chair alongside them.</p>
           </div>
         </article>
         <article class="faq-q">
           <span class="num" aria-hidden="true">11</span>
           <div>
             <h3>Is the shop welcoming to kids and families?</h3>
-            <p>Yes. Joe's Barbershop is a neighborhood shop that serves East County families. Kids come in with their parents regularly. The atmosphere is relaxed and straightforward — no appointment pressure, no upscale grooming-lounge feel. If you are bringing your kid for their first barbershop cut, this is the kind of shop where that goes fine.</p>
+            <p>Yes. Joe's Barbershop is a neighborhood shop that serves East County families. Kids come in with their parents regularly. The atmosphere is relaxed and straightforward — posted prices, same chairs, no upscale grooming-lounge feel. If you are bringing your kid for their first barbershop cut, this is the kind of shop where that goes fine.</p>
           </div>
         </article>
       </div>

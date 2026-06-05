@@ -18,7 +18,7 @@ Heritage barbershop. Working class. Neighborhood. Family-friendly. Honest. No-fr
 ## Brand context
 - Joe's Barbershop, Bostonia neighborhood, El Cajon CA
 - 723 E Bradley Ave #C, 92021 — strip-mall storefront (embrace it, don't hide it)
-- Owner: Joe Denesowicz, with barber Alex (3+ stations confirmed; possibly 1–2 more barbers)
+- Owner/barber: Joe Denesowicz. Joe is currently solo; future barbers may reopen stronger walk-in positioning. 3+ stations confirmed.
 - Established 2020
 - 4.9★ / ~91 Google reviews; 4.9★ / 33 reviews / 102 photos on Yelp
 - Existing logo asset (see `photos/01-logo.jpg`): ornate Western/Victorian serif "Joe's BARBERSHOP / HAIRCUTS & SHAVES" with two barber poles flanking the wordmark; cream/tan + black + barber-pole red + navy
@@ -29,10 +29,10 @@ Heritage barbershop. Working class. Neighborhood. Family-friendly. Honest. No-fr
 - **Black-and-white checkerboard motif** as a recurring design element — section dividers, hero overlays, footer pattern. Echoes the actual floor.
 - Heritage barber typography — display headings should echo the logo's Western/Victorian serif (Playfair Display, IM Fell English, Baskerville, or similar). Letter-board condensed sans (Helvetica/Bebas/News Gothic Condensed) for service prices echoing the in-shop board.
 - Color palette: cream/tan base, black structural elements, barber-pole red and navy as accents. Pull directly from the logo.
-- Honest documentary photography — storefront, cuts in progress, Joe and Alex working, signage, the actual checkerboard floor. NOT staged photoshoots.
+- Honest documentary photography — storefront, cuts in progress, Joe working, signage, the actual checkerboard floor. NOT staged photoshoots.
 - Bright, well-lit imagery (not mood-lit, not vintage filter).
 - **"Cash only — ATM on site" surfaced prominently and unapologetically.** Positioning, not a limitation.
-- Visible price list (echo letter-board format), hours, walk-ins-welcome — surface them, don't hide behind contact form.
+- Visible price list (echo letter-board format), hours, appointments recommended, walk-ins as available — surface them, don't hide behind contact form.
 - Family-friendly cues: "kids cuts" as a service line, not "men only".
 - Logo decal-as-wall-art motif: round logo can repeat as a graphic element, not just header lockup.
 - Working-class Latino + Anglo Americana cues are honest and specific to East County. Don't sanitize.
@@ -57,7 +57,7 @@ Heritage barbershop. Working class. Neighborhood. Family-friendly. Honest. No-fr
 - Secondary "Visit Us" image: `photos/02-storefront.jpg`
 - BLUF answer capsule first 100 words on every page in clean editorial serif body font
 - Service prices visible inline as a letter-board-styled block (white-on-black, condensed sans) echoing `photos/06-price-board-cash-only.jpg` — NOT gated
-- "Walk-ins welcome" + "Family-friendly" + "Cash only — ATM on site" all stated above the fold on the homepage
+- "Appointments recommended" + "Family-friendly" + "Cash only — ATM on site" all stated above the fold on the homepage
 - Strip-mall context owned, not hidden
 - Use the round logo decal as a recurring graphic element — section markers, hover states, footer ornament
 
