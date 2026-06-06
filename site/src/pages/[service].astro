@@ -94,6 +94,8 @@ const neighborhoods = [
         <span class="eyebrow">Posted price · cash only</span>
         <p class="price-amount">${entry.data.price}</p>
         <p class="price-meta">{entry.data.duration} · ATM on site</p>
+        <p class="price-booking">Booking online is the best way to hold a chair. Walk-ins are accepted when the schedule has room.</p>
+        <a class="price-btn" href="https://joe-104613.square.site/" target="_blank" rel="noopener">Book {entry.data.title.toLowerCase()}</a>
       </div>
     </div>
   </section>
@@ -255,6 +257,34 @@ const neighborhoods = [
     color: var(--board-fg);
     opacity: 0.8;
     margin: 0;
+  }
+  .price-callout-card .price-booking {
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 46ch;
+    margin: 20px auto 18px;
+    color: var(--board-fg);
+    opacity: 0.9;
+  }
+  .price-callout-card .price-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    background: var(--board-fg);
+    color: var(--board-bg);
+    font-family: var(--font-board);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--board-fg);
+  }
+  .price-callout-card .price-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--fg);
   }
 
   .prose {

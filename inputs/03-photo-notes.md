@@ -19,7 +19,7 @@ What each photo in `./photos/` shows and where to use it. All photos are real Jo
 
 Optional but useful — would strengthen the site:
 
-- Joe and Alex actually cutting (with permission)
+- Joe actually cutting (with permission)
 - Close-up of the heritage barber chair (black leather + mahogany frame)
 - A kid getting a cut (parent permission — strong family-friendly proof)
 - Exterior signage zoomed

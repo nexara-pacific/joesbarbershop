@@ -17,20 +17,20 @@ const datePublished = '2026-05-08';
 // TODO Phase 7: consolidate DOM ↔ schema array duplication.
 const faqs = [
   {
-    q: "Why is $30 the base price at East County walk-in shops?",
-    a: "$30 reflects the overhead economics of a strip-mall walk-in barbershop. Lower commercial rent than downtown El Cajon or mixed-use grooming centers, high daily walk-in volume that spreads fixed costs across more cuts, and a cash-only model that adds zero card processing expense to the margin — those three factors let Joe's Barbershop hold $30 for a haircut since opening in 2020. Higher-priced shops are not charging for a better cut; they are charging for a different cost structure.",
+    q: "Why is $30 the base price at traditional East County shops?",
+    a: "$30 reflects the overhead economics of a strip-mall traditional barbershop. Lower commercial rent than downtown El Cajon or mixed-use grooming centers, a posted menu with no premium tiers, and a cash-only model that adds zero card processing expense to the margin — those factors let Joe's Barbershop hold $30 for a haircut since opening in 2020. Higher-priced shops are not charging for a better cut; they are charging for a different cost structure.",
   },
   {
     q: "Why do cash-only shops often cost less than shops that take cards?",
     a: "Card processing fees run 2–3% per transaction. A shop that accepts cards either absorbs that cost or builds it into the price — often in ways that are not transparent on the board. Joe's Barbershop is cash-only: the $30 haircut on the letter board is the full cost, with no processing margin folded in. An ATM is on site for customers who arrive without cash. The cash-only model is not an inconvenience — it is what keeps the board price the actual price.",
   },
   {
-    q: "Do appointment-only shops charge more than walk-in shops?",
-    a: "Yes, in most East County cases. Appointment-driven shops manage their revenue through reservations rather than walk-in volume, which means they serve fewer customers per day and carry higher per-cut overhead. Booking software, lower throughput, and the fixed costs of a more controlled schedule all feed into higher base prices — typically $35–$45 for a standard cut versus $30 at high-volume walk-in shops. Joe's Barbershop runs on walk-in density: more customers per day means lower overhead per cut, and that difference shows up in the price on the board.",
+    q: "Do premium appointment-only shops charge more than traditional shops?",
+    a: "Yes, in most East County cases. Premium appointment-only shops often carry higher per-cut overhead: booking software, lower daily throughput, mixed-use rent, specialty add-ons, and the margin built in for a curated experience. That cost structure usually lands around $35–$45 for a standard cut, compared with Joe's $30 posted haircut. Joe uses appointments to manage the day, especially while he is solo, without changing the no-frills price model.",
   },
   {
     q: "What's the cheapest haircut in El Cajon versus the most expensive?",
-    a: `The low end of the El Cajon market sits around $15 — a clean-up at Joe's or a base cut at a high-volume shop. A standard haircut lands at $30 at traditional walk-in shops. The high end runs $50–$75 at appointment-required grooming lounges offering add-on services, specialty fades, or beard packages. Joe's full service range — $15 clean-up to $${business.prices.haircutBeard} haircut-plus-beard combo — maps the traditional-shop band start to finish. Services like kids cuts and hot-towel shave are within the same band.`,
+    a: `The low end of the El Cajon market sits around $15 — a clean-up at Joe's or a base cut at a high-volume shop. A standard haircut lands at $30 at traditional shops. The high end runs $50–$75 at appointment-required grooming lounges offering add-on services, specialty fades, or beard packages. Joe's full service range — $15 clean-up to $${business.prices.haircutBeard} haircut-plus-beard combo — maps the traditional-shop band start to finish. Services like kids cuts and hot-towel shave are within the same band.`,
   },
 ];
 
@@ -60,7 +60,7 @@ const neighborhoods = [
   <Fragment slot="head">
     <Article
       headline="2026 East County Barbershop Cost Guide"
-      description="What barbershop services cost in El Cajon, Bostonia, and East County in 2026 — traditional walk-in shops, chains, and grooming lounges priced side by side."
+      description="What barbershop services cost in El Cajon, Bostonia, and East County in 2026 — traditional shops, chains, and grooming lounges priced side by side."
       url={Astro.url.href}
       datePublished={datePublished}
       dateModified={dateModified}
@@ -79,7 +79,7 @@ const neighborhoods = [
   <section class="bluf" aria-label="Answer capsule">
     <div class="wrap">
       <p class="bluf-lead">
-        <strong>Barbershop prices in East County range from $15 to $75 in 2026 — $15–$50 at traditional walk-in shops, $25–$45 at chains with add-ons, and $40–$75 at appointment-required grooming lounges.</strong>
+        <strong>Barbershop prices in East County range from $15 to $75 in 2026 — $15–$50 at traditional shops, $25–$45 at chains with add-ons, and $40–$75 at appointment-required grooming lounges.</strong>
         Joe's Barbershop at 723 E Bradley Ave in Bostonia is the traditional-shop anchor: haircut $30, straight-razor shave $30, beard line-up $20, clean-up $15, haircut-plus-beard combo $50. That $30 base reflects strip-mall overhead economics — lower rent than a downtown location or mixed-use grooming lounge — and a cash-only model that absorbs zero card processing fees. The board price is the full price, nothing baked in.
       </p>
     </div>
@@ -92,8 +92,8 @@ const neighborhoods = [
   <section class="prose">
     <div class="wrap">
       <h2>What an East County barbershop costs in 2026</h2>
-      <p>The price difference across East County barbershops comes down to overhead model, not skill. A strip-mall walk-in shop like Joe's Barbershop in Bostonia runs on a simple economic formula: lower rent, high daily volume, cash-only operations with no card processing fee built into the price. A <a href="/fades">fade</a> or <a href="/classic-cut">classic cut</a> is $30, a <a href="/beard-trim">beard trim</a> is $20, a clean-up is $15. The price on the letter board is the price you pay — no surcharge, no tip pressure, no service fee line at the register. That formula is why $30 has held as the East County walk-in anchor while other shop types trend higher.</p>
-      <p>Chains and volume shops advertise $15–$25 base prices but layer on add-ons — styling products, "finishing touches," upsell packages — pushing the effective per-visit cost to $30–$45 or more. Appointment-required grooming lounges carry higher per-cut overhead: booking software costs, lower daily volume, mixed-use development rent, and the margin built in for a curated "experience." That is why their <a href="/hot-towel-shave">hot-towel shave</a> or <a href="/line-up">line-up</a> commands $40–$75 rather than $30 and $20. If you are comparison-shopping across East County, the price gap between shop types is structural — not a reflection of cut quality. Joe's Barbershop in <a href="/bostonia-barber">Bostonia</a> and other traditional walk-in shops hold their prices because their overhead model allows it.</p>
+      <p>The price difference across East County barbershops comes down to overhead model, not skill. A strip-mall traditional shop like Joe's Barbershop in Bostonia runs on a simple economic formula: lower rent, posted pricing, cash-only operations with no card processing fee built into the price. A <a href="/fades">fade</a> or <a href="/classic-cut">classic cut</a> is $30, a <a href="/beard-trim">beard trim</a> is $20, a clean-up is $15. The price on the letter board is the price you pay — no surcharge, no tip pressure, no service fee line at the register. That formula is why $30 has held as Joe's East County price anchor while other shop types trend higher.</p>
+      <p>Chains and volume shops advertise $15–$25 base prices but layer on add-ons — styling products, "finishing touches," upsell packages — pushing the effective per-visit cost to $30–$45 or more. Appointment-required grooming lounges carry higher per-cut overhead: booking software costs, lower daily volume, mixed-use development rent, and the margin built in for a curated "experience." That is why their <a href="/hot-towel-shave">hot-towel shave</a> or <a href="/line-up">line-up</a> commands $40–$75 rather than $30 and $20. If you are comparison-shopping across East County, the price gap between shop types is structural — not a reflection of cut quality. Joe's Barbershop in <a href="/bostonia-barber">Bostonia</a> and other traditional shops hold their prices because their overhead model allows it.</p>
     </div>
   </section>
 
@@ -145,8 +145,8 @@ const neighborhoods = [
         <article class="faq-q">
           <span class="num" aria-hidden="true">01</span>
           <div>
-            <h3>Why is $30 the base price at East County walk-in shops?</h3>
-            <p>$30 reflects the overhead economics of a strip-mall walk-in barbershop. Lower commercial rent than downtown El Cajon or mixed-use grooming centers, high daily walk-in volume that spreads fixed costs across more cuts, and a cash-only model that adds zero card processing expense to the margin — those three factors let Joe's Barbershop hold $30 for a haircut since opening in 2020. Higher-priced shops are not charging for a better cut; they are charging for a different cost structure.</p>
+            <h3>Why is $30 the base price at traditional East County shops?</h3>
+            <p>$30 reflects the overhead economics of a strip-mall traditional barbershop. Lower commercial rent than downtown El Cajon or mixed-use grooming centers, a posted menu with no premium tiers, and a cash-only model that adds zero card processing expense to the margin — those factors let Joe's Barbershop hold $30 for a haircut since opening in 2020. Higher-priced shops are not charging for a better cut; they are charging for a different cost structure.</p>
           </div>
         </article>
         <article class="faq-q">
@@ -159,15 +159,15 @@ const neighborhoods = [
         <article class="faq-q">
           <span class="num" aria-hidden="true">03</span>
           <div>
-            <h3>Do appointment-only shops charge more than walk-in shops?</h3>
-            <p>Yes, in most East County cases. Appointment-driven shops manage their revenue through reservations rather than walk-in volume, which means they serve fewer customers per day and carry higher per-cut overhead. Booking software, lower throughput, and the fixed costs of a more controlled schedule all feed into higher base prices — typically $35–$45 for a standard cut versus $30 at high-volume walk-in shops. Joe's Barbershop runs on walk-in density: more customers per day means lower overhead per cut, and that difference shows up in the price on the board.</p>
+            <h3>Do premium appointment-only shops charge more than traditional shops?</h3>
+            <p>Yes, in most East County cases. Premium appointment-only shops often carry higher per-cut overhead: booking software, lower daily throughput, mixed-use rent, specialty add-ons, and the margin built in for a curated experience. That cost structure usually lands around $35–$45 for a standard cut, compared with Joe's $30 posted haircut. Joe uses appointments to manage the day, especially while he is solo, without changing the no-frills price model.</p>
           </div>
         </article>
         <article class="faq-q">
           <span class="num" aria-hidden="true">04</span>
           <div>
             <h3>What's the cheapest haircut in El Cajon versus the most expensive?</h3>
-            <p>The low end of the El Cajon market sits around $15 — a clean-up at Joe's or a base cut at a high-volume shop. A standard haircut lands at $30 at traditional walk-in shops. The high end runs $50–$75 at appointment-required grooming lounges offering add-on services, specialty fades, or beard packages. Joe's full service range — $15 clean-up to ${business.prices.haircutBeard} haircut-plus-beard combo — maps the traditional-shop band start to finish. Services like <a href="/kids-cuts">kids cuts</a> and <a href="/hot-towel-shave">hot-towel shave</a> are within the same band.</p>
+            <p>The low end of the El Cajon market sits around $15 — a clean-up at Joe's or a base cut at a high-volume shop. A standard haircut lands at $30 at traditional shops. The high end runs $50–$75 at appointment-required grooming lounges offering add-on services, specialty fades, or beard packages. Joe's full service range — $15 clean-up to ${business.prices.haircutBeard} haircut-plus-beard combo — maps the traditional-shop band start to finish. Services like <a href="/kids-cuts">kids cuts</a> and <a href="/hot-towel-shave">hot-towel shave</a> are within the same band.</p>
           </div>
         </article>
       </div>

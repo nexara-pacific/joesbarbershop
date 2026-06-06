@@ -7,7 +7,7 @@ Architecture for Joe's E9 AEO Content Hub. Verified evidence: 20–40 focused lo
 | # | Path | Schema | Notes |
 |---|---|---|---|
 | 1 | `/` | HairSalon + LocalBusiness + sameAs | Homepage. BLUF answer-capsule (first 100 words), services snapshot, NAP, hero photo (`photos/03-interior-hero.jpg`). |
-| 2 | `/about` | Person × 2 (Joe Denesowicz, Alex) + Organization | History, credentials, photos, hours, ESTD. 2020. |
+| 2 | `/about` | Person (Joe Denesowicz) + Organization | History, credentials, photos, hours, ESTD. 2020. |
 | 3 | `/east-county-traditional-barbershop` | Article + LocalBusiness + FAQPage | **Niche-query landing — locks in current AEO win.** `areaServed: ["El Cajon", "Bostonia", "Santee", "Lakeside", "La Mesa"]`. 6 FAQ Q&As about traditional barbering in East County. |
 | 4 | `/fades` | Service + FAQPage | $30. BLUF capsule + 4–5 FAQs. |
 | 5 | `/kids-cuts` | Service + FAQPage | Family-friendly emphasis. |
@@ -21,7 +21,7 @@ Architecture for Joe's E9 AEO Content Hub. Verified evidence: 20–40 focused lo
 | 13 | `/lakeside-barber` | same | |
 | 14 | `/la-mesa-barber` | same | |
 | 15 | `/2026-east-county-barbershop-cost-guide` | Article + FAQPage | **Comparative listicle — 32.5% of AI citations come from this format.** Mirror to Medium for off-site signal. |
-| 16 | `/faq` | FAQPage | Master FAQ — hours, walk-ins, cash-only, kids policy, parking, payment, ATM. |
+| 16 | `/faq` | FAQPage | Master FAQ — hours, appointments, walk-ins as available, cash-only, kids policy, parking, payment, ATM. |
 | 17 | `/reviews` | Review aggregate + LocalBusiness | Pulled-quote highlights from Google + Yelp; review-language extraction surface for AI. |
 | 18 (opt) | `/contact` | LocalBusiness | If booking widget needs its own surface. |
 | 19 (opt) | `/blog/[seasonal-post]` | Article | One fresh seasonal post for freshness signal. |

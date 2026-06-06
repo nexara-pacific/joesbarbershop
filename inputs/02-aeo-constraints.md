@@ -25,7 +25,7 @@ Every page ships with schema. Priority order:
 2. **HairSalon** (more specific than LocalBusiness — use on shop-level pages)
 3. **LocalBusiness** (with `areaServed`, `geo`, `priceRange`)
 4. **Service** (one per service page; with `offers` + `priceSpecification`)
-5. **Person** (Joe Denesowicz + Alex on /about; provides E-E-A-T signal)
+5. **Person** (Joe Denesowicz on /about; provides E-E-A-T signal)
 6. **Article** (on cost guide + niche-query landing + blog posts; with `author`, `datePublished`, `dateModified`)
 7. **Review** / **AggregateRating** (on /reviews and homepage)
 8. **sameAs** in JSON-LD: link to GBP, Yelp, IG, FB, Booksy (when added), Wikidata Q-number (when registered)

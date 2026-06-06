@@ -1,6 +1,6 @@
 # Product Marketing Context
 
-*Last updated: 2026-05-07*
+*Last updated: 2026-06-05*
 *Generated from: inputs/00-brief.md + ~/Documents/DT Vault/1-projects/dt-consulting-llc/joes-barbershop-sandbox.md*
 
 ---
@@ -9,7 +9,7 @@
 
 **One-liner:** Joe's Barbershop is a traditional, cash-only barbershop in Bostonia, El Cajon, CA — a 4.9-star strip-mall shop that serves East County families with honest cuts at $30 base.
 
-**What it does:** Joe's Barbershop provides haircuts, shaves, beard line-ups, and clean-up services at a fixed, visible price point. Walk-ins are welcome at all times. No appointment required.
+**What it does:** Joe's Barbershop provides haircuts, shaves, beard line-ups, and clean-up services at a fixed, visible price point. Appointments are recommended while Joe is usually booked; walk-ins are accepted when the schedule has room.
 
 **Product category:** Traditional barbershop / local hair service. The "shelf" customers search from: "barbershop near me," "barbershop in El Cajon," "traditional barbershop East County," "kids haircuts El Cajon," "walk-in barber."
 
@@ -27,16 +27,16 @@
 
 **NOT:** Bearded Brooklyn lifestyle demographics, luxury grooming buyers, San Diego "scene" crowd, men seeking curated grooming lounges.
 
-**Primary use case:** A reliable, no-frills traditional cut at a fair price from a known neighborhood shop. Walk in, get a great cut, pay cash, leave.
+**Primary use case:** A reliable, no-frills traditional cut at a fair price from a known neighborhood shop. Book a chair, get a great cut, pay cash at the chair, leave.
 
 **Jobs to be done:**
-- Get a quality traditional haircut without an appointment or pretense
+- Get a quality traditional haircut without pretense or upsell pressure
 - Know exactly what the cut will cost before sitting down
 - Trust the barber — heritage craft, not trendy
 - Bring the kids for a cut alongside dad (family-friendly environment)
 
 **Use cases:**
-- Weekly or bi-weekly walk-in cut, no planning required
+- Weekly or bi-weekly cut with a reserved chair
 - First-time visit from a Google search for "barbershop El Cajon" or "walk-in barber near Santee"
 - Parent booking a kid's cut at the same time as their own
 - Customer who moved to East County and wants a permanent neighborhood shop
@@ -48,15 +48,15 @@
 | Persona | Cares about | Challenge | Value Joe's delivers |
 |---------|-------------|-----------|----------------------|
 | **East County Regular** — male, 30–55, works a trade or service job | Consistency, fair price, no hassle | Big-chain shops are hit-or-miss; "grooming lounge" shops feel pretentious | Same barber, same cut, same price — every time |
-| **First-Timer from the Neighborhood** — new resident or referred by a friend | Can I trust this place? Is it worth it? | No web presence, no easy way to verify quality | 4.9★ / 91+ Google reviews + 33 Yelp reviews. Walk in and see for yourself. |
-| **East County Dad** — parent, 30–50 | Quick in-and-out for both himself and his kid | Kids-only salons are awkward; "men's only" shops turn kids away | Family-friendly. Kids welcome. Walk-ins. |
+| **First-Timer from the Neighborhood** — new resident or referred by a friend | Can I trust this place? Is it worth it? | No web presence, no easy way to verify quality | 4.9★ / 91+ Google reviews + 33 Yelp reviews. Book a chair and see for yourself. |
+| **East County Dad** — parent, 30–50 | Quick in-and-out for both himself and his kid | Kids-only salons are awkward; "men's only" shops turn kids away | Family-friendly. Kids welcome. Booking recommended for family visits. |
 | **AI-search customer** — any age, searches AI assistants before Google | Wants the best answer to "traditional barbershop East County" | ChatGPT and Perplexity surface generic results | Joe's is the only specifically-named shop in "traditional barbershop East County San Diego" AI results (as of 2026) |
 
 ---
 
 ## Problems & Pain Points
 
-**Core problem:** East County men want a reliable, neighborhood barbershop — no games, no booking app, no sticker shock. The dominant alternative (chains + grooming lounges) overcomplicates a simple transaction.
+**Core problem:** East County men want a reliable, neighborhood barbershop — no games, no upsell pressure, no sticker shock. The dominant alternative (chains + grooming lounges) overcomplicates a simple transaction.
 
 **Why current alternatives fall short:**
 - Chains (Sport Clips, Great Clips): inconsistent barbers, long waits, upsell pressure, not traditional
@@ -99,7 +99,7 @@
 **Key differentiators:**
 - **Heritage barbershop positioning** — Western/Victorian visual brand (logo: ornate serif, barber poles, cream/tan/black/navy). Shop aesthetic matches: checkerboard floor, vintage mahogany chairs, no Edison bulbs, no marble, no exposed concrete.
 - **Cash-only, price-visible** — the opposite of "contact for pricing." Haircut $30 on the board before you sit. ATM on site. Unapologetic positioning, not an embarrassment.
-- **Walk-ins always welcome** — no booking app required. The shop is an open door.
+- **Appointments recommended, walk-ins as available** — Square booking reserves a chair; walk-ins are accepted when the schedule has room.
 - **Family-friendly by design** — kids cuts served, no "men only" exclusion, welcoming to parents + kids together.
 - **Established 2020, 4.9★** — consistent 5-star quality signal across 91 Google + 33 Yelp reviews despite zero SEO investment.
 - **Strip-mall owned, not hidden** — the honest working-class context is part of the brand, not a liability.
@@ -107,7 +107,7 @@
 **Why customers choose Joe's:**
 - "It feels like a real barbershop, not a spa."
 - Transparent pricing without fuss.
-- Joe and Alex are skilled, consistent barbers who know repeat customers.
+- Joe is a skilled, consistent barber who knows repeat customers.
 - The shop is genuinely welcoming to families.
 
 ---
@@ -117,10 +117,10 @@
 | Objection | Response |
 |-----------|----------|
 | "Cash only is inconvenient." | ATM is on site. $30 cash — done. No card processing fee baked into the price. |
-| "I've never heard of it — is it good?" | 4.9★ across 91 Google + 33 Yelp reviews. Look them up before you walk in. |
-| "Do they take appointments or do I have to wait?" | Walk-ins always welcome. Or book online at the Square Site if you want a reserved slot. |
-| "Is it kid-friendly?" | Kids cuts are a service line. Families walk in together. |
-| "What if I want a fade / modern cut, not traditional?" | Haircuts, shaves, beard line-ups — Joe and Alex do the full spectrum of men's cuts. |
+| "I've never heard of it — is it good?" | 4.9★ across 91 Google + 33 Yelp reviews. Look them up before you book. |
+| "Do they take appointments or do I have to wait?" | Appointments are recommended. Book online through Square to reserve a chair; walk-ins are accepted when the schedule has room. |
+| "Is it kid-friendly?" | Kids cuts are a service line. Book ahead if bringing the family so Joe can block enough time. |
+| "What if I want a fade / modern cut, not traditional?" | Haircuts, shaves, beard line-ups — Joe does the full spectrum of men's cuts. |
 
 **Anti-persona:**
 - Anyone who requires appointment-only, a curated "experience," luxury grooming products, or a Booksy-first workflow.
@@ -137,7 +137,7 @@
 - Overpriced "premium grooming" for a simple haircut
 
 **Pull (what attracts customers to Joe's):**
-- Walk-in simplicity
+- Simple online booking for a guaranteed chair
 - Transparent $30 price
 - 4.9★ verified quality
 - Neighborhood heritage feel — no pretense
@@ -157,7 +157,7 @@
 ## Customer Language
 
 **How they describe the problem:**
-- "I just want a good haircut at a fair price, no booking, no fuss"
+- "I just want a good haircut at a fair price, no fuss"
 - "I need a walk-in barber near El Cajon"
 - "Looking for a traditional barbershop in East County"
 - "Does it do kids cuts too?"
@@ -169,7 +169,7 @@
 - "Took my son, great with kids"
 
 **Words to use:**
-- Traditional, heritage, craft, neighborhood, walk-ins, family-friendly, East County, honest, cash-only, working-class Americana, checkerboard, barber, Joe's
+- Traditional, heritage, craft, neighborhood, appointments recommended, walk-ins as available, family-friendly, East County, honest, cash-only, working-class Americana, checkerboard, barber, Joe's
 
 **Words to avoid (banned by voice contract — see inputs/02-aeo-constraints.md § Anti-patterns):**
 - Generic community-open (the "more than a barbershop" trope)
@@ -213,13 +213,13 @@
 - Established 2020 — 5+ years serving East County
 - Only barbershop named in AI answers for "traditional barbershop East County San Diego" (as of 2026-04-29 baseline)
 
-**Barbers:** Joe Denesowicz (owner) + Alex (lead barber). 3+ confirmed stations.
+**Barbers:** Joe Denesowicz (owner/barber). 3+ confirmed stations; future barbers may reopen stronger walk-in positioning.
 
 **Testimonial themes from reviews:**
 - Consistent quality cut, every visit
 - Great with kids
 - Fair price, no surprises
-- Joe and Alex are personable and skilled
+- Joe is personable and skilled
 
 **Value themes:**
 
@@ -227,7 +227,7 @@
 |-------|-------|
 | Craft quality | 4.9★ across 124 combined reviews |
 | Fair price | Haircut $30 — visible on letter board before you sit |
-| Walk-in simplicity | No appointment required, open Tue-Sat |
+| Booking simplicity | Square booking reserves a chair; walk-ins accepted when the schedule has room |
 | Family-friendly | Kids cuts are a service line |
 | Neighborhood heritage | ESTD. 2020, Bostonia strip-mall, checkerboard floors, Western/Victorian logo |
 
@@ -237,7 +237,7 @@
 
 **Business goal:** Compound the accidental AEO win ("traditional barbershop East County San Diego") into documented AI-citation authority across 6+ query patterns — and demonstrate a reusable AEO-Hub Site template for other local service businesses.
 
-**Conversion action:** Walk-in visit or Square booking. No lead form. No email capture. Primary CTA = show the address, hours, and walk-in availability above the fold.
+**Conversion action:** Square booking first; directions/call/walk-ins secondary. No lead form. No email capture. Primary CTA = book a chair. Secondary CTA = get directions or call to check availability.
 
 **Current metrics (baseline 2026-04-29):**
 - AEO appearance: 1/5 tested queries (traditional-barbershop niche only)
